@@ -16,6 +16,7 @@ $factory->define( \LACC\Models\User::class, function ( Faker\Generator $faker ) 
     return [
       'name'           => $faker->name,
       'email'          => $faker->unique()->safeEmail,
+      'role'           => \LACC\Models\User::ROLE_CLIENT,
       'password'       => $password ? : $password = bcrypt( 'secret' ),
       'remember_token' => str_random( 10 ),
     ];
