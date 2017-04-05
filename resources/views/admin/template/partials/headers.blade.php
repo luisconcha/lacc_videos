@@ -1,6 +1,5 @@
 <header class="header">
-    <a href="index.html" class="logo">
-        <!-- Add the class icon to your logo image or logo icon to add the margining -->
+    <a href="{{ route('admin.dashboard') }}" class="logo">
         LACC-Video
     </a>
     <!-- Header Navbar: style can be found in header.less -->
@@ -215,14 +214,14 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="glyphicon glyphicon-user"></i>
-                        <span>Luis Alberto <i class="caret"></i></span>
+                        <span>{{ auth()->user()->name }} <i class="caret"></i></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header bg-light-blue">
                             <img src="{{url('img/avatar3.png')}}" class="img-circle" alt="User Image"/>
                             <p>
-                                Luis Alberto - Web Developer
+                                {{ auth()->user()->name }}  <br>Web Developer
                                 <small>Member since Nov. 2017</small>
                             </p>
                         </li>
@@ -244,7 +243,18 @@
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                {{--<a href="#" class="btn btn-default btn-flat">Sign out</a>--}}
+                                <a href="{{ route('admin.logout') }}" class="btn btn-default btn-flat"
+                                   onclick="event.preventDefault();
+                                   document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+
+                                <form id="logout-form" action="{{ route('admin.logout') }}"
+                                      method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </div>
                         </li>
                     </ul>

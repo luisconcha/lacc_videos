@@ -5,7 +5,7 @@
             <img src="{{url('img/avatar3.png')}}" class="img-circle" alt="User Image"/>
         </div>
         <div class="pull-left info">
-            <p>Hello, Luis Alberto</p>
+            <p><span class="name-user">Hello,{{ auth()->user()->name }}</span></p>
 
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -41,7 +41,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="{{route('users.lists')}}"><i class="fa fa-angle-double-right"></i> List</a></li>
+                <li><a href="{{route('admin.users.lists')}}"><i class="fa fa-angle-double-right"></i> List</a></li>
                 <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
                 <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline
                         charts</a></li>

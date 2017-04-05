@@ -1,9 +1,11 @@
 <?php
 
-namespace LACC\Http\Controllers\Auth;
+namespace LACC\Http\Controllers\Admin\Auth;
 
+use Illuminate\Http\Request;
 use LACC\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use LACC\Models\User;
 
 class LoginController extends Controller
 {
@@ -25,15 +27,30 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/dashboard';
 
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * LoginController constructor.
      */
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+
+    public function showLoginForm()
+    {
+        return view('admin.auth.login');
+    }
+
+    /**
+     * Adds the role of ADMIN to allow access only users with this user role
+     * @param Request $request
+     * @return array
+     */
+    protected function credentials(Request $request)
+    {
+        $data = $request->only($this->username(), 'password');
+        $data['role'] = User::ROLE_ADMIN;
+        return $data;
     }
 }

@@ -8,9 +8,26 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', ['as' => 'admin', 'uses' => 'Admin\IndexController@index']);
-    Route::get('/dashboard', ['as' => 'admin.dashboard', 'uses' => 'Admin\IndexController@dashboard']);
-    
-    Route::get('/list', ['as' => 'users.lists', 'uses' => 'Admin\UserController@index']);
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], function () {
+
+    //Route to login
+    Route::name('login')->get('login', 'Auth\LoginController@showLoginForm');
+    Route::post('login', 'Auth\LoginController@login');
+
+    //Protected routes
+    Route::group(['middleware' => 'can:admin'], function () {
+
+        Route::name('logout')->post('logout', 'Auth\LoginController@logout');
+
+        //Route to Panel
+        Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
+        Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'IndexController@dashboard']);
+
+        //Route to Users
+        Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+            Route::get('/list', ['as' => 'lists', 'uses' => 'UserController@index']);
+        });
+    });
+
+
 });
