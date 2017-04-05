@@ -35,6 +35,7 @@ elixir( function ( mix ) {
 
     // mix.version( [ 'css/videos.css', 'js/videos.js' ] );
     //
+    mix.copy( 'node_modules/font-awesome/fonts', 'public/fonts' );
     mix.copy( 'resources/assets/theme_adminTE/fonts', 'public/fonts' );
     mix.copy( 'resources/assets/theme_adminTE/img', 'public/img' );
 
