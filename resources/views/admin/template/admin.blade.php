@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <title>AdminLTE | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-    
+
     <link rel="stylesheet" type="text/css" href="{{ asset('css/videos.css') }}">
 
 </head>
@@ -33,7 +33,7 @@
                     <li class="active">Dashboard</li>
                 </ol>
             </section>
-        @endif
+    @endif
 
 
     <!-- Main content -->
@@ -45,7 +45,34 @@
 
 <!-- add new calendar event modal -->
 
+@yield('pre-script')
+
 <script src="{{ asset('js/videos.js') }}"></script>
+
+@yield('pos-script')
+
+
+<script type="text/javascript">
+
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('73f6c722dc503be4df84', {
+        encrypted: true
+    });
+
+    var notificationsChannel = pusher.subscribe('module_user');
+
+    notificationsChannel.bind('save_user', function (notification) {
+        var message = notification.message;
+        //seed https://notifyjs.com/
+        $.notify(message, {
+            className: "success",
+            autoHide: true,
+            autoHideDelay: 5000,
+        });
+    });
+</script>
+
 
 </body>
 </html>

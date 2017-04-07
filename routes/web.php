@@ -4,7 +4,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
@@ -26,6 +26,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
         //Route to Users
         Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
             Route::get('/list', ['as' => 'lists', 'uses' => 'UserController@index']);
+            Route::get('/new', ['as' => 'new', 'uses' => 'UserController@add']);
+            Route::post('/store', ['as' => 'store', 'uses' => 'UserController@store']);
         });
     });
 

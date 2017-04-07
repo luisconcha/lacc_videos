@@ -19,6 +19,8 @@ elixir( function ( mix ) {
         '../../../resources/assets/theme_adminTE/js/jquery.js',
         '../../../resources/assets/theme_adminTE/js/bootstrap.js',
         '../../../resources/assets/theme_adminTE/js/jquery-ui.min.js',
+        '../../../resources/assets/theme_adminTE/js/notify.min.js',
+        '../../../resources/assets/theme_adminTE/js/pusher.min.js',
         '../../../resources/assets/theme_adminTE/js/raphael-min.js',
         '../../../resources/assets/theme_adminTE/js/plugins/morris/morris.js',
         '../../../resources/assets/theme_adminTE/js/plugins/sparkline/jquery.sparkline.js',
