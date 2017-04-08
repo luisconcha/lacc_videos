@@ -15,7 +15,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
     Route::post('login', 'Auth\LoginController@login');
 
     //Protected routes
-    Route::group(['middleware' => 'can:admin'], function () {
+    //Route::group(['middleware' => 'can:admin'], function () {
 
         Route::name('logout')->post('logout', 'Auth\LoginController@logout');
 
@@ -29,7 +29,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
             Route::get('/new', ['as' => 'new', 'uses' => 'UserController@add']);
             Route::post('/store', ['as' => 'store', 'uses' => 'UserController@store']);
         });
-    });
+   // });
 
 
 });

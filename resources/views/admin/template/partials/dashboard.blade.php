@@ -2,7 +2,8 @@
 
 @section('content')
 
-
+        <h1>User: {{auth()->user()->name}}</h1>
+        <h2>Role: {{auth()->user()->role}}</h2>
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-lg-3 col-xs-6">

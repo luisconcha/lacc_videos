@@ -32,7 +32,6 @@ class UserController extends Controller
 
         //event(new UserHasBeenRegistered($user));
 
-
         $options = array(
             'encrypted' => true
         );
@@ -45,6 +44,7 @@ class UserController extends Controller
 
         $data['message'] = "O registro {$user->name} foi inserido na base de dados com sucesso";
         $pusher->trigger('module_user', 'save_user', $data);
+
 
         return redirect()->route('admin.users.lists');
     }

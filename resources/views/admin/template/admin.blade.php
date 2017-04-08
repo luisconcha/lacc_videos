@@ -8,6 +8,7 @@
 
 </head>
 <body class="skin-blue">
+<span style="display: none" id="userRoleId">{{auth()->user()->role}}</span>
 @include('admin.template.partials.headers')
 
 <div class="wrapper row-offcanvas row-offcanvas-left">
@@ -39,6 +40,7 @@
     <!-- Main content -->
         <section class="content">
             @yield('content')
+
         </section><!-- /.content -->
     </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
@@ -51,26 +53,32 @@
 
 @yield('pos-script')
 
-
 <script type="text/javascript">
 
-    Pusher.logToConsole = true;
+    var role = $('#userRoleId').html();
 
-    var pusher = new Pusher('73f6c722dc503be4df84', {
-        encrypted: true
-    });
+    if (role == 1) {
+        //Pusher.logToConsole = true;
 
-    var notificationsChannel = pusher.subscribe('module_user');
-
-    notificationsChannel.bind('save_user', function (notification) {
-        var message = notification.message;
-        //seed https://notifyjs.com/
-        $.notify(message, {
-            className: "success",
-            autoHide: true,
-            autoHideDelay: 5000,
+        var pusher = new Pusher('73f6c722dc503be4df84', {
+            encrypted: true
         });
-    });
+
+        var notificationsChannel = pusher.subscribe('module_user');
+
+        notificationsChannel.bind('save_user', function (notification) {
+            var message = notification.message;
+            //seed https://notifyjs.com/
+            $.notify(message, {
+                className: "success",
+                autoHide: true,
+                autoHideDelay: 15000,
+            });
+        });
+    } else {
+        console.log('Obj: sem notificações');
+    }
+
 </script>
 
 
