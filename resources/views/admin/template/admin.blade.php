@@ -55,28 +55,10 @@
 
 <script type="text/javascript">
 
-    var role = $('#userRoleId').html();
+    var role = $( '#userRoleId' ).html();
 
-    if (role == 1) {
-        //Pusher.logToConsole = true;
-
-        var pusher = new Pusher('73f6c722dc503be4df84', {
-            encrypted: true
-        });
-
-        var notificationsChannel = pusher.subscribe('module_user');
-
-        notificationsChannel.bind('save_user', function (notification) {
-            var message = notification.message;
-            //seed https://notifyjs.com/
-            $.notify(message, {
-                className: "success",
-                autoHide: true,
-                autoHideDelay: 15000,
-            });
-        });
-    } else {
-        console.log('Obj: sem notificações');
+    if ( role == 1 ) {
+        getObjectPusher( 'module_user', 'success', 'save_user', 10000 );
     }
 
 </script>

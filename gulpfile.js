@@ -32,7 +32,7 @@ elixir( function ( mix ) {
         '../../../resources/assets/theme_adminTE/js/plugins/iCheck/icheck.min.js',
         '../../../resources/assets/theme_adminTE/js/AdminLTE/app.js',
         '../../../resources/assets/theme_adminTE/js/AdminLTE/demo.js',
-        'videos.js'
+        '../../../resources/assets/js/videos.js',
     ], 'public/js/videos.js' );
 
     // mix.version( [ 'css/videos.css', 'js/videos.js' ] );

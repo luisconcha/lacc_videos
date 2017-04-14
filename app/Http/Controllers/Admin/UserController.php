@@ -30,20 +30,8 @@ class UserController extends Controller
         $user->fill($data);
         $user->save();
 
-        //event(new UserHasBeenRegistered($user));
-
-        $options = array(
-            'encrypted' => true
-        );
-        $pusher = new \Pusher(
-            env('PUSHER_APP_KEY'),
-            env('PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
-            $options
-        );
-
         $data['message'] = "O registro {$user->name} foi inserido na base de dados com sucesso";
-        $pusher->trigger('module_user', 'save_user', $data);
+        getObjectPusher('module_user','save_user', $data);
 
 
         return redirect()->route('admin.users.lists');

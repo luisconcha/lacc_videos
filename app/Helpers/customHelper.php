@@ -38,4 +38,19 @@ if ( !function_exists( 'priceBR' ) ) {
         return $price;
     }
 }
+if ( !function_exists( 'getObjectPusher' ) ) {
+    function getObjectPusher( $chanel, $canal, $message )
+    {
+        $options = array(
+          'encrypted' => true,
+        );
+        $pusher  = new \Pusher(
+          env( 'PUSHER_APP_KEY' ),
+          env( 'PUSHER_APP_SECRET' ),
+          env( 'PUSHER_APP_ID' ),
+          $options
+        );
+        return $pusher->trigger( $chanel, $canal, $message );
+    }
+}
 
