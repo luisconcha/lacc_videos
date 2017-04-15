@@ -58,7 +58,20 @@ class User extends Authenticatable
         return [
           'name'  => 'required|min:5|max:100',
           'email' => 'required|email|unique:users,email,' . $idUser,
-          //'password'     => $passRules,
+        ];
+    }
+
+    public function rulesPassword()
+    {
+        $idUser = ( \Request::segment( 3 ) ) ? : null;
+        if ( $idUser ) {
+            $passRules = 'confirmed';
+        } else {
+            $passRules = 'required|confirmed';
+        }
+
+        return [
+          'password' => $passRules.'|min:6',
         ];
     }
 }

@@ -45,7 +45,7 @@ class StandarController extends Controller
             $message  = "Congratulations, the {$register} record was inserted successfully!";
             //Send message to users admin
             if ( $this->model instanceof User ) {
-                $data[ 'message' ] = "O registro {$request['name']} foi inserido na base de dados";
+                $data[ 'message' ] = "the record {$request['name']} has been entered into the database";
                 getObjectPusher( 'module_user', 'save_user', $data );
             }
             createMessage( $request, 'message', 'success', $message );

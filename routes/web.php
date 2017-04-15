@@ -30,6 +30,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
         Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'IndexController@dashboard']);
 
         //Route to Users
+         Route::get('/password-change/{id}', ['as' => 'form.password.change', 'uses' => 'UserController@passwordForm']);
+         Route::post('/password-change', ['as' => 'users.password', 'uses' => 'UserController@passwordStore']);
          Route::resource('users','UserController');
 
         //Route to Categories

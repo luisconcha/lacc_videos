@@ -221,14 +221,15 @@
                         <li class="user-header bg-light-blue">
                             <img src="{{url('img/avatar3.png')}}" class="img-circle" alt="User Image"/>
                             <p>
-                                {{ auth()->user()->name }}  <br>Web Developer
+                                {{ auth()->user()->name }} <br>Web Developer
                                 <small>Member since Nov. 2017</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
                         <li class="user-body">
                             <div class="col-xs-4 text-center">
-                                <a href="#">Followers</a>
+                                <a href="{{ route('admin.form.password.change',[auth()->user()->id])
+                                }}">Password</a>
                             </div>
                             <div class="col-xs-4 text-center">
                                 <a href="#">Sales</a>
