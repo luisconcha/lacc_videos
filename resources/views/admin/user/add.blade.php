@@ -31,7 +31,7 @@
 
         <div class="form-group text-center">
             {!! Form::submit('Save', ['class'=>'btn btn-primary btn-sm']) !!}
-            <a href="{{ route('admin.users.lists') }}" class="btn btn-warning btn-sm"> Return </a>
+            <a href="{{ route('admin.users.index') }}" class="btn btn-warning btn-sm"> Return </a>
         </div>
 
 

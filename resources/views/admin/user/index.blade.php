@@ -15,7 +15,7 @@
 @section('content')
     <h1>Userlist</h1>
 
-    <a href="{{route('admin.users.new')}}" class="btn btn-primary">New user</a>
+    <a href="{{route('admin.users.create')}}" class="btn btn-primary">New user</a>
     <table class="table">
         <tr>
             <td>id</td>
@@ -23,7 +23,7 @@
             <td>email</td>
             <td>actions</td>
         </tr>
-        @foreach($users as $user)
+        @forelse($users as $user)
             <tr>
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
@@ -32,7 +32,13 @@
                     ---
                 </td>
             </tr>
-        @endforeach
+        @empty
+            <tr class="text-center">
+                <td colspan="4"><span class="label label-warning">No record</span></td>
+            </tr>
+        @endforelse
     </table>
+
+    {{(count($users) ? $users->links() : '')}}
 
 @endsection

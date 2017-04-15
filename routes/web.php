@@ -30,11 +30,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
         Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'IndexController@dashboard']);
 
         //Route to Users
-        Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
-            Route::get('/list', ['as' => 'lists', 'uses' => 'UserController@index']);
-            Route::get('/new', ['as' => 'new', 'uses' => 'UserController@add']);
-            Route::post('/store', ['as' => 'store', 'uses' => 'UserController@store']);
-        });
+//        Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+//            Route::get('/list', ['as' => 'lists', 'uses' => 'UserController@index']);
+//            Route::get('/new', ['as' => 'new', 'uses' => 'UserController@add']);
+//            Route::post('/store', ['as' => 'store', 'uses' => 'UserController@store']);
+//        });
+         Route::resource('users','UserController');
     });
 
 
