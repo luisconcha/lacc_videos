@@ -47,6 +47,17 @@
                         charts</a></li>
             </ul>
         </li>
+
+        <li class="treeview">
+            <a href="#">
+                <i class="fa fa-university"></i>
+                <span>Categories</span>
+                <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+                <li><a href="{{route('admin.categories.index')}}"><i class="fa fa-angle-double-right"></i> List</a></li>
+            </ul>
+        </li>
         <li class="treeview">
             <a href="#">
                 <i class="fa fa-laptop"></i>

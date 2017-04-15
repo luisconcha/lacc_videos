@@ -40,5 +40,6 @@ class DatabaseSeeder extends Seeder
         $this->call('CidadesSergipeSeeder');
         $this->call('CidadesTocantinsSeeder');
         $this->call(UsersTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
     }
 }

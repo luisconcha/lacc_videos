@@ -1,5 +1,4 @@
 <?php
-
 namespace LACC\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +9,15 @@ class Category extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $fillable = [];
+    protected $fillable = [ 'name', 'color', 'url' ];
 
+    public function rules()
+    {
+        $idCategory = ( \Request::segment( 3 ) ) ? : null;
+
+        return [
+          'name'  => 'required|min:5|max:100',
+          'color' => 'required|unique:categories,color,' . $idCategory,
+        ];
+    }
 }

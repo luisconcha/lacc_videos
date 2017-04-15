@@ -21,7 +21,7 @@ class UserController extends StandarController
 
     protected $view = 'admin.user';
 
-    protected $limit = 15;
+    protected $totalPage = 15;
 
     public function __construct( UserRepository $repository, User $modelUser )
     {

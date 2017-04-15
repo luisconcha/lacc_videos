@@ -22,8 +22,11 @@ $factory->define( \LACC\Models\User::class, function ( Faker\Generator $faker ) 
     ];
 } );
 $factory->define( \LACC\Models\Category::class, function ( Faker\Generator $faker ) {
+    $categoryName = $faker->jobTitle;
+
     return [
-      'name'  => $faker->jobTitle,
-      'color' => $faker->unique()->rgbColor,
+      'name'  => $categoryName,
+      'url'   => str_slug( $categoryName ),
+      'color' => $faker->unique()->hexColor,
     ];
 } );

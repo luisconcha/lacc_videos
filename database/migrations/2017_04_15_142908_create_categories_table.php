@@ -15,7 +15,8 @@ class CreateCategoriesTable extends Migration
         Schema::create( 'categories', function ( Blueprint $table ) {
             $table->increments( 'id' );
             $table->string( 'name', 150 )->unique();
-            $table->string('color',7)->unique()->comment('Category color int hexadecimal format');
+            $table->string( 'url' );
+            $table->string( 'color', 7 )->unique()->comment( 'Category color int hexadecimal format' );
             $table->timestamps();
         } );
     }
