@@ -50,4 +50,15 @@ class User extends Authenticatable
     {
         return !$password ? bcrypt( str_random( 6 ) ) : bcrypt( $password );
     }
+
+    public function rules()
+    {
+        $idUser = ( \Request::segment( 3 ) ) ? : null;
+
+        return [
+          'name'  => 'required|min:5|max:100',
+          'email' => 'required|email|unique:users,email,' . $idUser,
+          //'password'     => $passRules,
+        ];
+    }
 }

@@ -1,4 +1,4 @@
-    <?php
+<?php
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -19,5 +19,11 @@ $factory->define( \LACC\Models\User::class, function ( Faker\Generator $faker ) 
       'role'           => \LACC\Models\User::ROLE_CLIENT,
       'password'       => $password ? : $password = bcrypt( 'secret' ),
       'remember_token' => str_random( 10 ),
+    ];
+} );
+$factory->define( \LACC\Models\Category::class, function ( Faker\Generator $faker ) {
+    return [
+      'name'  => $faker->jobTitle,
+      'color' => $faker->unique()->rgbColor,
     ];
 } );

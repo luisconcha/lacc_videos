@@ -27,9 +27,9 @@ html, body {
     top: 18px;
 }
 
-.content {
-    text-align: center;
-}
+/*.content {*/
+    /*text-align: left;*/
+/*}*/
 
 .title {
     font-size: 84px;

@@ -156,6 +156,7 @@ return [
         // LACC\Providers\BroadcastServiceProvider::class,
         LACC\Providers\EventServiceProvider::class,
         LACC\Providers\RouteServiceProvider::class,
+        LACC\Providers\LACCServiceProvider::class,
     ],
     /*
     |--------------------------------------------------------------------------

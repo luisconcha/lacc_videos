@@ -13,9 +13,15 @@
 @endsection
 
 @section('content')
-    <h1>Userlist</h1>
 
-    <a href="{{route('admin.users.create')}}" class="btn btn-primary">New user</a>
+    <div class="row">
+        <div class="form-group col-xs-7 text-center">
+            <h3>List of users</h3>
+        </div>
+        <div class="form-group col-xs-5 text-right">
+            <h3><a href="{{route('admin.users.create')}}" class="btn btn-primary">New user</a></h3>
+        </div>
+    </div>
     <table class="table">
         <tr>
             <td>id</td>
@@ -23,13 +29,14 @@
             <td>email</td>
             <td>actions</td>
         </tr>
-        @forelse($users as $user)
+        @forelse($data as $user)
             <tr>
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
-                    ---
+                    <a href="{{route('admin.users.edit',$user->id)}}" class="edit">Edit</a>
+                    <a href="{{route('admin.users.show',$user->id)}}" class="delete">Delete</a>
                 </td>
             </tr>
         @empty
@@ -39,6 +46,8 @@
         @endforelse
     </table>
 
-    {{(count($users) ? $users->links() : '')}}
+    <div class="text-center">
+        {{(count($data) ? $data->links() : '')}}
+    </div>
 
 @endsection

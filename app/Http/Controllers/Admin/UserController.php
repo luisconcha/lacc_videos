@@ -2,108 +2,39 @@
 namespace LACC\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use LACC\Http\Controllers\Controller;
+use LACC\Http\Controllers\StandarController;
 use LACC\Models\User;
+use LACC\Repositories\UserRepository;
 
-class UserController extends Controller
+class UserController extends StandarController
 {
-    /** @var  Request */
-    protected $request;
+    /** @var User */
+    protected $model = 'user';
 
-    public function __construct( Request $request )
+    /** @var  UserRepository */
+    protected $repository;
+
+    /** @var  UserValidator */
+    protected $validator;
+
+    protected $route = 'admin.users';
+
+    protected $view = 'admin.user';
+
+    protected $limit = 15;
+
+    public function __construct( UserRepository $repository, User $modelUser )
     {
-        $this->request = $request;
+        $this->model      = $modelUser;
+        $this->repository = $repository;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function store( Request $request )
     {
-        $users = User::paginate();
+        $request[ 'password' ] = User::generatePassword();
+        $request[ 'role' ]     = User::ROLE_CLIENT;
 
-        return view( 'admin.user.index', compact( 'users' ) );
-    }
+        return parent::store( $request );
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view( 'admin.user.add' );
-    }
-
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function store()
-    {
-        $data               = $this->request->all();
-        $data[ 'password' ] = User::generatePassword();
-        $data[ 'role' ]     = User::ROLE_CLIENT;
-        $user               = new User();
-        $user->fill( $data );
-        $user->save();
-        //Envia mensagem para usuários ADMIN com Pusher
-        $data[ 'message' ] = "O registro {$user->name} foi inserido na base de dados com sucesso";
-        getObjectPusher( 'module_user', 'save_user', $data );
-        //
-        $message = "Congratulations, the user have been successfully registered!";
-        createMessage( $this->request, 'message', 'success', $message );
-
-        return redirect()->route( 'admin.users.index' );
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \LACC\Models\User $user
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show( User $user )
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \LACC\Models\User $user
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit( User $user )
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \LACC\Models\User        $user
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update( Request $request, User $user )
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \LACC\Models\User $user
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy( User $user )
-    {
-        //
     }
 }
