@@ -33,9 +33,9 @@
                             @endif
                         </div>
                     </div>
-                        <label>
-                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                        </label>
+                    <label>
+                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                    </label>
                 </div>
 
                 <div class="footer">
@@ -44,10 +44,10 @@
                     </button>
 
                     {{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
-                        {{--Forgot Your Password?--}}
+                    {{--Forgot Your Password?--}}
                     {{--</a>--}}
-                    <a class="btn btn-link" href="#">
-                        Forgot Your Password?
+                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                        Forgot Your Password??
                     </a>
                 </div>
             </form>

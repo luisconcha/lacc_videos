@@ -1,7 +1,7 @@
 <?php
-
 namespace LACC\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use LACC\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
@@ -17,7 +17,6 @@ class ResetPasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
-
     use ResetsPasswords;
 
     /**
@@ -34,6 +33,15 @@ class ResetPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware( 'guest' );
+    }
+
+    public function redirectPath()
+    {
+        if ( method_exists( $this, 'redirectTo' ) ) {
+            return $this->redirectTo();
+        }
+
+        return property_exists( $this, 'redirectTo' ) ? '/admin/dashboard' : '/home';
     }
 }

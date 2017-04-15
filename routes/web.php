@@ -8,6 +8,12 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index');
 
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], function () {
 
     //Route to login
@@ -15,7 +21,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
     Route::post('login', 'Auth\LoginController@login');
 
     //Protected routes
-    //Route::group(['middleware' => 'can:admin'], function () {
+    Route::group(['middleware' => 'can:admin'], function () {
 
         Route::name('logout')->post('logout', 'Auth\LoginController@logout');
 
@@ -29,7 +35,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
             Route::get('/new', ['as' => 'new', 'uses' => 'UserController@add']);
             Route::post('/store', ['as' => 'store', 'uses' => 'UserController@store']);
         });
-   // });
+    });
 
 
 });
