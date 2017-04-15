@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         $this->notify( new DefaultResetPasswordNotification( $token ) );
     }
+
+    public static function generatePassword( $password = null )
+    {
+        return !$password ? bcrypt( str_random( 6 ) ) : bcrypt( $password );
+    }
 }

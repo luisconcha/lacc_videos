@@ -54,6 +54,13 @@ html, body {
     color: #900;
 }
 
+.messages {
+    text-align: center;
+    font-weight: bold;
+    color: #900;
+    padding-top: 13px;
+}
+
 /******************************
           SIDEBAR
 ******************************/

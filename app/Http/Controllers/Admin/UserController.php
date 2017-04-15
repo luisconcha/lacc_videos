@@ -7,6 +7,14 @@ use LACC\Models\User;
 
 class UserController extends Controller
 {
+    /** @var  Request */
+    protected $request;
+
+    public function __construct( Request $request )
+    {
+        $this->request = $request;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +23,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate();
-        
-        return view('admin.user.index', compact('users'));
+
+        return view( 'admin.user.index', compact( 'users' ) );
     }
 
     /**
@@ -26,32 +34,28 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.add');
+        return view( 'admin.user.add' );
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store( Request $request )
+    public function store()
     {
-        $data = $request->all();
-        $data['password'] = bcrypt('123456');
-        $data['role'] = User::ROLE_CLIENT;
-
-        $user = new User();
-
-        $user->fill($data);
+        $data               = $this->request->all();
+        $data[ 'password' ] = User::generatePassword();
+        $data[ 'role' ]     = User::ROLE_CLIENT;
+        $user               = new User();
+        $user->fill( $data );
         $user->save();
+        //Envia mensagem para usuários ADMIN com Pusher
+        $data[ 'message' ] = "O registro {$user->name} foi inserido na base de dados com sucesso";
+        getObjectPusher( 'module_user', 'save_user', $data );
+        //
+        $message = "Congratulations, the user have been successfully registered!";
+        createMessage( $this->request, 'message', 'success', $message );
 
-        $data['message'] = "O registro {$user->name} foi inserido na base de dados com sucesso";
-        getObjectPusher('module_user','save_user', $data);
-
-
-        return redirect()->route('admin.users.index');
+        return redirect()->route( 'admin.users.index' );
     }
 
     /**

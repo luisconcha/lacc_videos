@@ -39,8 +39,27 @@
 
     <!-- Main content -->
         <section class="content">
-            @yield('content')
+            <div class="messages">
+                @if( Session::has('message') )
+                    <div class="alert alert-{{ Session::get("message.type") }} alert-dismissible fade in" role="alert">
+                        <i class="fa fa-check"></i>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">×</span></button>
+                        <p><strong>Notice:</strong> {{Session::get("message.msg")}}</p>
+                    </div>
+                @endif
 
+                @if( Session::has('error') )
+                    <div class="alert alert-{{ Session::get("error.type") }} alert-dismissible fade in" role="alert">
+                        <i class="fa fa-ban"></i>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">×</span></button>
+                        <p><strong>Notice: </strong> {{Session::get("error.msg")}}</p>
+                    </div>
+                @endif
+            </div>
+
+            @yield('content')
         </section><!-- /.content -->
     </aside><!-- /.right-side -->
 </div><!-- ./wrapper -->
@@ -61,6 +80,7 @@
         getObjectPusher( 'module_user', 'success', 'save_user', 10000 );
     }
 
+    setTimeout( "$('.messages').fadeOut('slow');", 4000 );
 </script>
 
 

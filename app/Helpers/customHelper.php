@@ -53,4 +53,10 @@ if ( !function_exists( 'getObjectPusher' ) ) {
         return $pusher->trigger( $chanel, $canal, $message );
     }
 }
+if ( !function_exists( 'createMessage' ) ) {
+    function createMessage( $request, $varName, $type, $msg )
+    {
+        $request->session()->flash( $varName, [ 'type' => $type, 'msg' => $msg ] );
+    }
+}
 
