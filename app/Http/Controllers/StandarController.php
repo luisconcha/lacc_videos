@@ -39,18 +39,21 @@ class StandarController extends Controller
     public function store( Request $request )
     {
         $this->validate( $request, $this->model->rules() );
-        $data = $request->all();
-        if ( $this->repository->create( $data ) ) {
+        $data  = $request->all();
+        $model = $this->repository->create( $data );
+
+        if ( $model ) {
             $register = isset( $data[ 'name' ] ) ? "'" . $data[ 'name' ] . "'" : '';
             $message  = "Congratulations, the {$register} record was inserted successfully!";
             //Send message to users admin
-            if ( $this->model instanceof User ) {
+            if ( $model instanceof User ) {
+                \UserVerification::generate( $model );
+                \UserVerification::send( $model, 'Sua conta foi criada' );
                 $data[ 'message' ] = "the record {$request['name']} has been entered into the database";
                 getObjectPusher( 'module_user', 'save_user', $data );
             }
             createMessage( $request, 'message', 'success', $message );
-
-            $urlTo = $this->checksTheCurrentUrl( $request['redirect_to'], "{$this->route}.index" );
+            $urlTo = $this->checksTheCurrentUrl( $request[ 'redirect_to' ], "{$this->route}.index" );
 
             return redirect()->to( $urlTo );
         }
@@ -89,13 +92,11 @@ class StandarController extends Controller
         $this->validate( $request, $this->model->rules() );
         $data     = $this->repository->find( $id );
         $dataForm = $request->all();
-        
         if ( $data->update( $dataForm ) ) {
             $register = isset( $dataForm[ 'name' ] ) ? "'" . $dataForm[ 'name' ] . "'" : '';
             $message  = "Congratulations, the {$register} record was changed successfully!";
             createMessage( $request, 'message', 'success', $message );
-
-            $urlTo = $this->checksTheCurrentUrl( $request['redirect_to'], "{$this->route}.index" );
+            $urlTo = $this->checksTheCurrentUrl( $request[ 'redirect_to' ], "{$this->route}.index" );
 
             return redirect()->to( $urlTo );
         } else {
@@ -117,8 +118,8 @@ class StandarController extends Controller
         $data = $this->repository->find( $id );
         $data->delete();
         createMessage( $request, 'message', 'success', "Record '$data->name'  deleted successfully!" );
-        $urlTo = $this->checksTheCurrentUrl( $request['redirect_to'], "{$this->route}.index" );
-        
+        $urlTo = $this->checksTheCurrentUrl( $request[ 'redirect_to' ], "{$this->route}.index" );
+
         return redirect()->to( $urlTo );
     }
 

@@ -21,6 +21,7 @@ class User extends Authenticatable
       'name',
       'email',
       'role',
+      'verified',
       'password',
     ];
 
@@ -71,7 +72,7 @@ class User extends Authenticatable
         }
 
         return [
-          'password' => $passRules.'|min:6',
+          'password' => $passRules . '|min:6',
         ];
     }
 }

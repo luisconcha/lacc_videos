@@ -14,6 +14,9 @@ Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail'
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
+Route::get('email-verification/error', 'EmailVerificationController@getVerificationError')->name('email-verification.error');
+Route::get('email-verification/check/{token}', 'EmailVerificationController@getVerification')->name('email-verification.check');
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], function () {
 
     //Route to login
@@ -21,7 +24,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\'], 
     Route::post('login', 'Auth\LoginController@login');
 
     //Protected routes
-    Route::group(['middleware' => 'can:admin'], function () {
+    Route::group(['middleware' => ['isVerified','can:admin']], function () {
 
         Route::name('logout')->post('logout', 'Auth\LoginController@logout');
 
