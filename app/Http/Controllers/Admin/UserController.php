@@ -25,31 +25,32 @@ class UserController extends StandarController
 
     public function __construct( UserRepository $repository, User $modelUser )
     {
-        $this->model      = $modelUser;
+        $this->model = $modelUser;
         $this->repository = $repository;
     }
 
     public function store( Request $request )
     {
         $request[ 'password' ] = User::generatePassword();
-        $request[ 'role' ]     = User::ROLE_ADMIN;
+        $request[ 'role' ] = User::ROLE_ADMIN;
 
         return parent::store( $request );
     }
-
-    public function passwordForm( $id )
+    
+    public function passwordForm()
     {
-        $user = $this->repository->find( $id );
+        $user = $this->repository->find( auth()->user()->id );
 
         return view( "{$this->view}.password", compact( 'user' ) );
+
     }
 
     public function passwordStore( Request $request )
     {
         $this->validate( $request, $this->model->rulesPassword() );
         $data[ 'password' ] = bcrypt( $request->input( 'password' ) );
-        $userId             = auth()->user()->id;
-        if ( $this->repository->update( $data, $userId ) ) {
+        $userId = auth()->user()->id;
+        if( $this->repository->update( $data, $userId ) ) {
             $message = "Congratulations, record was changed successfully!";
             createMessage( $request, 'message', 'success', $message );
 
