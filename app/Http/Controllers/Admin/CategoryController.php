@@ -32,8 +32,14 @@ class CategoryController extends StandarController
 
     public function __construct( CategoryRepository $repository, Category $category )
     {
-        $this->model      = $category;
+        $this->model = $category;
         $this->repository = $repository;
+    }
+
+    public function store( Request $request )
+    {
+        $request[ 'url' ] = str_slug( $request->input( 'name' ) );
+        return parent::store( $request );
     }
 
     public function update( $id, Request $request )

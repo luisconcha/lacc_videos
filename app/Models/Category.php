@@ -16,8 +16,8 @@ class Category extends Model implements Transformable
         $idCategory = ( \Request::segment( 3 ) ) ? : null;
 
         return [
-          'name'  => 'required|min:5|max:100',
-          'color' => 'required|unique:categories,color,' . $idCategory,
+            'name'  => 'required|min:5|max:100|unique:categories,name,' . $idCategory,
+            'color' => 'required|unique:categories,color,' . $idCategory,
         ];
     }
 }

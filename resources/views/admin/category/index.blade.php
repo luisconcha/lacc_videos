@@ -19,7 +19,7 @@
             <h3>List of categories</h3>
         </div>
         <div class="form-group col-xs-5 text-right">
-            <h3><a href="{{route('admin.categories.create')}}" class="btn btn-primary">New user</a></h3>
+            <h3><a href="{{route('admin.categories.create')}}" class="btn btn-primary"><i class="fa fa-fw fa-plus"></i> New category</a></h3>
         </div>
     </div>
     <table class="table table-hover">

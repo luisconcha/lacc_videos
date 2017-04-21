@@ -16,9 +16,10 @@
             @include('admin.category._form')
 
             <div class="form-group text-center">
-                {!! Form::submit('Save', ['class'=>'btn btn-primary btn-sm']) !!}
-                <a href="{{ route('admin.categories.index') }}" class="btn btn-warning btn-sm"> Return </a>
+                {!!  Form::button('<i class="fa fa-fw fa-save"></i> Save', ['type' => 'submit', 'class' => 'btn btn-primary btn-sm'] ) !!}
+                <a href="{{ route('admin.categories.index') }}" class="btn btn-warning btn-sm"><i class="fa fa-fw fa-rotate-left"></i> Return </a>
             </div>
+
 
             {!! Form::close() !!}
 

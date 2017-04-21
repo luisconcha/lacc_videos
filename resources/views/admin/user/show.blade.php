@@ -30,10 +30,10 @@
         </div>
         {!! Form::model($data,['route'=>['admin.users.destroy',$data->id],'method'=>'delete']) !!}
         <div class="form-group text-center">
-            {!! Form::submit("Delete user: $data->name", ['class'=>'btn btn-danger btn-sm']) !!}
+            {!!  Form::button('<i class="fa fa-fw fa-trash-o"></i> Delete user: '.$data->name, ['type' => 'submit', 'class' => 'btn btn-danger btn-sm'] ) !!}
             {!! Form::hidden('redirect_to', URL::previous()) !!}
-            <a href="{{route('admin.users.edit',$data->id)}}" class="btn btn-primary btn-sm"> Alter user {{$data->name}} </a>
-            <a href="{{ route('admin.users.index') }}" class="btn btn-default btn-sm"> Users list </a>
+            <a href="{{route('admin.users.edit',$data->id)}}" class="btn btn-primary btn-sm"> <i class="fa fa-fw fa-pencil"></i> Alter user: {{$data->name}} </a>
+            <a href="{{ route('admin.users.index') }}" class="btn btn-default btn-sm"><i class="fa fa-fw fa-eye"></i> User list </a>
         </div>
         {!! Form::close() !!}
     </div>

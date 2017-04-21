@@ -118,9 +118,8 @@ class StandarController extends Controller
         $data = $this->repository->find( $id );
         $data->delete();
         createMessage( $request, 'message', 'success', "Record '$data->name'  deleted successfully!" );
-        $urlTo = $this->checksTheCurrentUrl( $request[ 'redirect_to' ], "{$this->route}.index" );
-
-        return redirect()->to( $urlTo );
+        
+        return redirect()->route( "{$this->route}.index" )->withInput();
     }
 
     /**
