@@ -39,6 +39,7 @@ class CategoryController extends StandarController
     public function store( Request $request )
     {
         $request[ 'url' ] = str_slug( $request->input( 'name' ) );
+
         return parent::store( $request );
     }
 

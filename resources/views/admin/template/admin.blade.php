@@ -6,6 +6,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/videos.css') }}">
 
+    @stack('styles')
+
 </head>
 <body class="skin-blue">
 <span style="display: none" id="userRoleId">{{auth()->user()->role}}</span>
