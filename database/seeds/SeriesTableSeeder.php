@@ -13,6 +13,6 @@ class SeriesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory( Serie::class, 10 )->create();
+        factory( Serie::class, 20 )->create();
     }
 }

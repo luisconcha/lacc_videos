@@ -25,4 +25,9 @@ class Serie extends Model implements Transformable
             'description' => 'required',
         ];
     }
+
+    public function video()
+    {
+        return $this->hasMany( Video::class );
+    }
 }

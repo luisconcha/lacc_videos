@@ -35,8 +35,21 @@ $factory->define( \LACC\Models\Category::class, function( Faker\Generator $faker
 $factory->define( \LACC\Models\Serie::class, function( Faker\Generator $faker ) {
 
     return [
-        'title'       => $faker->sentence(3),
-        'description' => $faker->sentence(30),
-        'thumb'       => 'thumb.jp'
+        'title'       => $faker->sentence( 3 ),
+        'description' => $faker->sentence( 30 ),
+        'thumb'       => 'thumb.jpg'
+    ];
+} );
+
+$factory->define( \LACC\Models\Video::class, function( Faker\Generator $faker ) {
+
+    return [
+        'title'       => $faker->sentence( 3 ),
+        'description' => $faker->sentence( 30 ),
+        'duration'    => rand( 1, 30 ),
+        'file'        => 'thumb.jpg',
+        'thumb'       => 'thumb.jpg',
+        'publish'     => rand( 0, 1 ),
+        'completed'   => 1
     ];
 } );
