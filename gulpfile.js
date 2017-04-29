@@ -21,10 +21,6 @@ elixir( function ( mix ) {
         '../../../resources/assets/theme_adminTE/js/jquery.js',
         '../../../resources/assets/theme_adminTE/js/bootstrap.js',
         '../../../resources/assets/theme_adminTE/js/jquery-ui.min.js',
-        //'../../../node_modules/laravel-elixir-webpack-official/dist/index.js',
-        //'../../../node_modules/bootstrap-notify/bootstrap-notify.js',
-        //'../../../node_modules/pusher-js/dist/web/pusher.js',
-        //'../../../node_modules/laravel-echo/dist/echo.js',
         '../../../resources/assets/theme_adminTE/js/raphael-min.js',
         '../../../resources/assets/theme_adminTE/js/plugins/morris/morris.js',
         '../../../resources/assets/theme_adminTE/js/plugins/sparkline/jquery.sparkline.js',
@@ -36,13 +32,8 @@ elixir( function ( mix ) {
         '../../../resources/assets/theme_adminTE/js/plugins/iCheck/icheck.min.js',
         '../../../resources/assets/theme_adminTE/js/AdminLTE/app.js',
         '../../../resources/assets/theme_adminTE/js/AdminLTE/demo.js',
-        //'../../../resources/assets/js/notifications/user-notification.js',
         '../../../resources/assets/js/videos.js',
     ], 'public/js/videos.js' );
-
-    //mix.scripts( [
-    //    '../../../resources/assets/js/notifications/user-notification.js',
-    //], 'public/js/notification.js' );
 
     // mix.version( [ 'css/videos.css', 'js/videos.js' ] );
     //

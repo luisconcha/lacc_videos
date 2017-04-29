@@ -28,7 +28,7 @@ class UserController extends StandarController
         $this->model = $modelUser;
         $this->repository = $repository;
     }
-
+    
     public function store( Request $request )
     {
         $request[ 'password' ] = User::generatePassword();

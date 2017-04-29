@@ -78,7 +78,6 @@
 @yield('pre-script')
 <script src="/js/app.js"></script>
 <script src="{{ asset('js/videos.js') }}"></script>
-{{--<script src="{{ asset('js/notification.js') }}"></script>--}}
 
 
 

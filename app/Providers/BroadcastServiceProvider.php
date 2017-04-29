@@ -4,6 +4,7 @@ namespace LACC\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;
+use LACC\Models\User;
 
 class BroadcastServiceProvider extends ServiceProvider
 {
@@ -22,8 +23,7 @@ class BroadcastServiceProvider extends ServiceProvider
          * Authenticate the user's personal channel...
          */
         Broadcast::channel( 'LACC.Models.User.*', function( $user ) {
-            return true;
-//            return (int)$user->id === (int)$userId;
+            return \Auth::user()->role === User::ROLE_ADMIN;
         } );
     }
 }
