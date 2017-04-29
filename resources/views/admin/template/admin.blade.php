@@ -13,6 +13,12 @@
             'csrfToken' => csrf_token(),
             'userId'    => Auth::check() ? Auth::user()->id : null
         ] ); ?>
+
+        window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+        }, 5000);
     </script>
 
 </head>
@@ -82,17 +88,6 @@
 
 
 @yield('pos-script')
-
-{{--<script type="text/javascript">--}}
-
-    {{--var role = $('#userRoleId').html();--}}
-
-    {{--if ( role == 1 ) {--}}
-        {{--getObjectPusher('module_user', 'success', 'save_user', 10000);--}}
-    {{--}--}}
-
-    {{--setTimeout("$('.messages').fadeOut('slow');", 4000);--}}
-{{--</script>--}}
 
 
 </body>

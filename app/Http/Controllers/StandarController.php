@@ -49,11 +49,9 @@ class StandarController extends Controller
             //Send message to users admin
             if( $model instanceof User ) {
                 \UserVerification::generate( $model );
-                \UserVerification::send( $model, 'Sua conta foi criada' );
+                \UserVerification::send( $model, 'The user account was created successfully' );
                 
                 \Auth::user()->notify( new UserRegistration( $model ) );
-                //$data[ 'message' ] = "the record {$request['name']} has been entered into the database";
-                //getObjectPusher( 'module_user', 'save_user', $data );
             }
             createMessage( $request, 'message', 'success', $message );
             $urlTo = $this->checksTheCurrentUrl( $request[ 'redirect_to' ], "{$this->route}.index" );
