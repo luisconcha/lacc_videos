@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 
 /**
@@ -7,9 +6,10 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = require('jquery');
+window.$$ = window.jQuery = require('jquery');
 
 require('bootstrap-sass');
+require('bootstrap-notify');
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -17,7 +17,7 @@ require('bootstrap-sass');
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Vue = require('vue');
+//window.Vue = require('vue');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -25,12 +25,12 @@ window.Vue = require('vue');
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
-
-window.axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest'
-};
+//window.axios = require('axios');
+//
+//window.axios.defaults.headers.common = {
+//    'X-CSRF-TOKEN'    : window.Laravel.csrfToken,
+//    'X-Requested-With': 'XMLHttpRequest'
+//};
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -38,11 +38,11 @@ window.axios.defaults.headers.common = {
  * allows your team to easily build robust real-time web applications.
  */
 
-// import Echo from 'laravel-echo'
+import Echo from 'laravel-echo'
 
-// window.Pusher = require('pusher-js');
+window.Pusher = require('pusher-js');
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: 'your-pusher-key'
-// });
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key        : '6e01a786df397eee8ea4'
+});

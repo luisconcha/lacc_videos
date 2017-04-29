@@ -13,6 +13,7 @@ namespace LACC\Http\Controllers;
 
 use Illuminate\Http\Request;
 use LACC\Models\User;
+use LACC\Notifications\UserRegistration;
 
 class StandarController extends Controller
 {
@@ -39,25 +40,27 @@ class StandarController extends Controller
     public function store( Request $request )
     {
         $this->validate( $request, $this->model->rules() );
-        $data  = $request->all();
+        $data = $request->all();
         $model = $this->repository->create( $data );
 
-        if ( $model ) {
+        if( $model ) {
             $register = isset( $data[ 'name' ] ) ? "'" . $data[ 'name' ] . "'" : '';
-            $message  = "Congratulations, the {$register} record was inserted successfully!";
+            $message = "Congratulations, the {$register} record was inserted successfully!";
             //Send message to users admin
-            if ( $model instanceof User ) {
+            if( $model instanceof User ) {
                 \UserVerification::generate( $model );
                 \UserVerification::send( $model, 'Sua conta foi criada' );
-                $data[ 'message' ] = "the record {$request['name']} has been entered into the database";
-                getObjectPusher( 'module_user', 'save_user', $data );
+                
+                \Auth::user()->notify( new UserRegistration( $model ) );
+                //$data[ 'message' ] = "the record {$request['name']} has been entered into the database";
+                //getObjectPusher( 'module_user', 'save_user', $data );
             }
             createMessage( $request, 'message', 'success', $message );
             $urlTo = $this->checksTheCurrentUrl( $request[ 'redirect_to' ], "{$this->route}.index" );
 
             return redirect()->to( $urlTo );
         }
-        createMessage( $this->request, 'error', 'danger', 'There was an error trying to save the record.' );
+        createMessage( $request, 'error', 'danger', 'There was an error trying to save the record.' );
 
         return redirect()->route( "{$this->route}.create" )->withInput();
     }
@@ -90,11 +93,11 @@ class StandarController extends Controller
     public function update( $id, Request $request )
     {
         $this->validate( $request, $this->model->rules() );
-        $data     = $this->repository->find( $id );
+        $data = $this->repository->find( $id );
         $dataForm = $request->all();
-        if ( $data->update( $dataForm ) ) {
+        if( $data->update( $dataForm ) ) {
             $register = isset( $dataForm[ 'name' ] ) ? "'" . $dataForm[ 'name' ] . "'" : '';
-            $message  = "Congratulations, the {$register} record was changed successfully!";
+            $message = "Congratulations, the {$register} record was changed successfully!";
             createMessage( $request, 'message', 'success', $message );
             $urlTo = $this->checksTheCurrentUrl( $request[ 'redirect_to' ], "{$this->route}.index" );
 
@@ -103,7 +106,7 @@ class StandarController extends Controller
             createMessage( $request, 'error', 'danger', 'Could not update the registry!' );
 
             return redirect()->route( "{$this->route}.edit", [ 'id' => $data->id ] )
-              ->withInput();
+                             ->withInput();
         }
     }
 
@@ -118,7 +121,7 @@ class StandarController extends Controller
         $data = $this->repository->find( $id );
         $data->delete();
         createMessage( $request, 'message', 'success', "Record '$data->name'  deleted successfully!" );
-        
+
         return redirect()->route( "{$this->route}.index" )->withInput();
     }
 

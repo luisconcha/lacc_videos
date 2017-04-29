@@ -8,6 +8,13 @@
 
     @stack('styles')
 
+    <script>
+        window.Laravel = <?php echo json_encode( [
+            'csrfToken' => csrf_token(),
+            'userId'    => Auth::check() ? Auth::user()->id : null
+        ] ); ?>
+    </script>
+
 </head>
 <body class="skin-blue">
 <span style="display: none" id="userRoleId">{{auth()->user()->role}}</span>
@@ -69,21 +76,24 @@
 <!-- add new calendar event modal -->
 
 @yield('pre-script')
-
+<script src="/js/app.js"></script>
 <script src="{{ asset('js/videos.js') }}"></script>
+{{--<script src="{{ asset('js/notification.js') }}"></script>--}}
+
+
 
 @yield('pos-script')
 
-<script type="text/javascript">
+{{--<script type="text/javascript">--}}
 
-    var role = $( '#userRoleId' ).html();
+    {{--var role = $('#userRoleId').html();--}}
 
-    if ( role == 1 ) {
-        getObjectPusher( 'module_user', 'success', 'save_user', 10000 );
-    }
+    {{--if ( role == 1 ) {--}}
+        {{--getObjectPusher('module_user', 'success', 'save_user', 10000);--}}
+    {{--}--}}
 
-    setTimeout( "$('.messages').fadeOut('slow');", 4000 );
-</script>
+    {{--setTimeout("$('.messages').fadeOut('slow');", 4000);--}}
+{{--</script>--}}
 
 
 </body>
