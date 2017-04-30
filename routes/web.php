@@ -42,6 +42,13 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
         //Route to Categories
         Route::resource( 'categories', 'CategoryController' );
 
+        //Route to Videos
+        Route::group( [ 'prefix' => 'videos', 'as' => 'videos.' ], function() {
+            Route::get( '{video}/relations', [ 'as' => 'relations.create', 'uses' => 'VideosController@createRelations' ] );
+            Route::post( '{video}/relations', [ 'as' => 'relations.store', 'uses' => 'VideosController@storeRelations' ] );
+        } );
+        Route::resource( 'videos', 'VideosController' );
+
         //Route to Series
         Route::resource( 'series', 'SeriesController' );
     } );

@@ -70,11 +70,11 @@
         </li>
         <li class="treeview">
             <a href="#">
-                <i class="fa fa-edit"></i> <span>Forms</span>
+                <i class="fa fa-film"></i> <span>Videos</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
             <ul class="treeview-menu">
-                <li><a href="pages/forms/general.html"><i class="fa fa-angle-double-right"></i> General Elements</a>
+                <li><a href="{{route('admin.videos.index')}}"><i class="fa fa-angle-double-right"></i> List</a>
                 </li>
                 <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced
                         Elements</a></li>

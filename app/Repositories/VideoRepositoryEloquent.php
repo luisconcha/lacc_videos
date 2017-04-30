@@ -6,7 +6,6 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use LACC\Repositories\VideoRepository;
 use LACC\Models\Video;
-use LACC\Validators\VideoValidator;
 
 /**
  * Class VideoRepositoryEloquent
@@ -24,13 +23,11 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
         return Video::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria( app( RequestCriteria::class ) );
     }
 }
