@@ -26,9 +26,10 @@ $tabs = [
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 @foreach($tabs as $key => $tab)
-                    <li {{ $key == 0 ? "class=active" : '' }}  class="" data-toggle="tab">
-                        <a href="{{ $tab['link'] }}" data-toggle="tab">{{ $tab['title'] }}</a>
-                    </li>
+                <li {!! (!empty($data)) ? '' : 'class="disabled"' !!}>
+                    {{--<li {!! $key == 0 ? 'class="active"': '' !!}>--}}
+                <a href="{{ $tab['link'] }}" {!! (!empty($data) || $key == 0) ? 'data-toggle="tab"': '' !!}>{{ $tab['title'] }}</a>
+                </li>
                 @endforeach
             </ul>
             <div class="tab-content">

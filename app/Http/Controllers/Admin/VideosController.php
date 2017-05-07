@@ -29,7 +29,9 @@ class VideosController extends StandarController
 
     public function create()
     {
-        return view( "{$this->view}.add-edit" );
+        $data = '';
+
+        return view( "{$this->view}.add-edit", compact( 'data' ) );
     }
 
     public function store( Request $request )
@@ -55,7 +57,7 @@ class VideosController extends StandarController
 
         return view( "{$this->view}.add-edit", compact( 'data' ) );
     }
-    
+
     public function update( $id, Request $request )
     {
         $this->validate( $request, $this->model->rules() );
@@ -79,6 +81,7 @@ class VideosController extends StandarController
     public function createRelations( Video $video )
     {
         $data = $video;
+
         return view( "{$this->view}.relations", compact( 'data' ) );
     }
 
