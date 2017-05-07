@@ -4,7 +4,7 @@ $tabs = [
     [
         'title' => 'Information',
         'link'  => '#fa-icons',
-        'route' => !isset( $data ) ? route( 'admin.videos.create' ) : route( 'admin.videos.create', [ 'video' => $data->id ] )
+        'route' => ''
     ], [
         'title' => 'Series and category',
         'link'  => '#glyphicons',
@@ -15,7 +15,6 @@ $tabs = [
         'route' => ''
     ],
 ];
-
 ?>
 <h3>Manage videos</h3>
 <div class="text-right">
@@ -26,16 +25,9 @@ $tabs = [
     <div class='col-xs-12'>
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                {{--@foreach($tabs as $key => $tab)--}}
-                {{--<li {{ $key == 0 ? "class=active" : '' }}  class="{{ !isset($data)?'disabled':'' }}"--}}
-                {{--data-toggle="tab">--}}
-                {{--<a href="{{ !isset($data)? '#':$tab['link'] }}" data-toggle="tab">{{ $tab['title'] }}</a>--}}
-                {{--</li>--}}
-                {{--@endforeach--}}
                 @foreach($tabs as $key => $tab)
-                    <li {{ $key == 0 ? "class=active" : '' }}  class="{{ !isset($data)?'disabled':'' }}"
-                        data-toggle="tab">
-                        <a href="{{ $tab['link'] }} {{ $tab['route'] }}" data-toggle="tab">{{ $tab['title'] }}</a>
+                    <li {{ $key == 0 ? "class=active" : '' }}  class="" data-toggle="tab">
+                        <a href="{{ $tab['link'] }}" data-toggle="tab">{{ $tab['title'] }}</a>
                     </li>
                 @endforeach
             </ul>
@@ -44,19 +36,21 @@ $tabs = [
 
                 <div class="tab-pane active" id="fa-icons">
                     <section>
-                        {!! $slot !!}
+                        {!! $information !!}
                     </section>
 
                 </div>
 
                 <div class="tab-pane" id="glyphicons">
-
-                    <h2>2</h2>
+                    <section>
+                        {!! $seriesAndCategory !!}
+                    </section>
                 </div>
 
                 <div class="tab-pane" id="video_thumbnail">
-
-                    <h2>3</h2>
+                    <section>
+                        {!! $videoAndThumbnail !!}
+                    </section>
                 </div>
 
             </div>
