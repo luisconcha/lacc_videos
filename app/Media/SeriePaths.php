@@ -33,7 +33,7 @@ trait SeriePaths
         return $this->getAbsolutePath( $this->getStorage(), $this->thumb_relative );
     }
 
-    public function getThumbSmallbRelativeAttribute()
+    public function getThumbSmallRelativeAttribute()
     {
         list( $name, $extension ) = explode( '.', $this->thumb );
 

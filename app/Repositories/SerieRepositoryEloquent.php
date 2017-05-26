@@ -2,9 +2,9 @@
 
 namespace LACC\Repositories;
 
+use LACC\Media\ThumbUploads;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use LACC\Repositories\SerieRepository;
 use LACC\Models\Serie;
 use LACC\Validators\SerieValidator;
 
@@ -14,6 +14,7 @@ use LACC\Validators\SerieValidator;
  */
 class SerieRepositoryEloquent extends BaseRepository implements SerieRepository
 {
+    use ThumbUploads;
     /**
      * Specify Model class name
      *
