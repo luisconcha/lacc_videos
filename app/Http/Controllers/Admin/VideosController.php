@@ -38,7 +38,7 @@ class VideosController extends StandarController
     {
         $this->validate( $request, $this->model->rules() );
         $data = $request->all();
-
+        
         if( $data = $this->repository->create( $data ) ) {
             $register = isset( $data[ 'name' ] ) ? "'" . $data[ 'name' ] . "'" : '';
             $message = "Congratulations, the {$register} record was inserted successfully!";

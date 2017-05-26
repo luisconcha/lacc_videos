@@ -43,13 +43,13 @@ $tabs = [
 
                 <div class="tab-pane" id="glyphicons">
                     <section>
-                        {!! $seriesAndCategory !!}
+                        {!! (!empty($data)) ? $seriesAndCategory : '' !!}
                     </section>
                 </div>
 
                 <div class="tab-pane" id="video_thumbnail">
                     <section>
-                        {!! $videoAndThumbnail !!}
+                        {!! (!empty($data)) ? $videoAndThumbnail : '' !!}
                     </section>
                 </div>
 

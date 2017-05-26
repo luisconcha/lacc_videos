@@ -3,12 +3,13 @@
 namespace LACC\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use LACC\Media\SeriePaths;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 class Serie extends Model implements Transformable
 {
-    use TransformableTrait;
+    use TransformableTrait, SeriePaths;
 
     protected $fillable = [
         'title',
