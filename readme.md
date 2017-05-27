@@ -59,6 +59,12 @@
 ```sh
     - npm install
     - gulp | gulp --production | gulp watch
+```  
+```sh
+    - https://github.com/Folkloreatelier/laravel-image
+    - Enable the following extensions in php.ini (php -m) 
+    * gd2
+    * exif
 ```    
 
 ### Version

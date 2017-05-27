@@ -11,6 +11,7 @@
     "php": ">=5.6.4",
     "caouecs/laravel-lang": "~3.0",
     "doctrine/dbal": "^2.5",
+    "folklore/image": "0.3.16",
     "jrean/laravel-user-verification": "4.1.2",
     "laravel/framework": "5.4.*",
     "laravel/tinker": "~1.0",
