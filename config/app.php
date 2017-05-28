@@ -149,6 +149,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         \Jrean\UserVerification\UserVerificationServiceProvider::class,
+        \Folklore\Image\ImageServiceProvider::class,
         /*
          * Application Service Providers...
          */

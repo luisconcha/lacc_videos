@@ -15,31 +15,34 @@ class SeriesTableSeeder extends Seeder
      */
     public function run()
     {
+        $rootPath = config( 'filesystems.disks.local.root' );
+        \File::deleteDirectory( $rootPath, true );
+
         /** @var CollectionDatabase $series */
-        $series     = factory(Serie::class, 20)->create();
-        $repository = app(\LACC\Repositories\SerieRepositoryEloquent::class);
+        $series = factory( Serie::class, 20 )->create();
+        $repository = app( \LACC\Repositories\SerieRepositoryEloquent::class );
         $collectionThumbs = $this->getThumbs();
 
-        $series->each(function ($serie) use ($repository, $collectionThumbs) {
-            $repository->uploadThumb($serie->id, $collectionThumbs->random());
-        });
+        $series->each( function( $serie ) use ( $repository, $collectionThumbs ) {
+            $repository->uploadThumb( $serie->id, $collectionThumbs->random() );
+        } );
     }
 
     public function getThumbs()
     {
-        return new CollectionSupport([
+        return new CollectionSupport( [
             new \Illuminate\Http\UploadedFile(
-                storage_path('app/files/faker/thumbs/php.png'),
+                storage_path( 'app/files/faker/thumbs/php.png' ),
                 'php.png'
             ),
             new \Illuminate\Http\UploadedFile(
-                storage_path('app/files/faker/thumbs/java.png'),
+                storage_path( 'app/files/faker/thumbs/java.png' ),
                 'java.png'
             ),
             new \Illuminate\Http\UploadedFile(
-                storage_path('app/files/faker/thumbs/laravel.png'),
+                storage_path( 'app/files/faker/thumbs/laravel.png' ),
                 'laravel.png'
             )
-        ]);
+        ] );
     }
 }
