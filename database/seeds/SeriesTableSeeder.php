@@ -5,6 +5,7 @@ use Illuminate\Support\Collection as CollectionSupport;
 use Illuminate\Database\Eloquent\Collection as CollectionDatabase;
 
 use LACC\Models\Serie;
+use LACC\Repositories\SerieRepository;
 
 class SeriesTableSeeder extends Seeder
 {
@@ -15,12 +16,12 @@ class SeriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $rootPath = config( 'filesystems.disks.local.root' );
+        $rootPath = config( 'filesystems.disks.videos_local.root' );
         \File::deleteDirectory( $rootPath, true );
 
         /** @var CollectionDatabase $series */
         $series = factory( Serie::class, 20 )->create();
-        $repository = app( \LACC\Repositories\SerieRepositoryEloquent::class );
+        $repository = app( SerieRepository::class );
         $collectionThumbs = $this->getThumbs();
 
         $series->each( function( $serie ) use ( $repository, $collectionThumbs ) {
