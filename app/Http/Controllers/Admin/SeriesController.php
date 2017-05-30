@@ -48,7 +48,6 @@ class SeriesController extends StandarController
      */
     public function update( $id, Request $request )
     {
-
        // $request[ 'thumb' ] = env( 'SERIE_NO_THUMB' );
 
         return parent::update( $id, $request );

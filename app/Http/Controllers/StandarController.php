@@ -95,7 +95,9 @@ class StandarController extends Controller
         $this->validate( $request, $this->model->rules() );
         $data = $this->repository->find( $id );
         $dataForm = $request->all();
-        if( $data->update( $dataForm ) ) {
+
+        if( $data ) {
+            $this->repository->update($dataForm, $id);
             $register = isset( $dataForm[ 'name' ] ) ? "'" . $dataForm[ 'name' ] . "'" : '';
             $message = "Congratulations, the {$register} record was changed successfully!";
             createMessage( $request, 'message', 'success', $message );
