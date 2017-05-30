@@ -35,6 +35,7 @@ class SeriesController extends StandarController
      */
     public function store( Request $request )
     {
+        //Se por acaso der erro ao enviar o file, pega o valor default
         $request[ 'thumb' ] = env( 'SERIE_NO_THUMB' );
 
         return parent::store( $request );
@@ -47,8 +48,8 @@ class SeriesController extends StandarController
      */
     public function update( $id, Request $request )
     {
-        //Se por acaso der erro ao enviar o file, pega o valor default
-        $request[ 'thumb' ] = env( 'SERIE_NO_THUMB' );
+
+       // $request[ 'thumb' ] = env( 'SERIE_NO_THUMB' );
 
         return parent::update( $id, $request );
     }

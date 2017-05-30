@@ -21,10 +21,13 @@ class Serie extends Model implements Transformable
     {
         $idSeries = ( \Request::segment( 3 ) ) ? : null;
 
+        $rulesThumbFile = 'image|max:1024';
+        $rulesThumbFile = !$idSeries ? "required|$rulesThumbFile" : 'image|max:1024';
+
         return [
             'title'       => 'required|min:5|max:256|unique:series,title,' . $idSeries,
             'description' => 'required',
-            'thumb_file'  => 'required|image|max:1024'
+            'thumb_file'  => $rulesThumbFile
         ];
     }
 
