@@ -9,6 +9,7 @@
  * Project: lacc_videos
  * Copyright: 2017
  */
+
 namespace LACC\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -41,6 +42,7 @@ class StandarController extends Controller
     {
         $this->validate( $request, $this->model->rules() );
         $data = $request->all();
+        
         $model = $this->repository->create( $data );
 
         if( $model ) {
@@ -50,7 +52,7 @@ class StandarController extends Controller
             if( $model instanceof User ) {
                 \UserVerification::generate( $model );
                 \UserVerification::send( $model, 'The user account was created successfully' );
-                
+
                 \Auth::user()->notify( new UserRegistration( $model ) );
             }
             createMessage( $request, 'message', 'success', $message );

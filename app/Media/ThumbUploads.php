@@ -41,6 +41,7 @@ trait ThumbUploads
         $storage->put( $model->thumb_small_relative, $thumbnailSmall->get( $format ) );
     }
 
+
     public function upload( $model, UploadedFile $file )
     {
         /** @var FilesystemAdapter $storage */

@@ -24,27 +24,42 @@ class SeriesController extends StandarController
     public function __construct( SerieRepository $repository, Serie $serie )
     {
         $this->model = $serie;
+
+        /** @var SerieRepository repository */
         $this->repository = $repository;
     }
 
     /**
-     * Método momentaneo para salvar o thumb, depois será removido
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
     public function store( Request $request )
     {
-        $request[ 'thumb' ] = 'thumb.jpg';
+        $request[ 'thumb' ] = env( 'SERIE_NO_THUMB' );
 
         return parent::store( $request );
     }
 
     /**
-     * Método momentaneo para salvar o thumb, depois será removido
+     * @param $id
+     * @param Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function update($id, Request $request )
+    public function update( $id, Request $request )
     {
-        $request[ 'thumb' ] = 'thumb.jpg';
+        //Se por acaso der erro ao enviar o file, pega o valor default
+        $request[ 'thumb' ] = env( 'SERIE_NO_THUMB' );
 
-        return parent::update($id, $request );
+        return parent::update( $id, $request );
     }
 
+    public function thumbAssets( Serie $serie )
+    {
+        return response()->download( $serie->thumb_path );
+    }
+
+    public function thumbSmallAssets( Serie $serie )
+    {
+        return response()->download( $serie->thumb_small_path );
+    }
 }

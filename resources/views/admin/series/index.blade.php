@@ -36,7 +36,15 @@
         @forelse($data as $serie)
             <tr>
                 <td>{{ $serie->id }}</td>
-                <td>{{ $serie->title }}</td>
+                <td>
+                    <div class="media">
+                        <img class="d-flex align-self-center mr-3 pull-left" src="{{$serie->thumb_small_asset}}"
+                             alt="no image available">
+                        <div class="media-body">
+                            <h5 class="mt-0">{{ $serie->title }}</h5>
+                        </div>
+                    </div>
+                </td>
                 <td>{{ $serie->description }}</td>
                 <td>
                     <a href="{{route('admin.series.edit',$serie->id)}}" class="table-link">

@@ -37,7 +37,7 @@ $factory->define( \LACC\Models\Serie::class, function( Faker\Generator $faker ) 
     return [
         'title'       => $faker->sentence( 3 ),
         'description' => $faker->sentence( 30 ),
-        'thumb'       => 'thumb.jpg'
+        'thumb'  => env( 'SERIE_NO_THUMB' )
     ];
 } );
 

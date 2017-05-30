@@ -6,7 +6,6 @@ use LACC\Media\ThumbUploads;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use LACC\Models\Serie;
-use LACC\Validators\SerieValidator;
 
 /**
  * Class SerieRepositoryEloquent
@@ -15,6 +14,7 @@ use LACC\Validators\SerieValidator;
 class SerieRepositoryEloquent extends BaseRepository implements SerieRepository
 {
     use ThumbUploads;
+
     /**
      * Specify Model class name
      *
@@ -25,13 +25,20 @@ class SerieRepositoryEloquent extends BaseRepository implements SerieRepository
         return Serie::class;
     }
 
-    
+    public function create( array $attributes )
+    {
+        $model = parent::create( array_except($attributes,'thumb_file') );
+        $this->uploadThumb( $model->id, $attributes[ 'thumb_file' ] );
+
+        return $model;
+    }
+
 
     /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria( app( RequestCriteria::class ) );
     }
 }

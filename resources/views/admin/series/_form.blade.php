@@ -17,6 +17,13 @@
                     'id'=>'description']) !!}
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="form-group {{ $errors->first('thumb_file')? ' has-error':'' }}">
+                    {!! Form::label('Thumbnail','Thumbnail', ['class' => 'control-label']) !!}
+                    {!! Form::file('thumb_file', null, ['class'=>'form-control',
+                    'id'=>'thumb_file']) !!}
+                </div>
+            </div>
         </div>
     </div>
 </div>

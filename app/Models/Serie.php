@@ -24,6 +24,7 @@ class Serie extends Model implements Transformable
         return [
             'title'       => 'required|min:5|max:256|unique:series,title,' . $idSeries,
             'description' => 'required',
+            'thumb_file'  => 'required|image|max:1024'
         ];
     }
 

@@ -11,7 +11,7 @@
 
             @include('admin.errors._check')
 
-            {!! Form::open(['route'=>'admin.series.store','role'=>'form','class'=>'form']) !!}
+            {!! Form::open(['route'=>'admin.series.store','role'=>'form','class'=>'form','files'=>true]) !!}
 
             @include('admin.series._form')
 

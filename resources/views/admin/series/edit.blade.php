@@ -12,7 +12,7 @@
 
         @include('admin.errors._check')
 
-        {!! Form::model($data,['route'=>['admin.series.update','id'=>$data->id],'method'=>'put']) !!}
+        {!! Form::model($data,['route'=>['admin.series.update','id'=>$data->id],'method'=>'put','files'=>true]) !!}
 
         @include('admin.series._form')
 
