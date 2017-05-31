@@ -31,9 +31,6 @@ class UserController extends StandarController
     
     public function store( Request $request )
     {
-        $request[ 'password' ] = User::generatePassword();
-        $request[ 'role' ] = User::ROLE_ADMIN;
-
         return parent::store( $request );
     }
     

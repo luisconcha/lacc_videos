@@ -37,7 +37,7 @@ trait SeriePaths
     {
         list( $name, $extension ) = explode( '.', $this->thumb );
 
-        return "{$this->thumb_folder_storage}/{$name}_small/.{$this->thumb}";
+        return "{$this->thumb_folder_storage}/{$name}_small.{$this->thumb}";
     }
 
     public function getThumbSmallPathAttribute()

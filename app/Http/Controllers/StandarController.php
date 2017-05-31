@@ -13,8 +13,6 @@
 namespace LACC\Http\Controllers;
 
 use Illuminate\Http\Request;
-use LACC\Models\User;
-use LACC\Notifications\UserRegistration;
 
 class StandarController extends Controller
 {
@@ -42,19 +40,13 @@ class StandarController extends Controller
     {
         $this->validate( $request, $this->model->rules() );
         $data = $request->all();
-        
+
         $model = $this->repository->create( $data );
 
         if( $model ) {
             $register = isset( $data[ 'name' ] ) ? "'" . $data[ 'name' ] . "'" : '';
             $message = "Congratulations, the {$register} record was inserted successfully!";
-            //Send message to users admin
-            if( $model instanceof User ) {
-                \UserVerification::generate( $model );
-                \UserVerification::send( $model, 'The user account was created successfully' );
 
-                \Auth::user()->notify( new UserRegistration( $model ) );
-            }
             createMessage( $request, 'message', 'success', $message );
             $urlTo = $this->checksTheCurrentUrl( $request[ 'redirect_to' ], "{$this->route}.index" );
 
@@ -97,7 +89,7 @@ class StandarController extends Controller
         $dataForm = $request->all();
 
         if( $data ) {
-            $this->repository->update($dataForm, $id);
+            $this->repository->update( $dataForm, $id );
             $register = isset( $dataForm[ 'name' ] ) ? "'" . $dataForm[ 'name' ] . "'" : '';
             $message = "Congratulations, the {$register} record was changed successfully!";
             createMessage( $request, 'message', 'success', $message );
