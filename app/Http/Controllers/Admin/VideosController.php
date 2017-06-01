@@ -33,48 +33,12 @@ class VideosController extends StandarController
 
         return view( "{$this->view}.add-edit", compact( 'data' ) );
     }
-
-    public function store( Request $request )
-    {
-        $this->validate( $request, $this->model->rules() );
-        $data = $request->all();
-        
-        if( $data = $this->repository->create( $data ) ) {
-            $register = isset( $data[ 'name' ] ) ? "'" . $data[ 'name' ] . "'" : '';
-            $message = "Congratulations, the {$register} record was inserted successfully!";
-            createMessage( $request, 'message', 'success', $message );
-
-            return view( "{$this->view}.add-edit", compact( 'data' ) );
-        }
-        createMessage( $request, 'error', 'danger', 'There was an error trying to save the record.' );
-
-        return redirect()->route( "{$this->route}.create" )->withInput();
-    }
-
+    
     public function edit( $id )
     {
         $data = $this->repository->find( $id );
 
         return view( "{$this->view}.add-edit", compact( 'data' ) );
-    }
-
-    public function update( $id, Request $request )
-    {
-        $this->validate( $request, $this->model->rules() );
-        $data = $this->repository->find( $id );
-        $dataForm = $request->all();
-        if( $data->update( $dataForm ) ) {
-            $register = isset( $dataForm[ 'name' ] ) ? "'" . $dataForm[ 'name' ] . "'" : '';
-            $message = "Congratulations, the {$register} record was changed successfully!";
-            createMessage( $request, 'message', 'success', $message );
-
-            return view( "{$this->view}.add-edit", compact( 'data' ) );
-        } else {
-            createMessage( $request, 'error', 'danger', 'Could not update the registry!' );
-
-            return redirect()->route( "{$this->route}.edit", [ 'id' => $data->id ] )
-                             ->withInput();
-        }
     }
 
 
