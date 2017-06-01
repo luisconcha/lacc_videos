@@ -16,9 +16,6 @@ class SeriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $rootPath = config( 'filesystems.disks.videos_local.root' );
-        \File::deleteDirectory( $rootPath, true );
-
         /** @var CollectionDatabase $series */
         $series = factory( Serie::class, 20 )->create();
         $repository = app( SerieRepository::class );

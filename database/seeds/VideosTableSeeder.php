@@ -2,10 +2,12 @@
 
 use Illuminate\Database\Seeder;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection as CollectionSupport;
+use Illuminate\Database\Eloquent\Collection as CollectionDatabase;
 use LACC\Models\Video;
 use LACC\Models\Serie;
 use LACC\Models\Category;
+use LACC\Repositories\VideoRepository;
 
 class VideosTableSeeder extends Seeder
 {
@@ -16,26 +18,50 @@ class VideosTableSeeder extends Seeder
      */
     public function run()
     {
-        /** @var Collection $series */
+        /** @var CollectionDatabase $series */
         $series = Serie::all();
 
-        /** @var Collection $categories */
+        /** @var CollectionDatabase $categories */
         $categories = Category::all();
+
+        /** @var \LACC\Media\ThumbUploads $repository */
+        $repository = app( VideoRepository::class );
+
+        $collectionThumbs = $this->getThumbs();
 
         factory( Video::class, 100 )
             ->create()
-            ->each( function( $video ) use ( $series, $categories ) {
+            ->each( function( $video ) use ( $series, $categories, $repository, $collectionThumbs ) {
+
+                $repository->uploadThumb( $video->id, $collectionThumbs->random() );
 
                 $video->categories()->attach( $categories->random( 4 )->pluck( 'id' ) );
 
                 $num = rand( 1, 3 );
                 if( $num % 2 == 0 ) {
                     $serie = $series->random();
-
                     $video->serie_id = $serie->id;
                     $video->serie()->associate( $serie );
                     $video->save();
                 }
             } );
+    }
+
+    public function getThumbs()
+    {
+        return new CollectionSupport( [
+            new \Illuminate\Http\UploadedFile(
+                storage_path( 'app/files/faker/thumbs/php.png' ),
+                'php.png'
+            ),
+            new \Illuminate\Http\UploadedFile(
+                storage_path( 'app/files/faker/thumbs/java.png' ),
+                'java.png'
+            ),
+            new \Illuminate\Http\UploadedFile(
+                storage_path( 'app/files/faker/thumbs/laravel.png' ),
+                'laravel.png'
+            )
+        ] );
     }
 }

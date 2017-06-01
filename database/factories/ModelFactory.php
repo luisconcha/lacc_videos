@@ -48,7 +48,7 @@ $factory->define( \LACC\Models\Video::class, function( Faker\Generator $faker ) 
         'description' => $faker->sentence( 30 ),
         'duration'    => rand( 1, 30 ),
         'file'        => 'thumb.jpg',
-        'thumb'       => 'thumb.jpg',
+        'thumb'       =>  env( 'VIDEO_NO_THUMB' ),
         'publish'     => rand( 0, 1 ),
         'completed'   => 1
     ];

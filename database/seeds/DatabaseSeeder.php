@@ -10,6 +10,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $rootPath = config( 'filesystems.disks.videos_local.root' );
+        \File::deleteDirectory( $rootPath, true );
+
         $this->call( StatesTableSeeder::class );
         // Cidades
         $this->call( 'CidadesAcreSeeder' );
