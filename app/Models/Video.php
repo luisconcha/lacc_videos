@@ -3,12 +3,13 @@
 namespace LACC\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use LACC\Media\VideoPaths;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 class Video extends Model implements Transformable
 {
-    use TransformableTrait;
+    use TransformableTrait, VideoPaths;
 
     protected $fillable = [
         'title',
