@@ -29,11 +29,6 @@ class UserController extends StandarController
         $this->repository = $repository;
     }
     
-    public function store( Request $request )
-    {
-        return parent::store( $request );
-    }
-    
     public function passwordForm()
     {
         $user = $this->repository->find( auth()->user()->id );

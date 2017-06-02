@@ -27,6 +27,9 @@ class SerieRepositoryEloquent extends BaseRepository implements SerieRepository
 
     public function create( array $attributes )
     {
+        //Se por acaso der erro ao enviar o file, pega o valor default
+        $attributes[ 'thumb' ] = env( 'SERIE_NO_THUMB' );
+
         $model = parent::create( array_except( $attributes, 'thumb_file' ) );
         $this->uploadThumb( $model->id, $attributes[ 'thumb_file' ] );
 

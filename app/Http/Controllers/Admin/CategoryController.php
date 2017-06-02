@@ -9,9 +9,9 @@
  * Project: lacc_videos
  * Copyright: 2017
  */
+
 namespace LACC\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use LACC\Http\Controllers\StandarController;
 use LACC\Models\Category;
 use LACC\Repositories\CategoryRepository;
@@ -35,19 +35,4 @@ class CategoryController extends StandarController
         $this->model = $category;
         $this->repository = $repository;
     }
-
-    public function store( Request $request )
-    {
-        $request[ 'url' ] = str_slug( $request->input( 'name' ) );
-
-        return parent::store( $request );
-    }
-
-    public function update( $id, Request $request )
-    {
-        $request[ 'url' ] = str_slug( $request->input( 'name' ) );
-
-        return parent::update( $id, $request );
-    }
-
 }

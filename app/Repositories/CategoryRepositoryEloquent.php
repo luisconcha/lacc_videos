@@ -4,7 +4,6 @@ namespace LACC\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use LACC\Repositories\CategoryRepository;
 use LACC\Models\Category;
 
 /**
@@ -40,4 +39,17 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         return $categories;
     }
 
+    public function create( array $attributes )
+    {
+        $attributes[ 'url' ] = str_slug( $attributes[ 'name' ] );
+
+        return parent::create( $attributes );
+    }
+
+    public function update( array $attributes, $id )
+    {
+        $attributes[ 'url' ] = str_slug( $attributes[ 'name' ] );
+
+        return parent::update( $attributes, $id );
+    }
 }

@@ -28,31 +28,7 @@ class SeriesController extends StandarController
         /** @var SerieRepository repository */
         $this->repository = $repository;
     }
-
-    /**
-     * @param Request $request
-     * @return $this|\Illuminate\Http\RedirectResponse
-     */
-    public function store( Request $request )
-    {
-        //Se por acaso der erro ao enviar o file, pega o valor default
-        $request[ 'thumb' ] = env( 'SERIE_NO_THUMB' );
-
-        return parent::store( $request );
-    }
-
-    /**
-     * @param $id
-     * @param Request $request
-     * @return $this|\Illuminate\Http\RedirectResponse
-     */
-    public function update( $id, Request $request )
-    {
-       // $request[ 'thumb' ] = env( 'SERIE_NO_THUMB' );
-
-        return parent::update( $id, $request );
-    }
-
+    
     public function thumbAssets( Serie $serie )
     {
         return response()->download( $serie->thumb_path );
