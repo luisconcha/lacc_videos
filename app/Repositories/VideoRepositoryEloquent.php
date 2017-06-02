@@ -37,11 +37,7 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
     public function create( array $attributes )
     {
         $model = parent::create( $attributes );
-
-        if( isset( $attributes[ 'categories' ] ) ) {
-            $model->categories()->sync( $attributes[ 'categories' ] );
-        }
-
+        
         return $model;
     }
 
