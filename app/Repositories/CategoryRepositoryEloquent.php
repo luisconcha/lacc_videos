@@ -29,6 +29,15 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria( app( RequestCriteria::class ) );
     }
+
+    public function getListCategoriesInSelect()
+    {
+        $categories = [ '' => '--select an category--' ];
+        $categories += $this->model->pluck( 'name', 'id' )->all();
+
+        return $categories;
+    }
+
 }

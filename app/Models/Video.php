@@ -3,13 +3,12 @@
 namespace LACC\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use LACC\Media\VideoPaths;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 class Video extends Model implements Transformable
 {
-    use TransformableTrait, VideoPaths;
+    use TransformableTrait;
 
     protected $fillable = [
         'title',
@@ -29,6 +28,8 @@ class Video extends Model implements Transformable
         return [
             'title'       => 'required|min:5|max:256|unique:videos,title,' . $idVideo,
             'description' => 'required|min:5',
+            'thumb'        => 'image|max:1024',
+            'file'        => 'mimetypes:video/mp4,video/avi',
         ];
     }
 

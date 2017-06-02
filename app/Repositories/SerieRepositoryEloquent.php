@@ -35,7 +35,7 @@ class SerieRepositoryEloquent extends BaseRepository implements SerieRepository
 
     public function update( array $attributes, $id )
     {
-        $model = parent::update( array_except($attributes,'thumb_file'), $id );
+        $model = parent::update( array_except( $attributes, 'thumb_file' ), $id );
         if( isset( $attributes[ 'thumb_file' ] ) ) {
             $this->uploadThumb( $model->id, $attributes[ 'thumb_file' ] );
         }
@@ -43,6 +43,13 @@ class SerieRepositoryEloquent extends BaseRepository implements SerieRepository
         return $model;
     }
 
+    public function getListSeriesInSelect()
+    {
+        $series = [ '' => '--select a series--' ];
+        $series += $this->model->pluck( 'title', 'id' )->all();
+
+        return $series;
+    }
 
     /**
      * Boot up the repository, pushing criteria

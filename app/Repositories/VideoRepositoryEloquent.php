@@ -2,6 +2,7 @@
 
 namespace LACC\Repositories;
 
+use Illuminate\Http\UploadedFile;
 use LACC\Media\ThumbUploads;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -35,7 +36,7 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
 
     public function create( array $attributes )
     {
-        $model =  parent::create( $attributes );
+        $model = parent::create( $attributes );
 
         if( isset( $attributes[ 'categories' ] ) ) {
             $model->categories()->sync( $attributes[ 'categories' ] );
@@ -51,7 +52,7 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
         if( isset( $attributes[ 'categories' ] ) ) {
             $model->categories()->sync( $attributes[ 'categories' ] );
         }
-
+        
         return $model;
     }
 }

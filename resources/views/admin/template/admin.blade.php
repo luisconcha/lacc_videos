@@ -86,9 +86,12 @@
 <script src="{{ asset('js/videos.js') }}"></script>
 
 
-
 @yield('pos-script')
 
-
+<script>
+    $(".user-menu").on('click', function () {
+        $(this).toggleClass('open');
+    });
+</script>
 </body>
 </html>
