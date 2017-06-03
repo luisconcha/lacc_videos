@@ -46,12 +46,13 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
 
         //Route to Videos
         Route::group( [ 'prefix' => 'videos', 'as' => 'videos.' ], function() {
-            Route::get( '{video}/relations', [ 'as' => 'relations.create', 'uses' => 'VideosController@createRelations' ] );
-            Route::post( '{video}/relations', [ 'as' => 'relations.store', 'uses' => 'VideosController@storeRelations' ] );
+            //Route::get( '{video}/relations', [ 'as' => 'relations.create', 'uses' => 'VideosController@createRelations' ] );
+            //Route::post( '{video}/relations', [ 'as' => 'relations.store', 'uses' => 'VideosController@storeRelations' ] );
 
             Route::put( '{video}/video-series-categories', [ 'as' => 'video-series-categories', 'uses' => 'VideosController@createSeriesAndCategories' ] );
-            //Route::post( '{video}/video-thumbnail', [ 'as' => 'video-thumbnail.create', 'uses' => 'VideosController@createVideoAndThumbnail' ] );
-
+            Route::put( '{video}/video-thumbnail', [ 'as' => 'video-thumbnail.create', 'uses' => 'VideosController@createVideoAndThumbnail' ] );
+            Route::get( '{video}/thumb_asset', ['as'=> 'video.thumb_asset', 'uses' => 'VideosController@thumbAssets'] );
+            Route::get( '{video}/thumb_small_asset', ['as'=> 'video.thumb_small_asset', 'uses' => 'VideosController@thumbSmallAssets'] );
 //            Route::get( '{video}/video-upload', [ 'as' => 'video-upload.create', 'uses' => 'VideosUploadsController@create' ] );
 //            Route::post( '{video}/video-upload', [ 'as' => 'video-upload.store', 'uses' => 'VideosUploadsController@store' ] );
         } );

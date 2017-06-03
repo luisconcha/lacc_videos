@@ -11,6 +11,7 @@ class Video extends Model implements Transformable
 {
     use TransformableTrait, VideoPaths;
 
+
     protected $fillable = [
         'title',
         'description',
@@ -29,7 +30,7 @@ class Video extends Model implements Transformable
         return [
             'title'       => 'required|min:5|max:256|unique:videos,title,' . $idVideo,
             'description' => 'required|min:5',
-            'thumb'        => 'image|max:1024',
+            'thumb'       => 'image|max:1024',
             'file'        => 'mimetypes:video/mp4,video/avi',
         ];
     }

@@ -4,6 +4,7 @@ namespace LACC\Repositories;
 
 use Illuminate\Http\UploadedFile;
 use LACC\Media\ThumbUploads;
+use LACC\Media\VideoUploads;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use LACC\Models\Video;
@@ -14,7 +15,7 @@ use LACC\Models\Video;
  */
 class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
 {
-    use ThumbUploads;
+    use ThumbUploads, VideoUploads;
 
     /**
      * Specify Model class name
@@ -37,7 +38,7 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
     public function create( array $attributes )
     {
         $model = parent::create( $attributes );
-        
+
         return $model;
     }
 
@@ -48,7 +49,16 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
         if( isset( $attributes[ 'categories' ] ) ) {
             $model->categories()->sync( $attributes[ 'categories' ] );
         }
-        
+
+        if( isset( $attributes[ 'thumb_file' ] ) ) {
+            $this->uploadThumb( $model->id, $attributes[ 'thumb_file' ] );
+        }
+
+        if( isset( $attributes[ 'file' ] ) ) {
+            $this->uploadFile( $model->id, $attributes[ 'file' ] );
+        }
+
         return $model;
     }
+    
 }

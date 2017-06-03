@@ -4,6 +4,19 @@
     Video Module
 @endsection
 
+@section('breadcrumbs')
+    <section class="content-header">
+        <h1>
+            Video module
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="{{ route('admin.videos.index') }}"><i class="fa fa-film"></i>Videos</a></li>
+        </ol>
+    </section>
+@endsection
+
+
 @section('content')
     <div class="container col-md-12">
 
@@ -85,25 +98,37 @@
             @endslot
 
             @slot('videoAndThumbnail')
+                @if(!empty($data))
+                    <h1>Video and Thumbnail:
+                        <strong>{{$data->title}}</strong>
+                    </h1>
+                    {!! Form::model($data,['route'=>['admin.videos.video-thumbnail.create','id'=>$data->id],'method'=>'put', 'files'=> true]) !!}
+                @endif
+
                 <div class="panel panel-info">
                     <div class="panel-heading"><h3 class="panel-title">Files</h3></div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    {!! Form::label('image','Thumbnail', ['class' => 'control-label']) !!}
-                                    {!! Form::file('image', null, ['class'=>'form-control','id'=>'image']) !!}
+                                    {!! Form::label('Thumbnail','Thumbnail', ['class' => 'control-label']) !!}
+                                    {!! Form::file('thumb_file', null, ['class'=>'form-control','id'=>'thumb_file']) !!}
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    {!! Form::label('image','Video', ['class' => 'control-label']) !!}
-                                    {!! Form::file('image', null, ['class'=>'form-control','id'=>'image']) !!}
+                                    {!! Form::label('Video','Video', ['class' => 'control-label']) !!}
+                                    {!! Form::file('file', null, ['class'=>'form-control','id'=>'file']) !!}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <div class="form-group text-center">
+                    {!!  Form::button('<i class="fa fa-fw fa-save"></i> Save', ['type' => 'submit', 'class' => 'btn btn-primary btn-sm'] ) !!}
+                </div>
+                {!! Form::close() !!}
             @endslot
 
 

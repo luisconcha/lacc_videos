@@ -79,7 +79,7 @@ class VideosController extends StandarController
         $data = $this->repository->find( $id );
         $categories = $this->categoryRepo->getListCategoriesInSelect();
         $series = $this->seriesRepo->getListSeriesInSelect();
-        
+
         return view( "{$this->view}.add-edit", compact( 'data', 'categories', 'series' ) );
     }
 
@@ -99,7 +99,7 @@ class VideosController extends StandarController
         $request = $this->request;
 
         if( $data ) {
-            $register = isset( $dataForm[ 'name' ] ) ? "'" . $dataForm[ 'name' ] . "'" : '';
+            $register = isset( $dataForm[ 'title' ] ) ? "'" . $dataForm[ 'title' ] . "'" : '';
             $message = "Congratulations, the {$register} record was changed successfully!";
             createMessage( $request, 'message', 'success', $message );
 
@@ -113,10 +113,36 @@ class VideosController extends StandarController
         }
     }
 
-    public function createVideoAndThumbnail()
+    public function createVideoAndThumbnail( $idVideo )
     {
+//        $attributes = $this->request->all();
+//        $data       = $this->repository->update( $attributes, $idVideo );
+//        $request    = $this->request;
+//
+//        if( $data ) {
+//            $register = isset( $dataForm[ 'title' ] ) ? "'" . $dataForm[ 'title' ] . "'" : '';
+//            $message = "Congratulations, the {$register} record was changed successfully!";
+//            createMessage( $request, 'message', 'success', $message );
+//
+//            return redirect()->route( "{$this->route}.edit", [ 'id' => $data->id ] )
+//                             ->withInput();
+//        } else {
+//            createMessage( $request, 'error', 'danger', 'Could not update the registry!' );
+//
+//            return redirect()->route( "{$this->route}.edit", [ 'id' => $data->id ] )
+//                             ->withInput();
+//        }
 
     }
 
 
+    public function thumbAssets( Video $video )
+    {
+        return response()->download( $video->thumb_path );
+    }
+
+    public function thumbSmallAssets( Video $video )
+    {
+        return response()->download( $video->thumb_small_path );
+    }
 }

@@ -7,7 +7,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-            <li class="active">Video list</li>
+            <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-film"></i>Videos List</a></li>
         </ol>
     </section>
 @endsection
