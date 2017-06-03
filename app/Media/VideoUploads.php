@@ -17,7 +17,7 @@ use Illuminate\Http\UploadedFile;
 
 trait VideoUploads
 {
-    //use Uploads;
+    use Uploads;
 
     public function uploadFile( $id, UploadedFile $file )
     {

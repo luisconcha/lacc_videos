@@ -115,23 +115,23 @@ class VideosController extends StandarController
 
     public function createVideoAndThumbnail( $idVideo )
     {
-//        $attributes = $this->request->all();
-//        $data       = $this->repository->update( $attributes, $idVideo );
-//        $request    = $this->request;
-//
-//        if( $data ) {
-//            $register = isset( $dataForm[ 'title' ] ) ? "'" . $dataForm[ 'title' ] . "'" : '';
-//            $message = "Congratulations, the {$register} record was changed successfully!";
-//            createMessage( $request, 'message', 'success', $message );
-//
-//            return redirect()->route( "{$this->route}.edit", [ 'id' => $data->id ] )
-//                             ->withInput();
-//        } else {
-//            createMessage( $request, 'error', 'danger', 'Could not update the registry!' );
-//
-//            return redirect()->route( "{$this->route}.edit", [ 'id' => $data->id ] )
-//                             ->withInput();
-//        }
+        $attributes = $this->request->all();
+        $data       = $this->repository->update( $attributes, $idVideo );
+        $request    = $this->request;
+
+        if( $data ) {
+            $register = isset( $dataForm[ 'title' ] ) ? "'" . $dataForm[ 'title' ] . "'" : '';
+            $message = "Congratulations, the {$register} record was changed successfully!";
+            createMessage( $request, 'message', 'success', $message );
+
+            return redirect()->route( "{$this->route}.edit", [ 'id' => $data->id ] )
+                             ->withInput();
+        } else {
+            createMessage( $request, 'error', 'danger', 'Could not update the registry!' );
+
+            return redirect()->route( "{$this->route}.edit", [ 'id' => $data->id ] )
+                             ->withInput();
+        }
 
     }
 

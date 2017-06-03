@@ -50,8 +50,8 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
             $model->categories()->sync( $attributes[ 'categories' ] );
         }
 
-        if( isset( $attributes[ 'thumb_file' ] ) ) {
-            $this->uploadThumb( $model->id, $attributes[ 'thumb_file' ] );
+        if( isset( $attributes[ 'thumb' ] ) ) {
+            $this->uploadThumb( $model->id, $attributes[ 'thumb' ] );
         }
 
         if( isset( $attributes[ 'file' ] ) ) {
