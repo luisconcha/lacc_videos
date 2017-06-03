@@ -4,9 +4,22 @@
     Show User
 @endsection
 
+@section('breadcrumbs')
+    <section class="content-header">
+        <h1>
+            User module
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i>Users List</a></li>
+            <li><a href="{{route('admin.users.show',$data->id)}}"><i class="fa fa-user"></i>User Detail</a></li>
+        </ol>
+    </section>
+@endsection
+
 @section('content')
     <div class="container">
-        <h1>View user: <strong>{{$data->name}}</strong></h1>
+        <h2>View user: <strong>{{$data->name}}</strong></h2>
 
         @include('admin.errors._check')
 
@@ -14,10 +27,10 @@
             <div class="panel-heading"><h3 class="panel-title">Personal data</h3></div>
             <div class="panel-body">
                 <div class="col-xs-12">
-                    @if(isset($data->image))
+                    @if(isset($data->thumb))
                         <div class="thumbnail">
-                            <img class="thumbnail" src="{{env('APP_URL') . '/assets/uploads/users/'.$data->image }}"
-                                 alt="">
+                            <img class="thumbnail" src="{{$data->thumb_asset}}"
+                                 alt="{{$data->name}}">
                         </div>
                     @endif
                     <ul class="list-group text-left">

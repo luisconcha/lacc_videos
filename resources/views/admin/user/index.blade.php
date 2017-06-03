@@ -7,7 +7,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-            <li class="active">User list</li>
+            <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i>Users List</a></li>
         </ol>
     </section>
 @endsection
@@ -32,7 +32,16 @@
         @forelse($data as $user)
             <tr>
                 <td>{{ $user->id }}</td>
-                <td>{{ $user->name }}</td>
+                <td style="width: 30%">
+                    <div class="media">
+                        <img class="d-flex align-self-center mr-3 pull-left" src="{{$user->thumb_small_asset}}"
+                             alt="no image available">
+                        <div class="media-body">
+                            <h5 class="mt-0">{{ $user->name }}</h5>
+                        </div>
+                    </div>
+
+                </td>
                 <td>{{ $user->email }}</td>
                 <td>
                     <a href="{{route('admin.users.edit',$user->id)}}" class="table-link">

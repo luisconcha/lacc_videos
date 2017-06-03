@@ -4,9 +4,23 @@
     Edit User
 @endsection
 
+@section('breadcrumbs')
+    <section class="content-header">
+        <h1>
+            User module
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i>Users List</a></li>
+            <li><a href="{{route('admin.users.show',$data->id)}}"><i class="fa fa-user"></i>User</a></li>
+        </ol>
+    </section>
+@endsection
+
+
 @section('content')
     <div class="container">
-        <h1>Edit user: <strong>{{$data->name}}</strong></h1>
+        <h2>Edit user: <strong>{{$data->name}}</strong></h2>
 
         @include('admin.errors._check')
 

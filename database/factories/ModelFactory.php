@@ -20,6 +20,7 @@ $factory->define( \LACC\Models\User::class, function( Faker\Generator $faker ) {
         'verified'       => true,
         'password'       => $password ? : $password = bcrypt( 'secret' ),
         'remember_token' => str_random( 10 ),
+        'thumb'          => env( 'USER_NO_THUMB' )
     ];
 } );
 $factory->define( \LACC\Models\Category::class, function( Faker\Generator $faker ) {

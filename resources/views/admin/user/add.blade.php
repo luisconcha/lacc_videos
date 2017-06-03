@@ -4,6 +4,19 @@
     New User
 @endsection
 
+@section('breadcrumbs')
+    <section class="content-header">
+        <h1>
+            User module
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i> List of users</a></li>
+            <li><i class="fa fa-user"></i> New user</li>
+        </ol>
+    </section>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

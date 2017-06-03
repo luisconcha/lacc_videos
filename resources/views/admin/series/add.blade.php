@@ -4,6 +4,19 @@
     New Series
 @endsection
 
+@section('breadcrumbs')
+    <section class="content-header">
+        <h1>
+            User module
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="{{ route('admin.series.index') }}"><i class="fa fa-laptop"></i>List of series</a></li>
+            <li><i class="fa fa-laptop"></i> New series</li>
+        </ol>
+    </section>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

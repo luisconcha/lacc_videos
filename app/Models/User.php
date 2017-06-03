@@ -3,11 +3,12 @@ namespace LACC\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use LACC\Media\UserPaths;
 use LACC\Notifications\DefaultResetPasswordNotification;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, UserPaths;
 
     const ROLE_ADMIN  = 1;
     const ROLE_CLIENT = 2;
@@ -23,6 +24,7 @@ class User extends Authenticatable
       'role',
       'verified',
       'password',
+      'thumb'
     ];
 
     /**

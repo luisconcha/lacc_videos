@@ -52,4 +52,14 @@ class UserController extends StandarController
 
         return redirect()->route( "{$this->route}.create" )->withInput();
     }
+
+    public function thumbAssets( User $user )
+    {
+        return response()->download( $user->thumb_path );
+    }
+
+    public function thumbSmallAssets( User $user )
+    {
+        return response()->download( $user->thumb_small_path );
+    }
 }

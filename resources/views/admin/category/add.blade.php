@@ -4,6 +4,19 @@
     New Category
 @endsection
 
+@section('breadcrumbs')
+    <section class="content-header">
+        <h1>
+            User module
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="{{ route('admin.categories.index') }}"><i class="fa fa-university"></i>List of categories</a></li>
+            <li><i class="fa fa-university"></i>New category</li>
+        </ol>
+    </section>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

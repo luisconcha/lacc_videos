@@ -19,8 +19,8 @@
             </div>
             <div class="col-md-12">
                 <div class="form-group">
-                    {!! Form::label('image','Image', ['class' => 'control-label']) !!}
-                    {!! Form::file('image', null, ['class'=>'form-control','id'=>'image']) !!}
+                    {!! Form::label('Thumbnail','Thumbnail', ['class' => 'control-label']) !!}
+                    {!! Form::file('thumb_file', null, ['class'=>'form-control','id'=>'thumb_file']) !!}
                 </div>
             </div>
         </div>

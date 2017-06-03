@@ -4,11 +4,24 @@
     Edit Series
 @endsection
 
+@section('breadcrumbs')
+    <section class="content-header">
+        <h1>
+            User module
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="{{ route('admin.series.index') }}"><i class="fa fa-laptop"></i>List of series</a></li>
+            <li><a href="{{route('admin.series.show',$data->id)}}"><i class="fa fa-laptop"></i>Edit series</a></li>
+        </ol>
+    </section>
+@endsection
+
 @section('content')
     <div class="container">
-        <h1>Edit series:
+        <h2>Edit series:
             <strong>{{$data->title}}</strong></span>
-        </h1>
+        </h2>
 
         @include('admin.errors._check')
 

@@ -40,7 +40,7 @@ class StandarController extends Controller
     {
         $this->validate( $request, $this->model->rules() );
         $data = $request->all();
-
+        
         $model = $this->repository->create( $data );
 
         if( $model ) {

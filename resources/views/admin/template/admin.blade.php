@@ -89,7 +89,7 @@
 @yield('pos-script')
 
 <script>
-    $(".user-menu").on('click', function () {
+    $(".user-menu, .messages-menu, .notifications-menu, .tasks-menu").on('click', function () {
         $(this).toggleClass('open');
     });
 </script>

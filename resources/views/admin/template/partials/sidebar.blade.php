@@ -2,7 +2,7 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
         <div class="pull-left image">
-            <img src="{{url('img/avatar3.png')}}" class="img-circle" alt="User Image"/>
+            <img src="{{\Auth::user()->thumb_small_asset}}" class="img-circle" alt="User Image"/>
         </div>
         <div class="pull-left info">
             <p><span class="name-user">Hello,{{ auth()->user()->name }}</span></p>
