@@ -39,7 +39,7 @@
                         <td>{{ $video->id }}</td>
                         <td>
                             <div class="media">
-                                <img class="d-flex align-self-center mr-3 pull-left" src="{{url('img/img_64x64.png')}}"
+                                <img class="d-flex align-self-center mr-3 pull-left" src="{{$video->thumb_small_asset}}"
                                      alt="no image available">
                                 <div class="media-body">
                                     <h5 class="mt-0">{{ $video->title }}</h5>

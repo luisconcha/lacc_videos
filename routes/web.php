@@ -51,8 +51,8 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
 
             Route::put( '{video}/video-series-categories', [ 'as' => 'video-series-categories', 'uses' => 'VideosController@createSeriesAndCategories' ] );
             Route::put( '{video}/video-thumbnail', [ 'as' => 'video-thumbnail.create', 'uses' => 'VideosController@createVideoAndThumbnail' ] );
-            Route::get( '{video}/thumb_asset', ['as'=> 'videos.thumb_asset', 'uses' => 'VideosController@thumbAssets'] );
-            Route::get( '{video}/thumb_small_asset', ['as'=> 'videos.thumb_small_asset', 'uses' => 'VideosController@thumbSmallAssets'] );
+            Route::get( '{video}/thumb_asset', ['as'=> 'thumb_asset', 'uses' => 'VideosController@thumbAssets'] );
+            Route::get( '{video}/thumb_small_asset', ['as'=> 'thumb_small_asset', 'uses' => 'VideosController@thumbSmallAssets'] );
         } );
         Route::resource( 'videos', 'VideosController' );
 
