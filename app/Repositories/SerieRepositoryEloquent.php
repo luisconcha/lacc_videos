@@ -3,6 +3,7 @@
 namespace LACC\Repositories;
 
 use LACC\Media\ThumbUploads;
+use LACC\Media\Uploads;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use LACC\Models\Serie;
@@ -13,7 +14,7 @@ use LACC\Models\Serie;
  */
 class SerieRepositoryEloquent extends BaseRepository implements SerieRepository
 {
-    use ThumbUploads;
+    use ThumbUploads, Uploads;
 
     /**
      * Specify Model class name

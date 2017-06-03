@@ -18,8 +18,6 @@ use Imagine\Image\Box;
 
 trait ThumbUploads
 {
-    use Uploads;
-
     public function uploadThumb( $id, UploadedFile $file )
     {
         $model = $this->find( $id );

@@ -4,6 +4,7 @@ namespace LACC\Repositories;
 
 use Illuminate\Http\UploadedFile;
 use LACC\Media\ThumbUploads;
+use LACC\Media\Uploads;
 use LACC\Models\User;
 use LACC\Notifications\UserRegistration;
 use Prettus\Repository\Criteria\RequestCriteria;
@@ -15,7 +16,7 @@ use Prettus\Repository\Eloquent\BaseRepository;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
-    use ThumbUploads;
+    use ThumbUploads, Uploads;
 
     //@seed: https://github.com/andersao/l5-repository#create-a-criteria
     protected $fieldSearchable = [

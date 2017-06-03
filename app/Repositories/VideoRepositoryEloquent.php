@@ -2,9 +2,8 @@
 
 namespace LACC\Repositories;
 
-use Illuminate\Http\UploadedFile;
 use LACC\Media\ThumbUploads;
-use LACC\Media\VideoUploads;
+use LACC\Media\Uploads;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use LACC\Models\Video;
@@ -15,7 +14,7 @@ use LACC\Models\Video;
  */
 class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
 {
-    use ThumbUploads, VideoUploads;
+    use ThumbUploads, Uploads;
 
     /**
      * Specify Model class name
