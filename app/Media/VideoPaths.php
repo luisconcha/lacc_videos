@@ -28,14 +28,18 @@ trait VideoPaths
         return "videos/{$this->id}";
     }
 
-    public function getThumbAssetAttribute()
+    public function getFileAssetAttribute()
     {
-        return route( 'admin.videos.thumb_asset', [ 'video' => $this->id ] );
+        return $this->isLocalDriver() ?
+            route( 'admin.videos.file_asset', [ 'video' => $this->id ] ) :
+            $this->thumb_path; //driver externo
     }
-
+    
     public function getThumbSmallAssetAttribute()
     {
-        return route( 'admin.videos.thumb_small_asset', [ 'video' => $this->id ] );
+        return $this->isLocalDriver() ?
+            route( 'admin.videos.thumb_small_asset', [ 'video' => $this->id ] ) :
+            $this->thumb_path; //driver externo
     }
 
     public function getThumbDefaultAttribute()

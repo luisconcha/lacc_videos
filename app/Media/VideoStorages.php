@@ -33,8 +33,21 @@ trait VideoStorages
 
     protected function getAbsolutePath( FilesystemAdapter $storage, $fileRelativePath )
     {
-        /** /var/www/html/lacc_videos/storage/app/series/1/thumb.jpg */
-        return $storage->getDriver()->getAdapter()->applyPathPrefix( $fileRelativePath );
+        
+        if( $this->isLocalDriver() ) {
+            /** /var/www/html/lacc_videos/storage/app/series/1/thumb.jpg */
+            return $storage->getDriver()->getAdapter()->applyPathPrefix( $fileRelativePath );
+        } else {
+            //Caso seja um Driver externo como S3, dropbox, etc
+            return $storage->url( $fileRelativePath );
+        }
+    }
+
+    public function isLocalDriver()
+    {
+        $driver = config( "filesystems.disks.{$this->getDiskDriver()}.driver" );
+        
+        return $driver == 'local';
     }
 
 }

@@ -28,15 +28,18 @@ class VideosTableSeeder extends Seeder
         $repository = app( VideoRepository::class );
 
         $collectionThumbs = $this->getThumbs();
+        $collectionVideos = $this->getVideos();
 
-        factory( Video::class, 100 )
+        factory( Video::class, 20 )
             ->create()
-            ->each( function( $video ) use ( $series, $categories, $repository, $collectionThumbs ) {
+            ->each( function( $video ) use ( $series, $categories, $repository, $collectionThumbs, $collectionVideos ) {
 
                 $repository->uploadThumb( $video->id, $collectionThumbs->random() );
+                //$repository->uploadThumb( $video->id, $collectionVideos->random() );
 
                 $video->categories()->attach( $categories->random( 4 )->pluck( 'id' ) );
 
+                
                 $num = rand( 1, 3 );
                 if( $num % 2 == 0 ) {
                     $serie = $series->random();
@@ -61,6 +64,20 @@ class VideosTableSeeder extends Seeder
             new \Illuminate\Http\UploadedFile(
                 storage_path( 'app/files/faker/thumbs/laravel.png' ),
                 'laravel.png'
+            )
+        ] );
+    }
+
+    public function getVideos()
+    {
+        return new CollectionSupport( [
+            new \Illuminate\Http\UploadedFile(
+                storage_path( 'app/files/faker/videos/video1.mp4' ),
+                'video1.mp4'
+            ),
+            new \Illuminate\Http\UploadedFile(
+                storage_path( 'app/files/faker/videos/video1.mp4' ),
+                'video1.mp4'
             )
         ] );
     }

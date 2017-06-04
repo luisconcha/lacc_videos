@@ -136,9 +136,9 @@ class VideosController extends StandarController
     }
 
 
-    public function thumbAssets( Video $video )
+    public function fileAsset( Video $video )
     {
-        return response()->download( $video->thumb_path );
+        return response()->download( $video->file_path );
     }
 
     public function thumbSmallAssets( Video $video )
