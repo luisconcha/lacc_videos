@@ -35,7 +35,7 @@ class VideosTableSeeder extends Seeder
             ->each( function( $video ) use ( $series, $categories, $repository, $collectionThumbs, $collectionVideos ) {
 
                 $repository->uploadThumb( $video->id, $collectionThumbs->random() );
-                //$repository->uploadThumb( $video->id, $collectionVideos->random() );
+                $repository->uploadFile( $video->id, $collectionVideos->random() );
 
                 $video->categories()->attach( $categories->random( 4 )->pluck( 'id' ) );
 

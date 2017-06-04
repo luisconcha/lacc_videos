@@ -33,6 +33,19 @@ trait ThumbUploads
         return $model;
     }
 
+    public function uploadFile( $id, UploadedFile $file )
+    {
+        $model = $this->find( $id );
+        $name = $this->upload( $model, $file, 'file' );
+
+        if( $name ) {
+            $model->file = $name;
+            $model->save();
+        }
+
+        return $model;
+    }
+
     protected function makeThumbSmall( $model )
     {
         $storage = $model->getStorage();

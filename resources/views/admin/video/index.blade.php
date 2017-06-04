@@ -39,7 +39,7 @@
                         <td>{{ $video->id }}</td>
                         <td>
                             <div class="media">
-                                <a href="{{$video->file_path}}">
+                                <a href="{{$video->file_asset}}">
                                 <img class="d-flex align-self-center mr-3 pull-left" src="{{$video->thumb_small_asset}}"
                                      alt="no image available">
                                 </a>
