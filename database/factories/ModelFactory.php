@@ -51,6 +51,6 @@ $factory->define( \LACC\Models\Video::class, function( Faker\Generator $faker ) 
         'file'        => 'thumb.jpg',
         'thumb'       =>  env( 'VIDEO_NO_THUMB' ),
         'publish'     => rand( 0, 1 ),
-        'completed'   => 1
+        'completed'   => 0
     ];
 } );

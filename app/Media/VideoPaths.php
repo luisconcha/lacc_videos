@@ -34,7 +34,7 @@ trait VideoPaths
             route( 'admin.videos.file_asset', [ 'video' => $this->id ] ) :
             $this->thumb_path; //driver externo
     }
-    
+
     public function getThumbSmallAssetAttribute()
     {
         return $this->isLocalDriver() ?
@@ -54,6 +54,11 @@ trait VideoPaths
 
     public function getFilePathAttribute()
     {
-        return $this->getAbsolutePath( $this->getStorage(), $this->file_relative );
+        if( $this->file_relative ) {
+
+            return $this->getAbsolutePath( $this->getStorage(), $this->file_relative );
+        }
+
+        return false;
     }
 }

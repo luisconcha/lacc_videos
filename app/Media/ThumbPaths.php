@@ -25,19 +25,32 @@ trait ThumbPaths
 
     public function getThumbPathAttribute()
     {
-        return $this->getAbsolutePath( $this->getStorage(), $this->thumb_relative );
+        if( $this->thumb_relative ) {
+            return $this->getAbsolutePath( $this->getStorage(), $this->thumb_relative );
+        }
+
+        return false;
     }
 
     public function getThumbSmallRelativeAttribute()
     {
-        list( $name, $extension ) = explode( '.', $this->thumb );
+        if( $this->thumb ) {
+            list( $name, $extension ) = explode( '.', $this->thumb );
 
-        return "{$this->thumb_folder_storage}/{$name}_small.{$this->thumb}";
+            return "{$this->thumb_folder_storage}/{$name}_small.{$this->thumb}";
+        }
+
+        return false;
     }
 
     public function getThumbSmallPathAttribute()
     {
-        return $this->getAbsolutePath( $this->getStorage(), $this->thumb_small_relative );
+        if( $this->thumb_small_relative ) {
+
+            return $this->getAbsolutePath( $this->getStorage(), $this->thumb_small_relative );
+        } 
+
+        return false;
     }
 
 }

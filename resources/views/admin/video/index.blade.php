@@ -30,7 +30,7 @@
                 <tr>
                     <th>#</th>
                     <th class="text-center">Video description</th>
-                    <th style="width: 5%">Actions</th>
+                    <th style="width: 7%">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,7 +40,8 @@
                         <td>
                             <div class="media">
                                 <a href="{{$video->file_asset}}">
-                                <img class="d-flex align-self-center mr-3 pull-left" src="{{$video->thumb_small_asset}}"
+                                <img class="d-flex align-self-center mr-3 pull-left"
+                                     src="{{ !empty($video->thumb) ? $video->thumb_small_asset : url('img/img_64x64.png')}}"
                                      alt="no image available">
                                 </a>
                                 <div class="media-body">

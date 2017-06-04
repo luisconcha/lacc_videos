@@ -3,13 +3,14 @@
 namespace LACC\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use LACC\Media\VideoPaths;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 class Video extends Model implements Transformable
 {
-    use TransformableTrait, VideoPaths;
+    use TransformableTrait, VideoPaths, SoftDeletes;
 
 
     protected $fillable = [
@@ -21,6 +22,10 @@ class Video extends Model implements Transformable
         'completed',
         'publish',
         'serie_id'
+    ];
+
+    protected $casts = [
+        'completed' => 'boolean'
     ];
 
     public function rules()

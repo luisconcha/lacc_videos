@@ -1,7 +1,9 @@
 <?php
+
 namespace LACC\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use LACC\Models\Video;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -12,7 +14,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Video::updated( function( $video ) {
+            if( !$video->completed ) {
+                if( $video->file != null && $video->thumb != null ) {
+                    $video->completed = true;
+                    $video->save();
+                }
+            }
+        } );
     }
 
     /**
@@ -22,7 +31,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ( $this->app->environment() !== 'production' ) {
+        if( $this->app->environment() !== 'production' ) {
             $this->app->register( \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class );
         }
     }
