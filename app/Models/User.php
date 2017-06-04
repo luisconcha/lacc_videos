@@ -1,6 +1,7 @@
 <?php
 namespace LACC\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use LACC\Media\UserPaths;
@@ -8,7 +9,7 @@ use LACC\Notifications\DefaultResetPasswordNotification;
 
 class User extends Authenticatable
 {
-    use Notifiable, UserPaths;
+    use Notifiable, UserPaths, SoftDeletes;
 
     const ROLE_ADMIN  = 1;
     const ROLE_CLIENT = 2;

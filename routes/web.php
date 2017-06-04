@@ -68,6 +68,21 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
             Route::get( 'video/{id}', [ 'as' => 'video.restore', 'uses' => 'Trash\VideosTrashController@update' ] );
             Route::resource( 'videos', 'Trash\VideosTrashController',
                 [ 'except' => [ 'show', 'create', 'store', 'edit', 'update', 'destroy' ] ] );
+
+            //Categories
+            Route::get( 'category/{id}', [ 'as'   => 'category.restore', 'uses' => 'Trash\CategoriesTrashController@update' ] );
+            Route::resource( 'categories', 'Trash\CategoriesTrashController',
+                [ 'except' => [ 'show', 'create', 'store', 'edit', 'update', 'destroy' ] ] );
+
+            //Series
+            Route::get( 'series/{id}', [ 'as'   => 'series.restore', 'uses' => 'Trash\SeriesTrashController@update' ] );
+            Route::resource( 'series', 'Trash\SeriesTrashController',
+                [ 'except' => [ 'show', 'create', 'store', 'edit', 'update', 'destroy' ] ] );
+
+            //Users
+            Route::get( 'users/{id}', [ 'as'   => 'users.restore', 'uses' => 'Trash\UsersTrashController@update' ] );
+            Route::resource( 'users', 'Trash\UsersTrashController',
+                [ 'except' => [ 'show', 'create', 'store', 'edit', 'update', 'destroy' ] ] );
         } );
     } );
 

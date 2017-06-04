@@ -34,6 +34,7 @@ class Video extends Model implements Transformable
 
         return [
             'title'       => 'required|min:5|max:256|unique:videos,title,' . $idVideo,
+            'duration'    => 'required|integer|min:1',
             'description' => 'required|min:5',
             'thumb'       => 'image|max:1024',
             'file'        => 'mimetypes:video/mp4,video/avi',

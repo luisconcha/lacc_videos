@@ -20,7 +20,7 @@ use LACC\Repositories\VideoRepository;
 class VideosTrashController extends StandarController
 {
     /** @var Video */
-    protected $model = 'video';
+    protected $model = 'videos';
 
     /** @var  VideoRepository */
     protected $repository;

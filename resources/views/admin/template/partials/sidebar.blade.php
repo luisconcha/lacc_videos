@@ -42,8 +42,7 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="{{route('admin.users.index')}}"><i class="fa fa-angle-double-right"></i> List</a></li>
-                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
-                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline
+                <li><a href="{{route('admin.trashed.users.index')}}"><i class="fa fa-trash"></i>Users in the trash</a></li>
                         charts</a></li>
             </ul>
         </li>
@@ -56,6 +55,7 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="{{route('admin.categories.index')}}"><i class="fa fa-angle-double-right"></i> List</a></li>
+                <li><a href="{{route('admin.trashed.categories.index')}}"><i class="fa fa-trash"></i>Categories in the trash</a></li>
             </ul>
         </li>
         <li class="treeview">
@@ -66,6 +66,7 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="{{route('admin.series.index')}}"><i class="fa fa-angle-double-right"></i> List</a></li>
+                <li><a href="{{route('admin.trashed.series.index')}}"><i class="fa fa-trash"></i>Series in the trash</a></li>
             </ul>
         </li>
         <li class="treeview">
