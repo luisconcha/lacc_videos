@@ -150,6 +150,8 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         \Jrean\UserVerification\UserVerificationServiceProvider::class,
         \Folklore\Image\ImageServiceProvider::class,
+        \Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        \Dingo\Api\Provider\LaravelServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -208,5 +210,6 @@ return [
         'Html'             => Collective\Html\HtmlFacade::class,
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
         'Image'            => Folklore\Image\Facades\Image::class,
+        'ApiRoute'         => \Dingo\Api\Facade\Route::class,
     ],
 ];

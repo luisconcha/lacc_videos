@@ -1,4 +1,5 @@
 <?php
+
 namespace LACC\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -6,12 +7,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use LACC\Media\UserPaths;
 use LACC\Notifications\DefaultResetPasswordNotification;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable, UserPaths, SoftDeletes;
 
-    const ROLE_ADMIN  = 1;
+    const ROLE_ADMIN = 1;
     const ROLE_CLIENT = 2;
 
     /**
@@ -20,12 +22,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-      'name',
-      'email',
-      'role',
-      'verified',
-      'password',
-      'thumb'
+        'name',
+        'email',
+        'role',
+        'verified',
+        'password',
+        'thumb'
     ];
 
     /**
@@ -34,8 +36,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-      'password',
-      'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -60,22 +62,42 @@ class User extends Authenticatable
         $idUser = ( \Request::segment( 3 ) ) ? : null;
 
         return [
-          'name'  => 'required|min:5|max:100',
-          'email' => 'required|email|unique:users,email,' . $idUser,
+            'name'  => 'required|min:5|max:100',
+            'email' => 'required|email|unique:users,email,' . $idUser,
         ];
     }
 
     public function rulesPassword()
     {
         $idUser = ( \Request::segment( 3 ) ) ? : null;
-        if ( $idUser ) {
+        if( $idUser ) {
             $passRules = 'confirmed';
         } else {
             $passRules = 'required|confirmed';
         }
 
         return [
-          'password' => $passRules . '|min:6',
+            'password' => $passRules . '|min:6',
+        ];
+    }
+
+
+    /**
+     * @return int|mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->id;
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [
+            'user' => [
+                'id'    => $this->id,
+                'name'  => $this->name,
+                'email' => $this->email
+            ]
         ];
     }
 }

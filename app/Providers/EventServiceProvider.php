@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'LACC\Events\SomeEvent' => [
-            'LACC\Listeners\EventListener',
+        \Dingo\Api\Event\ResponseWasMorphed::class => [
+            'LACC\Listeners\AddTokenToHeaderListener',
         ],
     ];
 

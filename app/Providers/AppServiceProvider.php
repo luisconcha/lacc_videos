@@ -2,6 +2,8 @@
 
 namespace LACC\Providers;
 
+use Dingo\Api\Exception\Handler;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\ServiceProvider;
 use LACC\Models\Video;
 
@@ -34,5 +36,11 @@ class AppServiceProvider extends ServiceProvider
         if( $this->app->environment() !== 'production' ) {
             $this->app->register( \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class );
         }
+
+        //Reconfigura as mensagem de erro devoltas pelo DINGO
+        $handler = app( Handler::class );
+        $handler->register( function( AuthenticationException $exception ) {
+            return response()->json( [ 'error' => 'Unauthenticated' ], 401 );
+        } );
     }
 }
