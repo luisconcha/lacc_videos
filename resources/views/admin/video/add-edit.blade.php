@@ -11,7 +11,8 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-            <li><a href="{{ route('admin.videos.index') }}"><i class="fa fa-film"></i>Videos</a></li>
+            <li><a href="{{ route('admin.videos.index') }}"><i class="fa fa-film"></i>List of Videos</a></li>
+            <li><i class="fa fa-laptop"></i> Video module</li>
         </ol>
     </section>
 @endsection
@@ -92,7 +93,7 @@
                     </div>
                 </div>
                 <div class="form-group text-center">
-                    {!!  Form::button('<i class="fa fa-fw fa-save"></i> Save', ['type' => 'submit', 'class' => 'btn btn-primary btn-sm'] ) !!}
+                    {!!  Form::button('<i class="fa fa-fw fa-save"></i> Save Series and Categories', ['type' => 'submit', 'class' => 'btn btn-primary btn-sm'] ) !!}
                 </div>
                 {!! Form::close() !!}
             @endslot
@@ -126,7 +127,7 @@
                 </div>
                 
                 <div class="form-group text-center">
-                    {!!  Form::button('<i class="fa fa-fw fa-save"></i> Save', ['type' => 'submit', 'class' => 'btn btn-primary btn-sm'] ) !!}
+                    {!!  Form::button('<i class="fa fa-fw fa-save"></i> Save video and thumbnail', ['type' => 'submit', 'class' => 'btn btn-primary btn-sm'] ) !!}
                 </div>
                 {!! Form::close() !!}
             @endslot
