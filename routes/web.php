@@ -61,6 +61,14 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
         Route::get( 'series/{serie}/thumb_asset', ['as'=> 'series.thumb_asset', 'uses' => 'SeriesController@thumbAssets'] );
         Route::get( 'series/{serie}/thumb_small_asset', ['as'=> 'series.thumb_small_asset', 'uses' => 'SeriesController@thumbSmallAssets'] );
         Route::resource( 'series', 'SeriesController' );
+
+        //Route to Trashed
+        Route::group( [ 'prefix' => 'trashed', 'as' => 'trashed.' ], function() {
+            //Videos
+            Route::get( 'video/{id}', [ 'as' => 'video.restore', 'uses' => 'Trash\VideosTrashController@update' ] );
+            Route::resource( 'videos', 'Trash\VideosTrashController',
+                [ 'except' => [ 'show', 'create', 'store', 'edit', 'update', 'destroy' ] ] );
+        } );
     } );
 
 

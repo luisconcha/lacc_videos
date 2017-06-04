@@ -22,7 +22,7 @@ class StandarController extends Controller
     public function index()
     {
         $data = $this->repository->paginate( $this->totalPage );
-
+       
         return view( "{$this->view}.index", compact( 'data' ) );
     }
 

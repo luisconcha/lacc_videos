@@ -76,9 +76,7 @@
             <ul class="treeview-menu">
                 <li><a href="{{route('admin.videos.index')}}"><i class="fa fa-angle-double-right"></i> List</a>
                 </li>
-                <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced
-                        Elements</a></li>
-                <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li>
+                <li><a href="{{route('admin.trashed.videos.index')}}"><i class="fa fa-trash"></i>Videos in the trash</a></li>
             </ul>
         </li>
         <li class="treeview">
