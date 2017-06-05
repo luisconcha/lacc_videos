@@ -1,10 +1,10 @@
-const elixir = require( 'laravel-elixir' );
+const elixir = require('laravel-elixir');
 
-elixir( function ( mix ) {
+elixir(function ( mix ) {
 
     mix.webpack('app.js');
 
-    mix.styles( [
+    mix.styles([
         '../../../node_modules/bootstrap/dist/css/bootstrap.css',
         '../../../node_modules/font-awesome/css/font-awesome.css',
         '../../../resources/assets/css/ionicons.min.css',
@@ -15,9 +15,9 @@ elixir( function ( mix ) {
         '../../../resources/assets/theme_adminTE/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
         '../../../resources/assets/theme_adminTE/css/AdminLTE.css',
         'videos.css',
-    ], 'public/css/videos.css' );
+    ], 'public/css/videos.css');
 
-    mix.scripts( [
+    mix.scripts([
         '../../../resources/assets/theme_adminTE/js/jquery.js',
         '../../../resources/assets/theme_adminTE/js/bootstrap.js',
         '../../../resources/assets/theme_adminTE/js/jquery-ui.min.js',
@@ -32,12 +32,16 @@ elixir( function ( mix ) {
         '../../../resources/assets/theme_adminTE/js/plugins/iCheck/icheck.min.js',
         '../../../resources/assets/theme_adminTE/js/AdminLTE/app.js',
         '../../../resources/assets/theme_adminTE/js/AdminLTE/demo.js',
-        '../../../resources/assets/js/videos.js',
-    ], 'public/js/videos.js' );
+        '../../../resources/assets/js/videos.js'
+    ], 'public/js/videos.js');
+
+    mix.scripts([
+        '../../../resources/assets/js/graphs-for-reports/dashboard.js',
+    ], 'public/js/graphs-for-reports.js');
 
     // mix.version( [ 'css/videos.css', 'js/videos.js' ] );
     //
-    mix.copy( 'node_modules/font-awesome/fonts', 'public/fonts' );
-    mix.copy( 'resources/assets/theme_adminTE/fonts', 'public/fonts' );
-    mix.copy( 'resources/assets/theme_adminTE/img', 'public/img' );
-} );
+    mix.copy('node_modules/font-awesome/fonts', 'public/fonts');
+    mix.copy('resources/assets/theme_adminTE/fonts', 'public/fonts');
+    mix.copy('resources/assets/theme_adminTE/img', 'public/img');
+});

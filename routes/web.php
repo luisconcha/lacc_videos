@@ -84,6 +84,13 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
             Route::resource( 'users', 'Trash\UsersTrashController',
                 [ 'except' => [ 'show', 'create', 'store', 'edit', 'update', 'destroy' ] ] );
         } );
+
+        //Route to Graphics
+        Route::group( [ 'prefix' => 'graphics', 'as' => 'graphics','namespace' =>'ReportGraphics' ], function() {
+
+            //Graphics Videos
+            Route::get( 'list-published-videos', [ 'as' => 'list-published-videos', 'uses' => 'VideoGraphicsController@index' ] );
+        } );
     } );
 
 
