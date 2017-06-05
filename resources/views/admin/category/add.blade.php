@@ -7,7 +7,7 @@
 @section('breadcrumbs')
     <section class="content-header">
         <h1>
-            User module
+            Category module
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>

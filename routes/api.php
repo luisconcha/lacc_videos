@@ -3,9 +3,9 @@
 use Illuminate\Http\Request;
 
 
-Route::middleware( 'auth:api' )->get( '/user', function( Request $request ) {
-    return $request->user();
-} );
+//Route::middleware( 'auth:api' )->get( '/user', function( Request $request ) {
+//    return $request->user();
+//} );
 
 //PHP ARTISAN API:ROUTE
 
@@ -36,9 +36,25 @@ ApiRoute::version( 'v1', function() {
 
             ApiRoute::post( '/logout', 'AuthController@logout' );
 
+
+            
+            /************ TEST ROUTES ***************/
             ApiRoute::get( '/test', function() {
                 return 'Olá marujo, vc esta autenticado!';
             } );
+
+            ApiRoute::get( '/user-test', function( Request $request ) {
+                // 1) return authenticated user
+                return $request->user( 'api' );
+
+                // 2) return authenticated user
+                //app( \Dingo\Api\Auth\Auth::class )->user();
+
+                // 3) return authenticated user
+                //return \Auth::guard( 'api' )->user();
+            } );
+
+            /********** END TEST ROUTES **********/
 
         } );
     } );

@@ -6,6 +6,7 @@ use Dingo\Api\Exception\Handler;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\ServiceProvider;
 use LACC\Models\Video;
+use Laravel\Dusk\DuskServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
     {
         if( $this->app->environment() !== 'production' ) {
             $this->app->register( \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class );
+            $this->app->register( DuskServiceProvider::class );
         }
 
         //Reconfigura as mensagem de erro devoltas pelo DINGO
