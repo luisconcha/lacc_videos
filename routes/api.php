@@ -43,9 +43,9 @@ ApiRoute::version( 'v1', function() {
                 return 'Olá marujo, vc esta autenticado!';
             } );
 
-            ApiRoute::get( '/user-test', function( Request $request ) {
+            ApiRoute::get( '/user-test', function() {
                 // 1) return authenticated user
-                return $request->user( 'api' );
+                //return $request->user( 'api' ); //add com parametro quando esta logado =>  Request $request 
 
                 // 2) return authenticated user
                 //app( \Dingo\Api\Auth\Auth::class )->user();
