@@ -36,14 +36,24 @@ ApiRoute::version( 'v1', function() {
 
             ApiRoute::post( '/logout', 'AuthController@logout' );
 
-
-            
-            /************ TEST ROUTES ***************/
-            ApiRoute::get( '/test', function() {
-                return 'Olá marujo, vc esta autenticado!';
+            ApiRoute::get( '/user', function() {
+                return \Auth::guard( 'api' )->user();
             } );
 
-            ApiRoute::get( '/user-test', function() {
+            /************ CATEGORY ROUTES ***************/
+            ApiRoute::group( [ 'namespace' => 'Categories' ], function() {
+                ApiRoute::resource( '/categories', 'CategoriesController' );
+            } );
+
+
+
+
+            /************ TEST ROUTES ***************/
+            //ApiRoute::get( '/test', function() {
+            //    return 'Olá marujo, vc esta autenticado!';
+            //} );
+
+            //ApiRoute::get( '/user-test', function() {
                 // 1) return authenticated user
                 //return $request->user( 'api' ); //add com parametro quando esta logado =>  Request $request 
 
@@ -52,7 +62,7 @@ ApiRoute::version( 'v1', function() {
 
                 // 3) return authenticated user
                 //return \Auth::guard( 'api' )->user();
-            } );
+            //} );
 
             /********** END TEST ROUTES **********/
 
