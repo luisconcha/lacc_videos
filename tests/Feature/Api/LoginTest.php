@@ -75,16 +75,16 @@ class LoginTest extends TestCase
         Model::unguard();
         $user = factory( User::class )
             ->create( [
-                'email'    => 'user_teste@gmail.com',
+                'email'    => 'admin@user.com',
                 'password' => 'secret',
                 'verified' => true
             ] );
-        
+
         $urlGenerator = app( UrlGenerator::class )->version( 'v1' );
 
         return $this->post( $urlGenerator->route( 'api.access_token' ), [
-            'email'    => $user->email,
-            'password' => $user->password
+            'email'    => 'admin@user.com',
+            'password' => 'secret'
         ] );
     }
 

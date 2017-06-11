@@ -22,7 +22,6 @@ class UserControllerTest extends TestCase
     {
         Model::unguard();
         $user = factory( User::class )
-            //->states( 'admin' )
             ->create( [ 'verified' => true ] );
 
         $this->actingAs( $user )
