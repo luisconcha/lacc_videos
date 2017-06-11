@@ -39,13 +39,13 @@
                     <span class="label" style="background-color: {{ $category->color }}">{{ $category->color }}</span>
                 </td>
                 <td>
-                    <a href="{{route('admin.categories.edit',$category->id)}}" class="table-link">
+                    <a href="{{route('admin.categories.edit',$category->id)}}" class="table-link" id="update-{{ $category->id }}">
                         <span class="fa-stack">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                         </span>
                     </a>
-                    <a href="{{route('admin.categories.show',$category->id)}}" class="table-link text-danger">
+                    <a href="{{route('admin.categories.show',$category->id)}}" class="table-link text-danger" id="delete-{{ $category->id }}">
                         <span class="fa-stack">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>

@@ -13,8 +13,7 @@
             <div class="col-md-12">
                 <div class="form-group {{ $errors->first('email')? ' has-error':'' }}">
                     {!! Form::label('Color','Color', ['class' => 'control-label']) !!}
-                    {!! Form::color('color', null, ['placeholder'=>'Inform the color','class'=>'form-control',
-                    'id'=>'email']) !!}
+                    {!! Form::color('color', null, ['placeholder'=>'Inform the color','class'=>'form-control','id'=>'color']) !!}
                 </div>
             </div>
         </div>

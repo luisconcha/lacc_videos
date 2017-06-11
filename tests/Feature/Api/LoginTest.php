@@ -23,7 +23,7 @@ class LoginTest extends TestCase
 
     public function testNotAuthorizedAccessApi()
     {
-        $this->get( 'api/user-test' )
+        $this->get( 'api/user' )
              ->assertStatus( 500 );
 
     }
@@ -37,7 +37,7 @@ class LoginTest extends TestCase
 
         $this->clearAuth();
 
-        $testResponse = $this->get( 'api/user-test', [
+        $testResponse = $this->get( 'api/user', [
             'Authorization' => "Bearer $token"
         ] )->assertJsonStructure( [ 'user' => [ 'name' ] ] );
 
@@ -50,7 +50,7 @@ class LoginTest extends TestCase
 
         $this->clearAuth();
 
-        $this->get( 'api/user-test', [
+        $this->get( 'api/user', [
             'Authorization' => "Bearer $token"
         ] )->assertStatus( 500 );
 
@@ -74,13 +74,12 @@ class LoginTest extends TestCase
     {
         Model::unguard();
         $user = factory( User::class )
-//            ->states( 'admin' )
             ->create( [
                 'email'    => 'user_teste@gmail.com',
                 'password' => 'secret',
                 'verified' => true
             ] );
-
+        
         $urlGenerator = app( UrlGenerator::class )->version( 'v1' );
 
         return $this->post( $urlGenerator->route( 'api.access_token' ), [

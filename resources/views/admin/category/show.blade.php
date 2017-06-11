@@ -7,7 +7,7 @@
 @section('breadcrumbs')
     <section class="content-header">
         <h1>
-            User module
+            Category module
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
@@ -39,7 +39,7 @@
         </div>
         {!! Form::model($data,['route'=>['admin.categories.destroy',$data->id],'method'=>'delete']) !!}
         <div class="form-group text-center">
-            {!!  Form::button('<i class="fa fa-fw fa-trash-o"></i> Delete category: '.$data->name, ['type' => 'submit', 'class' => 'btn btn-danger btn-sm'] ) !!}
+            {!!  Form::button('<i class="fa fa-fw fa-trash-o"></i> Delete category: ', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm'] ) !!}
             {!! Form::hidden('redirect_to', URL::previous()) !!}
             <a href="{{route('admin.categories.edit',$data->id)}}" class="btn btn-primary btn-sm"> <i class="fa fa-fw fa-pencil"></i> Alter
                 category: {{$data->name}} </a>
