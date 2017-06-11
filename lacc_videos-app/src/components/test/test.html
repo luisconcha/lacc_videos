@@ -1,0 +1,87 @@
+<!--<ion-header>-->
+    <!--<ion-toolbar>-->
+        <!--<ion-buttons left>-->
+            <!--<button ion-button><ion-icon name="create"></ion-icon></button>-->
+            <!--<button ion-button><ion-icon name="add-circle"></ion-icon></button>-->
+        <!--</ion-buttons>-->
+        <!--<ion-title>Meu Title</ion-title>-->
+        <!--<ion-buttons right>-->
+            <!--<button ion-button (click)="goToHome()" icon-left=""><ion-icon name="arrow-back"></ion-icon>Back</button>-->
+        <!--</ion-buttons>-->
+    <!--</ion-toolbar>-->
+<!--</ion-header>-->
+
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Back</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    {{text}}
+
+    <ion-card>
+        <ion-card-header>Meu header</ion-card-header>
+        <ion-card-content>Meu content</ion-card-content>
+    </ion-card>
+    <ion-row>
+        <ion-card>
+            <ion-card-header>Oi</ion-card-header>
+            <img src="http://dreamicus.com/data/image/image-07.jpg" alt="">
+            <ion-card-title>Baixinho</ion-card-title>
+        </ion-card>
+    </ion-row>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-4>Col 1</ion-col>
+            <ion-col col-8>Col 2</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-3>Col 3</ion-col>
+            <ion-col col-5>Col 5</ion-col>
+            <ion-col col-4>Col 4</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-sm-6 col-md-2>
+                <ion-card>
+                    <ion-card-header>Meu header</ion-card-header>
+                    <ion-card-content>Meu content</ion-card-content>
+                </ion-card>
+            </ion-col>
+            <ion-col col-sm-6 col-md-10>col-sm-6</ion-col>
+        </ion-row>
+
+    </ion-grid>
+    <br/>
+    <ion-icon name="create"></ion-icon>
+    <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon>
+    <br/>
+    <button ion-button outline>Dentro do content</button>
+    <button ion-button outline round>Dentro do content</button>
+    <button ion-button clear>Dentro do content</button>
+    <br/>
+    <button ion-button full icon-left><ion-icon name="create"></ion-icon>Btn Full </button>
+    <button ion-button block icon-left><ion-icon name="md-add-circle"></ion-icon>Btn Block</button>
+    <br/>
+    <button ion-button><ion-icon name="create"></ion-icon></button>
+    <button ion-button icon-only><ion-icon name="create"></ion-icon></button>
+    <button ion-button small block>Btn Small block</button>
+    <button ion-button large>Btn large</button>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-buttons left>
+            <button ion-button>1</button>
+            <button ion-button>2</button>
+        </ion-buttons>
+        <ion-title>Meu Footer</ion-title>
+        <ion-buttons right>
+            <button ion-button>3</button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>
