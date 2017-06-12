@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import 'rxjs/add/operator/toPromise';
-import { JwtClient } from "../../providers/jwt-client";
+import { Component } from "@angular/core";
+import { IonicPage, MenuController, NavController, NavParams, ToastController } from "ionic-angular";
+import "rxjs/add/operator/toPromise";
 import { Auth } from "../../providers/auth";
+import { HomePage } from "../home/home";
 
 
 @IonicPage()
@@ -12,13 +12,19 @@ import { Auth } from "../../providers/auth";
 } )
 export class LoginPage {
 
-    email: string;
-    password: string;
+    user = {
+        email   : '',
+        password: ''
+    };
 
-    constructor( private jwtClient: JwtClient,
-                 private auth: Auth,
+
+    constructor( private auth: Auth,
+                 public menuCtrl: MenuController,
                  public navCtrl: NavController,
+                 public toasCtrl: ToastController,
                  public navParams: NavParams ) {
+
+        this.menuCtrl.enable( false );
 
     }
 
@@ -27,11 +33,25 @@ export class LoginPage {
     }
 
     login() {
-        //this.jwtClient
-        //    .accessToken( { email: this.email, password: this.password } )
-        //    .then( ( token ) => {
-        //        console.log( 'Obj: ', token );
-        //    } );
+        this.auth.login( this.user )
+            .then( () => {
+                this.afterLogin();
+            } )
+            .catch( () => {
+                let toast = this.toasCtrl.create( {
+                    message : 'Invalid email or password',
+                    duration: 3000,
+                    position: 'top',
+                    cssClass: 'toast-login-error'
+                } );
+
+                toast.present();
+            } );
+    }
+
+    afterLogin() {
+        this.menuCtrl.enable( true );
+        this.navCtrl.push( HomePage );
     }
 
 }
