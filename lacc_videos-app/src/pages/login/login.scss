@@ -1,0 +1,9 @@
+page-login {
+  ion-content {
+    background-color: map_get($colors, login) !important;
+  }
+
+  ion-button {
+    background-color: map_get($btnColor, login) !important;
+  }
+}
