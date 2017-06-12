@@ -31,6 +31,12 @@ export class Auth {
         } )
     }
 
+    check(): Promise<boolean> {
+        return this._user().then( user => {
+            return user !== null;
+        } );
+    }
+
     login( { email, password } ): Promise<Object> {
         return this.jwtClient.accessToken( { email, password } )
             .then( () => {

@@ -2,12 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from "ionic-angular";
 import { HomePage } from "../../pages/home/home";
 
-/**
- * Generated class for the Test component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
 @Component( {
     selector   : 'test',
     templateUrl: 'test.html'
