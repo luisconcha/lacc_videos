@@ -38,7 +38,7 @@ class CategoryTest extends DuskTestCase
                 ->assertSee( 'List of categories' )
                 ->assertSee( 'Category Dusk' );
         } );
-        
+
     }
 
     public function testUpdate()
