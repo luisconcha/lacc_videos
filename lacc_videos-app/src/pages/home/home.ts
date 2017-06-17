@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { Test } from "../../components/test/test";
 import { Auth } from "../../decorators/auth.decorator";
 
+@Auth()
+
 @Component( {
     selector   : 'page-home',
     templateUrl: 'home.html'

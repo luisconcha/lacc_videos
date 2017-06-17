@@ -11,7 +11,7 @@ export class Test {
     text: string;
 
     constructor( public navCtrl: NavController, public navParams: NavParams ) {
-        console.log( 'Hello Test Component' );
+        
         this.text = `Hello ${this.navParams.get( 'name' )} your number is: ${this.navParams.get( 'id' )}`;
     }
 

@@ -32,7 +32,7 @@ export class Auth {
     }
 
     check(): Promise<boolean> {
-        return this._user().then( user => {
+        return this.user().then( user => {
             return user !== null;
         } );
     }

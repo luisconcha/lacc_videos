@@ -3,7 +3,6 @@ import { IonicPage, MenuController, NavController, NavParams, ToastController } 
 import "rxjs/add/operator/toPromise";
 import { Auth } from "../../providers/auth";
 import { HomePage } from "../home/home";
-import { Test } from "../../components/test/test";
 
 @IonicPage()
 @Component( {
@@ -49,7 +48,7 @@ export class LoginPage {
     }
 
     goToHome() {
-        this.navCtrl.push( Test, { id: 30, name: 'Luia Alberto CC' } );
+        this.navCtrl.push( HomePage );
     }
 
     afterLogin() {
