@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { Http, HttpModule } from "@angular/http";
+import { Http, HttpModule, XHRBackend } from "@angular/http";
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule, Storage } from "@ionic/storage";
+import { DefaultXHRBackend } from "../providers/default-xhr-backend";
 
 import { MyApp } from './app.component';
 import { Test } from "../components/test/test";
@@ -13,11 +14,13 @@ import { Test } from "../components/test/test";
 import { Auth } from "../providers/auth";
 import { JwtClient } from "../providers/jwt-client";
 import { AuthConfig, AuthHttp, JwtHelper } from "angular2-jwt";
+import { Redirector } from "../providers/redirector";
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from "../pages/login/login";
 import { Env } from "../models/env";
+
 
 declare var ENV: Env;
 
@@ -54,6 +57,7 @@ declare var ENV: Env;
         Auth,
         JwtClient,
         JwtHelper,
+        Redirector,
         StatusBar,
         SplashScreen,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
@@ -69,7 +73,8 @@ declare var ENV: Env;
                 } );
                 return new AuthHttp( authConfig, http )
             }
-        }
+        },
+        { provide: XHRBackend, useClass: DefaultXHRBackend },
     ]
 } )
 export class AppModule {
