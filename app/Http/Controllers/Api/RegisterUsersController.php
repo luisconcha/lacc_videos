@@ -34,6 +34,7 @@ class RegisterUsersController extends Controller
             $user = $this->repository->create( [
                 'name'     => $userSocial->name,
                 'email'    => $userSocial->email,
+                'thumb'    => $userSocial->avatar,
                 'role'     => User::ROLE_CLIENT,
                 'verified' => true,
             ] );
