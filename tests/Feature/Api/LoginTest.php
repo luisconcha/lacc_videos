@@ -24,7 +24,7 @@ class LoginTest extends TestCase
     public function testNotAuthorizedAccessApi()
     {
         $this->get( 'api/user' )
-             ->assertStatus( 500 );
+             ->assertStatus( 401 );
 
     }
 
@@ -44,7 +44,9 @@ class LoginTest extends TestCase
         $headers = $testResponse->baseResponse->headers;
         $bearerToken = $headers->get( 'Authorization' );
 
-        //$this->assertNotEquals( "Bearer $token", "$bearerToken" );
+        sleep( 61 );
+
+        $this->assertNotEquals( "Bearer $token", "$bearerToken" );
 
         sleep( 31 );
 
@@ -52,7 +54,7 @@ class LoginTest extends TestCase
 
         $this->get( 'api/user', [
             'Authorization' => "Bearer $token"
-        ] )->assertStatus( 200 );
+        ] )->assertStatus( 401 );
 
     }
 
