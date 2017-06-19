@@ -44,7 +44,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function create( array $attributes )
     {
         $attributes[ 'password' ] = User::generatePassword();
-        $attributes[ 'role' ] = User::ROLE_ADMIN;
+//        $attributes[ 'role' ] = User::ROLE_ADMIN;
         $attributes[ 'thumb' ]    = env( 'USER_NO_THUMB' );
 
         $model = parent::create( array_except( $attributes, 'thumb_file' ) );
@@ -53,10 +53,10 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
         if( $model ) {
 
-            \UserVerification::generate( $model );
-            \UserVerification::send( $model, 'The user account was created successfully' );
-
-            \Auth::user()->notify( new UserRegistration( $model ) );
+//            \UserVerification::generate( $model );
+//            \UserVerification::send( $model, 'The user account was created successfully' );
+//
+//            \Auth::user()->notify( new UserRegistration( $model ) );
 
             return $model;
         }

@@ -153,6 +153,7 @@ return [
         \Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         \Dingo\Api\Provider\LaravelServiceProvider::class,
         \Barryvdh\Cors\ServiceProvider::class,
+        \Laravel\Socialite\SocialiteServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -212,5 +213,6 @@ return [
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
         'Image'            => Folklore\Image\Facades\Image::class,
         'ApiRoute'         => \Dingo\Api\Facade\Route::class,
+        'Socialite'        => \Laravel\Socialite\Facades\Socialite::class,
     ],
 ];

@@ -54,9 +54,11 @@ export class JwtClient {
         } );
     }
 
-    setToken( token: string ) {
+    setToken( token: string ): string {
         this._token = token;
         this.storage.set( ENV.TOKEN_NAME, this._token );
+
+        return this._token;
     }
 
     accessToken( jwtCredentials: JwtCredentials ): Promise<string> {

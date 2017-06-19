@@ -4,7 +4,6 @@ import { Test } from "../../components/test/test";
 import { Auth } from "../../decorators/auth.decorator";
 import { AuthHttp } from "angular2-jwt";
 import 'rxjs/add/operator/toPromise';
-import { Http } from "@angular/http";
 
 @Auth()
 

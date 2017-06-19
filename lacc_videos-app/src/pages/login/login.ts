@@ -36,24 +36,32 @@ export class LoginPage {
                 this.afterLogin();
             } )
             .catch( () => {
-                let toast = this.toasCtrl.create( {
-                    message : 'Invalid email or password',
-                    duration: 3000,
-                    position: 'top',
-                    cssClass: 'toast-login-error'
-                } );
-
-                toast.present();
+                this.toastMessage( 'Invalid email or password', 3000, 'top', 'toast-login-error' );
             } );
     }
 
-    goToHome() {
-        this.navCtrl.push( HomePage );
+    loginWithFacebook() {
+        this.auth.loginWithFacebook().then( () => {
+            this.afterLogin();
+        } ).catch( () => {
+            this.toastMessage( 'Error signing in with facebook', 3000, 'top', 'toast-login-error' );
+        } );
     }
 
     afterLogin() {
         this.menuCtrl.enable( true );
         this.navCtrl.push( HomePage );
+    }
+
+    toastMessage( message, duration, position, cssClass ) {
+        let toast = this.toasCtrl.create( {
+            message : message,
+            duration: duration,
+            position: position,
+            cssClass: cssClass
+        } );
+
+        return toast.present();
     }
 
 }

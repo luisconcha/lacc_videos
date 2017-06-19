@@ -27,6 +27,9 @@ ApiRoute::version( 'v1', function() {
             'expires'    => 1
         ] )->name( '.refresh_token' );
 
+        //login with Socialite
+        ApiRoute::post( 'register', 'RegisterUsersController@store' );
+
         //GROUP OF PROTECTED ROUTES
         ApiRoute::group( [
             'middleware' => [ 'api.throttle', 'api.auth' ],
@@ -35,6 +38,7 @@ ApiRoute::version( 'v1', function() {
         ], function() {
 
             ApiRoute::post( '/logout', 'AuthController@logout' );
+            
 
             ApiRoute::get( '/user', function() {
                 return \Auth::guard( 'api' )->user();

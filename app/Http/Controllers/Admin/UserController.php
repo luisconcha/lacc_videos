@@ -1,4 +1,5 @@
 <?php
+
 namespace LACC\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
@@ -28,7 +29,14 @@ class UserController extends StandarController
         $this->model = $modelUser;
         $this->repository = $repository;
     }
-    
+
+    public function store( Request $request )
+    {
+        $request[ 'role' ] = User::ROLE_ADMIN;
+
+        return parent::store( $request );
+    }
+
     public function passwordForm()
     {
         $user = $this->repository->find( auth()->user()->id );

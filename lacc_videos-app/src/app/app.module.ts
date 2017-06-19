@@ -3,6 +3,7 @@ import { Http, HttpModule, XHRBackend } from "@angular/http";
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+import { Facebook } from "@ionic-native/facebook";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule, Storage } from "@ionic/storage";
@@ -20,6 +21,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from "../pages/login/login";
 import { Env } from "../models/env";
+import { UserResource } from "../providers/resources/user-resource";
 
 
 declare var ENV: Env;
@@ -55,11 +57,13 @@ declare var ENV: Env;
     ],
     providers      : [
         Auth,
+        Facebook,
         JwtClient,
         JwtHelper,
         Redirector,
         StatusBar,
         SplashScreen,
+        UserResource,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         {
             provide: AuthHttp,
