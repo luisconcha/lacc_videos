@@ -3,6 +3,9 @@
         <ion-toolbar color="dark">
             <ion-title>LACC-Videos Menu</ion-title>
             <button ion-item menuClose color="dark" (click)="gotToMySettings()">
+                <ion-avatar>
+                    <img [src]="gravatarUrl" alt="">
+                </ion-avatar>
                 <h2>{{ user?.name }}</h2>
             </button>
         </ion-toolbar>

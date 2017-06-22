@@ -9,6 +9,8 @@ import { LoginPage } from "../pages/login/login";
 import { Auth } from "../providers/auth";
 import { Redirector } from "../providers/redirector";
 
+import md5 from 'crypto-md5';
+
 @Component( {
     templateUrl: 'app.html'
 } )
@@ -20,6 +22,9 @@ export class MyApp {
     pages: Array<{ title: string, component: any }>;
 
     user: any;
+
+    //gravatarUrl: 'https://www.gravatar.com/avatar/nouser.jpg';
+    gravatarUrl;
 
     constructor( public platform: Platform,
                  public statusBar: StatusBar,
@@ -39,8 +44,9 @@ export class MyApp {
 
     initializeApp() {
 
-        this.auth.user().then( user => {
+        this.auth.userSubject().subscribe( user => {
             this.user = user;
+            this.gravatar();
         } );
 
         this.platform.ready().then( () => {
@@ -73,4 +79,9 @@ export class MyApp {
         this.nav.setRoot( 'MySettingsPage' );
     }
 
+    gravatar() {
+        if ( this.user ) {
+            this.gravatarUrl = `https://www.gravatar.com/avatar/${md5( this.user.email, 'hex' )}`;
+        }
+    }
 }
