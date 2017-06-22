@@ -19,6 +19,7 @@ import { Redirector } from "../providers/redirector";
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { MySettingsPage } from '../pages/my-settings/my-settings';
 import { LoginPage } from "../pages/login/login";
 import { Env } from "../models/env";
 import { UserResource } from "../providers/resources/user-resource";
@@ -32,6 +33,7 @@ declare var ENV: Env;
         ListPage,
         LoginPage,
         MyApp,
+        MySettingsPage,
         Test
     ],
     imports        : [
@@ -41,7 +43,8 @@ declare var ENV: Env;
             links: [
                 { component: LoginPage, name: 'LoginPage', segment: 'login' },
                 { component: HomePage, name: 'HomePage', segment: 'home' },
-                { component: Test, name: 'TestPage', segment: 'test/:id/:name' }
+                { component: Test, name: 'TestPage', segment: 'test/:id/:name' },
+                { component: MySettingsPage, name: 'MySettingsPage', segment: 'my-settings'}
             ]
         } ),
         IonicStorageModule.forRoot( {
@@ -52,6 +55,7 @@ declare var ENV: Env;
     entryComponents: [
         HomePage,
         ListPage,
+        MySettingsPage,
         LoginPage,
         Test
     ],

@@ -38,11 +38,13 @@ ApiRoute::version( 'v1', function() {
         ], function() {
 
             ApiRoute::post( '/logout', 'AuthController@logout' );
-            
 
+            /************ USER ROUTES ***************/
             ApiRoute::get( '/user', function() {
                 return \Auth::guard( 'api' )->user();
             } );
+                                                                                                
+            ApiRoute::patch( '/user/settings', [ 'as' => 'user.settings', 'uses' => 'UserController@updateSettings' ] );
 
             /************ CATEGORY ROUTES ***************/
             ApiRoute::group( [ 'namespace' => 'Categories' ], function() {

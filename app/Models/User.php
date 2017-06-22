@@ -77,7 +77,7 @@ class User extends Authenticatable implements JWTSubject
         }
 
         return [
-            'password' => $passRules . '|min:6',
+            'password' => $passRules . '|min:6|max:16',
         ];
     }
 

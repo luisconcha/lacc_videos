@@ -53,10 +53,10 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
         if( $model ) {
 
-//            \UserVerification::generate( $model );
-//            \UserVerification::send( $model, 'The user account was created successfully' );
-//
-//            \Auth::user()->notify( new UserRegistration( $model ) );
+            \UserVerification::generate( $model );
+            \UserVerification::send( $model, 'The user account was created successfully' );
+
+            \Auth::user()->notify( new UserRegistration( $model ) );
 
             return $model;
         }

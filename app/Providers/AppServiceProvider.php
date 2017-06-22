@@ -5,6 +5,7 @@ namespace LACC\Providers;
 use Dingo\Api\Exception\Handler;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\ValidationException;
 use LACC\Models\Video;
 use Laravel\Dusk\DuskServiceProvider;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -48,6 +49,13 @@ class AppServiceProvider extends ServiceProvider
 
         $handler->register( function( JWTException $exception ) {
             return response()->json( [ 'error' => $exception->getMessage() ], 401 );
+        } );
+        
+        $handler->register( function( ValidationException $exception ) {
+            return response()->json( [
+                'error'             => $exception->getMessage(),
+                'validation_errors' => $exception->validator->getMessageBag()->toArray()
+            ], 422 );
         } );
     }
 }

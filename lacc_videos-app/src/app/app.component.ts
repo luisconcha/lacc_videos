@@ -63,8 +63,14 @@ export class MyApp {
 
     logout() {
         this.auth.logout().then( () => {
-            alert( 'logout feito' );
+            this.nav.setRoot( 'LoginPage' );
+        } ).catch( () => {
+            this.nav.setRoot( 'LoginPage' );
         } );
+    }
+
+    gotToMySettings() {
+        this.nav.setRoot( 'MySettingsPage' );
     }
 
 }
