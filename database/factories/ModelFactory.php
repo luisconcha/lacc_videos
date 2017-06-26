@@ -68,3 +68,8 @@ $factory->define( \LACC\Models\Plans::class, function( Faker\Generator $faker ) 
         'duration'    => $faker->randomKey( $arrDuration )
     ];
 } );
+$factory->define( \LACC\Models\Order::class, function( Faker\Generator $faker ) {
+    return [
+        'value' => $faker->randomFloat( 2, 50, 100 ),
+    ];
+} );
