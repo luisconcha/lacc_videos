@@ -38,7 +38,7 @@ $factory->define( \LACC\Models\Serie::class, function( Faker\Generator $faker ) 
     return [
         'title'       => $faker->sentence( 3 ),
         'description' => $faker->sentence( 30 ),
-        'thumb'  => env( 'SERIE_NO_THUMB' )
+        'thumb'       => env( 'SERIE_NO_THUMB' )
     ];
 } );
 
@@ -49,8 +49,22 @@ $factory->define( \LACC\Models\Video::class, function( Faker\Generator $faker ) 
         'description' => $faker->sentence( 30 ),
         'duration'    => rand( 1, 30 ),
         'file'        => 'thumb.jpg',
-        'thumb'       =>  env( 'VIDEO_NO_THUMB' ),
+        'thumb'       => env( 'VIDEO_NO_THUMB' ),
         'publish'     => rand( 0, 1 ),
         'completed'   => 0
+    ];
+} );
+
+$factory->define( \LACC\Models\Plans::class, function( Faker\Generator $faker ) {
+    $arrDuration = [
+        1 => \LACC\Models\Plans::DURATION_YEARLY,
+        2 => \LACC\Models\Plans::DURATION_MONTHLY
+    ];
+
+    return [
+        'name'        => $faker->sentence( 3 ),
+        'description' => $faker->paragraph( 5 ),
+        'value'       => $faker->randomFloat( 2, 50, 100 ),
+        'duration'    => $faker->randomKey( $arrDuration )
     ];
 } );

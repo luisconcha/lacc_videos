@@ -62,6 +62,9 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
         Route::get( 'series/{serie}/thumb_small_asset', ['as'=> 'series.thumb_small_asset', 'uses' => 'SeriesController@thumbSmallAssets'] );
         Route::resource( 'series', 'SeriesController' );
 
+        //Route to Plans
+        Route::resource( 'plans', 'PlanController' );
+
         //Route to Trashed
         Route::group( [ 'prefix' => 'trashed', 'as' => 'trashed.' ], function() {
             //Videos
@@ -82,6 +85,11 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
             //Users
             Route::get( 'users/{id}', [ 'as'   => 'users.restore', 'uses' => 'Trash\UsersTrashController@update' ] );
             Route::resource( 'users', 'Trash\UsersTrashController',
+                [ 'except' => [ 'show', 'create', 'store', 'edit', 'update', 'destroy' ] ] );
+
+            //Plans
+            Route::get( 'plan/{id}', [ 'as'   => 'plans.restore', 'uses' => 'Trash\PlanTrashController@update' ] );
+            Route::resource( 'plans', 'Trash\PlanTrashController',
                 [ 'except' => [ 'show', 'create', 'store', 'edit', 'update', 'destroy' ] ] );
         } );
 
