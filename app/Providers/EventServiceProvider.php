@@ -14,8 +14,12 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         \Dingo\Api\Event\ResponseWasMorphed::class => [
-            'LACC\Listeners\AddTokenToHeaderListener',
+            \LACC\Listeners\AddTokenToHeaderListener::class,
         ],
+
+        \LACC\Events\PaypalPaymentApproved::class => [
+            \LACC\Listeners\CreatedOrderListener::class
+        ]
     ];
 
     /**

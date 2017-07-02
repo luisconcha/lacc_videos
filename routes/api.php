@@ -11,68 +11,73 @@ use Illuminate\Http\Request;
 
 ApiRoute::version( 'v1', function() {
 
-    ApiRoute::group( [ 'namespace' => 'LACC\Http\Controllers\Api', 'as' => 'api' ], function() {
+    ApiRoute::group( [
+        'namespace'  => 'LACC\Http\Controllers\Api',
+        'as'         => 'api',
+        'middleware' => 'bindings' ],
+        function() {
 
-        ApiRoute::post( '/access_token', [
-            'uses'       => 'AuthController@accessToken',
-            'middleware' => 'api.throttle',
-            'limit'      => 10,
-            'expires'    => 1
-        ] )->name( '.access_token' );
+            ApiRoute::post( '/access_token', [
+                'uses'       => 'AuthController@accessToken',
+                'middleware' => 'api.throttle',
+                'limit'      => 10,
+                'expires'    => 1
+            ] )->name( '.access_token' );
 
-        ApiRoute::post( '/refresh_token', [
-            'uses'       => 'AuthController@refreshToken',
-            'middleware' => 'api.throttle',
-            'limit'      => 10,
-            'expires'    => 1
-        ] )->name( '.refresh_token' );
+            ApiRoute::post( '/refresh_token', [
+                'uses'       => 'AuthController@refreshToken',
+                'middleware' => 'api.throttle',
+                'limit'      => 10,
+                'expires'    => 1
+            ] )->name( '.refresh_token' );
 
-        //login with Socialite
-        ApiRoute::post( 'register', 'RegisterUsersController@store' );
+            //login with Socialite
+            ApiRoute::post( 'register', 'RegisterUsersController@store' );
 
-        //GROUP OF PROTECTED ROUTES
-        ApiRoute::group( [
-            'middleware' => [ 'api.throttle', 'api.auth' ],
-            'limit'      => 100,
-            'expires'    => 3
-        ], function() {
+            //GROUP OF PROTECTED ROUTES
+            ApiRoute::group( [
+                'middleware' => [ 'api.throttle', 'api.auth' ],
+                'limit'      => 100,
+                'expires'    => 3
+            ], function() {
 
-            ApiRoute::post( '/logout', 'AuthController@logout' );
+                ApiRoute::post( '/logout', 'AuthController@logout' );
 
-            /************ USER ROUTES ***************/
-            ApiRoute::get( '/user', function() {
-                return \Auth::guard( 'api' )->user();
+                /************ USER ROUTES ***************/
+                ApiRoute::get( '/user', function() {
+                    return \Auth::guard( 'api' )->user();
+                } );
+
+                ApiRoute::patch( '/user/settings', [ 'as' => 'user.settings', 'uses' => 'UserController@updateSettings' ] );
+
+                /************ CATEGORY ROUTES ***************/
+                ApiRoute::group( [ 'namespace' => 'Categories' ], function() {
+                    ApiRoute::resource( '/categories', 'CategoriesController' );
+                } );
+
+
+                /************ PAYMENT ROUTES ***************/
+                ApiRoute::post( '/plans/{plan}/payments', [ 'as' => 'payments.store', 'uses' => 'PaymentsController@store' ] );
+
+                /************ TEST ROUTES ***************/
+                //ApiRoute::get( '/test', function() {
+                //    return 'Olá marujo, vc esta autenticado!';
+                //} );
+
+                //ApiRoute::get( '/user-test', function() {
+                    // 1) return authenticated user
+                    //return $request->user( 'api' ); //add com parametro quando esta logado =>  Request $request
+
+                    // 2) return authenticated user
+                    //app( \Dingo\Api\Auth\Auth::class )->user();
+
+                    // 3) return authenticated user
+                    //return \Auth::guard( 'api' )->user();
+                //} );
+
+                /********** END TEST ROUTES **********/
+
             } );
-                                                                                                
-            ApiRoute::patch( '/user/settings', [ 'as' => 'user.settings', 'uses' => 'UserController@updateSettings' ] );
-
-            /************ CATEGORY ROUTES ***************/
-            ApiRoute::group( [ 'namespace' => 'Categories' ], function() {
-                ApiRoute::resource( '/categories', 'CategoriesController' );
-            } );
-
-
-
-
-            /************ TEST ROUTES ***************/
-            //ApiRoute::get( '/test', function() {
-            //    return 'Olá marujo, vc esta autenticado!';
-            //} );
-
-            //ApiRoute::get( '/user-test', function() {
-                // 1) return authenticated user
-                //return $request->user( 'api' ); //add com parametro quando esta logado =>  Request $request 
-
-                // 2) return authenticated user
-                //app( \Dingo\Api\Auth\Auth::class )->user();
-
-                // 3) return authenticated user
-                //return \Auth::guard( 'api' )->user();
-            //} );
-
-            /********** END TEST ROUTES **********/
-
         } );
-    } );
 } );
 
