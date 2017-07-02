@@ -59,6 +59,14 @@ ApiRoute::version( 'v1', function() {
                 /************ PAYMENT ROUTES ***************/
                 ApiRoute::post( '/plans/{plan}/payments', [ 'as' => 'payments.store', 'uses' => 'PaymentsController@store' ] );
 
+
+                /************ SUBSCRIBER AREA ROUTES ***************/
+                ApiRoute::group(['middleware' => 'check-subscriptions'], function(){
+                    ApiRoute::get( '/test', function() {
+                        return 'Olá marujo, vc é um assinante!';
+                    } );
+                });
+
                 /************ TEST ROUTES ***************/
                 //ApiRoute::get( '/test', function() {
                 //    return 'Olá marujo, vc esta autenticado!';

@@ -100,4 +100,26 @@ class User extends Authenticatable implements JWTSubject
             ]
         ];
     }
+
+    public function subscriptions()
+    {
+        return $this->hasManyThrough( Subscription::class, Order::class );
+    }
+
+    public function hasSubscriptionValid()
+    {
+        $valid = false;
+        $subscriptions = $this->subscriptions;
+        
+        /** @var Subscription $subscription */
+        foreach( $subscriptions as $subscription ):
+            $valid = !$subscription->isExpired();
+            if( $valid ) {
+                break;
+            }
+        endforeach;
+
+        return $valid;
+    }
+
 }

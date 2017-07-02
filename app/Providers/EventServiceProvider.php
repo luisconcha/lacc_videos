@@ -19,6 +19,10 @@ class EventServiceProvider extends ServiceProvider
 
         \LACC\Events\PaypalPaymentApproved::class => [
             \LACC\Listeners\CreatedOrderListener::class
+        ],
+
+        \Prettus\Repository\Events\RepositoryEntityCreated::class => [
+            \LACC\Listeners\CreatedSubscriptionListener::class
         ]
     ];
 

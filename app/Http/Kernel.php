@@ -2,7 +2,6 @@
 
 namespace LACC\Http;
 
-
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -51,12 +50,13 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth'       => \Illuminate\Auth\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'bindings'   => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-        'can'        => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest'      => \LACC\Http\Middleware\RedirectIfAuthenticated::class,
-        'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'isVerified' => \Jrean\UserVerification\Middleware\IsVerified::class,
+        'auth'                => \Illuminate\Auth\Middleware\Authenticate::class,
+        'auth.basic'          => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'bindings'            => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+        'can'                 => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest'               => \LACC\Http\Middleware\RedirectIfAuthenticated::class,
+        'throttle'            => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'isVerified'          => \Jrean\UserVerification\Middleware\IsVerified::class,
+        'check-subscriptions' => \LACC\Http\Middleware\CheckSubscriptions::class
     ];
 }
