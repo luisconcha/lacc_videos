@@ -29,6 +29,7 @@ class LACCServiceProvider extends ServiceProvider
         $this->app->bind( \LACC\Repositories\VideoRepository::class, \LACC\Repositories\VideoRepositoryEloquent::class );
         $this->app->bind( \LACC\Repositories\PlanRepository::class, \LACC\Repositories\PlanRepositoryEloquent::class );
         $this->app->bind( \LACC\Repositories\OrderRepository::class, \LACC\Repositories\OrderRepositoryEloquent::class );
+        $this->app->bind( \LACC\Repositories\SubscriptionRepository::class, \LACC\Repositories\SubscriptionRepositoryEloquent::class );
         //:end-bindings:
     }
 }

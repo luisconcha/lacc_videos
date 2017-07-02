@@ -74,3 +74,7 @@ $factory->define( \LACC\Models\Order::class, function( Faker\Generator $faker ) 
         'value' => $faker->randomFloat( 2, 50, 100 )
     ];
 } );
+
+//$factory->define( \LACC\Models\Subscription::class, function( Faker\Generator $faker ) {
+//    return [];
+//} );
