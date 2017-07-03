@@ -29,6 +29,7 @@ import { HomeSubscriberPage } from "../pages/home-subscriber/home-subscriber";
 
 import { Env } from "../models/env";
 import { UserResource } from "../providers/resources/user.resource";
+import { PlanResource } from '../providers/resources/plan.resource';
 
 
 declare var ENV: Env;
@@ -83,6 +84,7 @@ declare var ENV: Env;
         Facebook,
         JwtClient,
         JwtHelper,
+        PlanResource,
         Redirector,
         StatusBar,
         SplashScreen,

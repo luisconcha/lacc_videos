@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Auth } from "../../decorators/auth.decorator";
+import { PlanResource } from "../../providers/resources/plan.resource";
 
 @Auth()
 @IonicPage()
@@ -10,11 +11,17 @@ import { Auth } from "../../decorators/auth.decorator";
 } )
 export class PlansPage {
 
-    constructor( public navCtrl: NavController, public navParams: NavParams ) {
+    plans = [];
+    
+    constructor( public navCtrl: NavController,
+                 public navParams: NavParams,
+                 public planResource: PlanResource ) {
     }
 
     ionViewDidLoad() {
-        console.log( 'ionViewDidLoad PlansPage' );
+        this.planResource
+            .all()
+            .then( plans => this.plans = plans )
     }
 
 }

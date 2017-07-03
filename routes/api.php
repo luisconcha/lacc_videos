@@ -60,6 +60,8 @@ ApiRoute::version( 'v1', function() {
                 /************ PAYMENT ROUTES ***************/
                 ApiRoute::post( '/plans/{plan}/payments', [ 'as' => 'payments.store', 'uses' => 'PaymentsController@store' ] );
 
+                /************ PLANS ROUTES ***************/
+                ApiRoute::get( 'plans', [ 'as' => 'plans.list', 'uses' => 'PlansController@index' ] );
 
                 /************ SUBSCRIBER AREA ROUTES ***************/
                 ApiRoute::group(['middleware' => 'check-subscriptions'], function(){
