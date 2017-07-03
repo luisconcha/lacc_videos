@@ -12,8 +12,9 @@
 
 namespace LACC\Http\Controllers\Api;
 
-use LACC\Http\Request\UserSettingRequest;
 use LACC\Models\User;
+use LACC\Http\Request\AddCpfRequest;
+use LACC\Http\Request\UserSettingRequest;
 use LACC\Repositories\UserRepository;
 
 class UserController
@@ -33,6 +34,15 @@ class UserController
         $this->repository->update( $data, $request->user( 'api' )->id );
 
         return $request->user( 'api' );
+    }
+
+    public function addCpf( AddCpfRequest $request )
+    {
+        $user = $this->repository->update( [
+            'cpf' => $request->input( 'cpf' )
+        ], $request->user( 'api' )->id );
+
+        return $user;
     }
 
 }

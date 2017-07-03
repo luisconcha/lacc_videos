@@ -24,6 +24,7 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'name',
         'email',
+        'cpf',
         'role',
         'verified',
         'password',
@@ -94,9 +95,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return [
             'user' => [
-                'id'    => $this->id,
-                'name'  => $this->name,
-                'email' => $this->email
+                'id'                 => $this->id,
+                'name'               => $this->name,
+                'email'              => $this->email,
+                'subscription_valid' => $this->hasSubscriptionValid()
             ]
         ];
     }
@@ -110,7 +112,7 @@ class User extends Authenticatable implements JWTSubject
     {
         $valid = false;
         $subscriptions = $this->subscriptions;
-        
+
         /** @var Subscription $subscription */
         foreach( $subscriptions as $subscription ):
             $valid = !$subscription->isExpired();

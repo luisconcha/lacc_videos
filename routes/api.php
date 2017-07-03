@@ -49,6 +49,7 @@ ApiRoute::version( 'v1', function() {
                 } );
 
                 ApiRoute::patch( '/user/settings', [ 'as' => 'user.settings', 'uses' => 'UserController@updateSettings' ] );
+                ApiRoute::patch( '/user/cpf', [ 'as' => 'user.add-cpf', 'uses' => 'UserController@addCpf' ] );
 
                 /************ CATEGORY ROUTES ***************/
                 ApiRoute::group( [ 'namespace' => 'Categories' ], function() {

@@ -62,13 +62,16 @@ export class Auth {
             } );
     }
 
-    loginWithFacebook(): Promise<string> {
+    loginWithFacebook(): Promise<Object> {
         return this.fb.login( ['email'] )
             .then( ( response: FacebookLoginResponse ) => {
                 let accessToken = response.authResponse.accessToken;
                 return this.userResource
                     .register( accessToken )
-                    .then( token => this.jwtClient.setToken( token ) );
+                    .then( token => {
+                        this.jwtClient.setToken( token );
+                        return this._user
+                    } );
             } );
     }
 }

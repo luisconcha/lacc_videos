@@ -7,16 +7,18 @@ import { NavController } from "ionic-angular";
 export class Redirector {
 
     subject = new Subject;
+    link;
 
-    config( nacCtrl: NavController, link = 'LoginPage' ) {
+    config( nacCtrl: NavController ) {
         this.subject.subscribe( () => {
             setTimeout( () => {
-                nacCtrl.setRoot( link );
+                nacCtrl.setRoot( this.link );
             } );
         } )
     }
 
-    redirector() {
+    redirector( link = 'LoginPage' ) {
+        this.link = link;
         this.subject.next();
     }
 }

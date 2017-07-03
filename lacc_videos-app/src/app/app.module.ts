@@ -21,6 +21,11 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { MySettingsPage } from '../pages/my-settings/my-settings';
 import { LoginPage } from "../pages/login/login";
+import { PaymentPage } from "../pages/payment/payment"
+import { PlansPage } from "../pages/plans/plans";
+import { AddCpfPage } from "../pages/add-cpf/add-cpf";
+import { HomeSubscriberPage } from "../pages/home-subscriber/home-subscriber";
+
 import { Env } from "../models/env";
 import { UserResource } from "../providers/resources/user-resource";
 
@@ -29,11 +34,15 @@ declare var ENV: Env;
 
 @NgModule( {
     declarations   : [
+        AddCpfPage,
         HomePage,
+        HomeSubscriberPage,
         ListPage,
         LoginPage,
         MyApp,
         MySettingsPage,
+        PaymentPage,
+        PlansPage,
         Test
     ],
     imports        : [
@@ -41,10 +50,14 @@ declare var ENV: Env;
         HttpModule,
         IonicModule.forRoot( MyApp, {}, {
             links: [
-                { component: LoginPage, name: 'LoginPage', segment: 'login' },
+                { component: AddCpfPage, name: 'AddCpfPage', segment: 'add-cpf' },
                 { component: HomePage, name: 'HomePage', segment: 'home' },
-                { component: Test, name: 'TestPage', segment: 'test/:id/:name' },
-                { component: MySettingsPage, name: 'MySettingsPage', segment: 'my-settings'}
+                { component: HomeSubscriberPage, name: 'HomeSubscriberPage', segment: 'subscriber/home' },
+                { component: LoginPage, name: 'LoginPage', segment: 'login' },
+                { component: MySettingsPage, name: 'MySettingsPage', segment: 'my-settings' },
+                { component: PaymentPage, name: 'PaymentPage', segment: 'plan/:plan/payment' },
+                { component: PlansPage, name: 'PlansPage', segment: 'plans' },
+                { component: Test, name: 'TestPage', segment: 'test/:id/:name' }
             ]
         } ),
         IonicStorageModule.forRoot( {
@@ -53,10 +66,14 @@ declare var ENV: Env;
     ],
     bootstrap      : [IonicApp],
     entryComponents: [
+        AddCpfPage,
         HomePage,
+        HomeSubscriberPage,
         ListPage,
         MySettingsPage,
         LoginPage,
+        PaymentPage,
+        PlansPage,
         Test
     ],
     providers      : [

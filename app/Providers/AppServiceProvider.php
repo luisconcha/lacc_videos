@@ -2,6 +2,7 @@
 
 namespace LACC\Providers;
 
+use Code\Validator\Cpf;
 use Dingo\Api\Exception\Handler;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
                     $video->save();
                 }
             }
+        } );
+
+        \Validator::extend( 'cpf', function( $attribute, $value, $parameters, $validator ) {
+            return ( new Cpf() )->isValid( $value );
         } );
     }
 

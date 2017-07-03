@@ -3,6 +3,7 @@ import { IonicPage, MenuController, NavController, NavParams, ToastController } 
 import "rxjs/add/operator/toPromise";
 import { Auth } from "../../providers/auth";
 import { HomePage } from "../home/home";
+import { HomeSubscriberPage } from "../home-subscriber/home-subscriber";
 
 @IonicPage()
 @Component( {
@@ -32,8 +33,8 @@ export class LoginPage {
 
     login() {
         this.auth.login( this.user )
-            .then( () => {
-                this.afterLogin();
+            .then( ( user ) => {
+                this.afterLogin( user );
             } )
             .catch( () => {
                 this.toastMessage( 'Invalid email or password', 3000, 'top', 'toast-login-error' );
@@ -41,16 +42,17 @@ export class LoginPage {
     }
 
     loginWithFacebook() {
-        this.auth.loginWithFacebook().then( () => {
-            this.afterLogin();
+        this.auth.loginWithFacebook().then( ( user ) => {
+            this.afterLogin( user );
         } ).catch( () => {
             this.toastMessage( 'Error signing in with facebook', 3000, 'top', 'toast-login-error' );
         } );
     }
 
-    afterLogin() {
+    afterLogin( user ) {
+
         this.menuCtrl.enable( true );
-        this.navCtrl.push( HomePage );
+        this.navCtrl.setRoot( user.subscription_valid ? HomeSubscriberPage : HomePage );
     }
 
     toastMessage( message, duration, position, cssClass ) {
