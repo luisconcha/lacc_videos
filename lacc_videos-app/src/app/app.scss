@@ -31,3 +31,12 @@ ion-app {
     }
   }
 }
+
+.toast-error {
+  .toast-container {
+    background-color: map_get($colors, light) !important;
+    .toast-message {
+      color: map_get($colors, dark) !important;
+    }
+  }
+}

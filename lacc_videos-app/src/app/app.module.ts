@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Http, HttpModule, XHRBackend } from "@angular/http";
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { TextMaskModule } from "angular2-text-mask";
 
 import { Facebook } from "@ionic-native/facebook";
 import { StatusBar } from '@ionic-native/status-bar';
@@ -27,7 +28,7 @@ import { AddCpfPage } from "../pages/add-cpf/add-cpf";
 import { HomeSubscriberPage } from "../pages/home-subscriber/home-subscriber";
 
 import { Env } from "../models/env";
-import { UserResource } from "../providers/resources/user-resource";
+import { UserResource } from "../providers/resources/user.resource";
 
 
 declare var ENV: Env;
@@ -48,6 +49,7 @@ declare var ENV: Env;
     imports        : [
         BrowserModule,
         HttpModule,
+        TextMaskModule,
         IonicModule.forRoot( MyApp, {}, {
             links: [
                 { component: AddCpfPage, name: 'AddCpfPage', segment: 'add-cpf' },

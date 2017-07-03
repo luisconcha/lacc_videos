@@ -14,15 +14,29 @@
             <ion-card-title>See what's next</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-             <p> Watch wherever you want. Cancel when you want</p>
+            <p> Watch wherever you want. Cancel when you want</p>
         </ion-card-content>
     </ion-card>
 
     <ion-card text-center>
         <ion-card-content>
             <ion-list>
-              LAC
+                <ion-list-header>
+                    Browse by
+                </ion-list-header>
+                <button ion-item text-center color="secondary">
+                    Series
+                </button>
+                <button ion-item text-center color="primary">
+                    Assorted videos
+                </button>
+                <button ion-item text-center color="danger">
+                    Selecting videos by category
+                </button>
             </ion-list>
         </ion-card-content>
     </ion-card>
+
+    <h1 text-center>Start now!</h1>
+    <button ion-button block color="dark" navPush="AddCpfPage">Subscrive now</button>
 </ion-content>
