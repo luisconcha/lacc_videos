@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, LoadingController, NavController, NavParams } from 'ionic-angular';
 import { Auth } from "../../decorators/auth.decorator";
 import { PlanResource } from "../../providers/resources/plan.resource";
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/operator/map";
 
 @Auth()
 @IonicPage()
@@ -11,17 +13,27 @@ import { PlanResource } from "../../providers/resources/plan.resource";
 } )
 export class PlansPage {
 
-    plans = [];
-    
+    plans: Observable<Array<Object>>;
+
     constructor( public navCtrl: NavController,
                  public navParams: NavParams,
-                 public planResource: PlanResource ) {
+                 public planResource: PlanResource,
+                 public loadingCtrl: LoadingController ) {
     }
 
     ionViewDidLoad() {
-        this.planResource
-            .all()
-            .then( plans => this.plans = plans )
+        let loading = this.loadingCtrl.create( {
+            spinner: 'hide',
+            content: `Loading plans, please wait...`
+        } );
+
+        loading.present();
+
+        this.plans = this.planResource.all()
+            .map( plans => {
+                loading.dismiss()
+                return plans;
+            } );
     }
 
 }
