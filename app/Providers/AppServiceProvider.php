@@ -10,6 +10,8 @@ use Illuminate\Validation\ValidationException;
 use LACC\Exceptions\SubscriptionInvalidException;
 use LACC\Models\Video;
 use Laravel\Dusk\DuskServiceProvider;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Rest\ApiContext;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
 class AppServiceProvider extends ServiceProvider
@@ -46,6 +48,19 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register( \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class );
             $this->app->register( DuskServiceProvider::class );
         }
+
+        //PAYPAL
+        $this->app->bind( ApiContext::class, function() {
+            $apiContenxt = new ApiContext( new OAuthTokenCredential(
+                env( 'PAYPAL_CLIENT_ID' ),
+                env( 'PAYPAL_SECRET' )
+            ) );
+            $apiContenxt->setConfig( [
+                'http.CURLOPT_CONNECTIONTIMEOUT' => 45 //segundos
+            ] );
+
+            return $apiContenxt;
+        } );
 
         //Reconfigura as mensagem de erro devoltas pelo DINGO
         $handler = app( Handler::class );

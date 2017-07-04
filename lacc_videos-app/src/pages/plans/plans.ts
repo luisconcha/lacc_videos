@@ -31,7 +31,7 @@ export class PlansPage {
 
         this.plans = this.planResource.all()
             .map( plans => {
-                loading.dismiss()
+                loading.dismiss();
                 return plans;
             } );
     }
