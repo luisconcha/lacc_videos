@@ -57,10 +57,10 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
         } );
         Route::resource( 'videos', 'VideosController' );
 
-        //Route to Series
+        //Route to paypalWebProfile
         Route::resource( 'web_profile', 'PaypalWebProfilesController' );
 
-        //Route to paypalWebProfile
+        //Route to Series
         Route::get( 'series/{serie}/thumb_asset', ['as'=> 'series.thumb_asset', 'uses' => 'SeriesController@thumbAssets'] );
         Route::get( 'series/{serie}/thumb_small_asset', ['as'=> 'series.thumb_small_asset', 'uses' => 'SeriesController@thumbSmallAssets'] );
         Route::resource( 'series', 'SeriesController' );
@@ -93,6 +93,11 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
             //Plans
             Route::get( 'plan/{id}', [ 'as'   => 'plans.restore', 'uses' => 'Trash\PlanTrashController@update' ] );
             Route::resource( 'plans', 'Trash\PlanTrashController',
+                [ 'except' => [ 'show', 'create', 'store', 'edit', 'update', 'destroy' ] ] );
+
+            //Paypal web_profile
+            Route::get( 'web_profile/{id}', [ 'as'   => 'web_profile.restore', 'uses' => 'Trash\PaypaWebProfilesTrashController@update' ] );
+            Route::resource( 'web_profile', 'Trash\PaypaWebProfilesTrashController',
                 [ 'except' => [ 'show', 'create', 'store', 'edit', 'update', 'destroy' ] ] );
         } );
 

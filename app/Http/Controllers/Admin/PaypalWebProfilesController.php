@@ -26,9 +26,9 @@ class PaypalWebProfilesController extends StandarController
     /** @var  PaypalWebProfileRepository */
     protected $repository;
 
-    protected $route = 'admin.web_profiles';
+    protected $route = 'admin.web_profile';
 
-    protected $view = 'admin.webProfiles';
+    protected $view = 'admin.web-profile';
 
     protected $totalPage = 5;
 

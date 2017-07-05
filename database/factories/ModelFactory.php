@@ -78,7 +78,7 @@ $factory->define( \LACC\Models\Order::class, function( Faker\Generator $faker ) 
 $factory->define( \LACC\Models\PaypalWebProfile::class, function( Faker\Generator $faker ) {
     return [
         'name'     => $faker->name,
-        'logo_url' => $faker->imageUrl( 200, 200 ),
+        'logo_url' => $faker->imageUrl( 100, 100 ),
         'code'     => str_random()
     ];
 } );

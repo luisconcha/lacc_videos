@@ -87,8 +87,10 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="{{route('admin.plans.index')}}"><i class="fa fa-angle-double-right"></i>Plans</a></li>
+                <li><a href="{{route('admin.web_profile.index')}}"><i class="fa fa-angle-double-right"></i>Profile Paypal</a></li>
+                <li class="divider"></li>
                 <li><a href="{{route('admin.trashed.plans.index')}}"><i class="fa fa-trash"></i>Plans in the trash</a></li>
-                </li>
+                <li><a href="{{route('admin.trashed.web_profile.index')}}"><i class="fa fa-trash"></i>Profile Paypal in the trash</a></li>
             </ul>
         </li>
         <li>

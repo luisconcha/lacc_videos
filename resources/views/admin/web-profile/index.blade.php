@@ -3,11 +3,11 @@
 @section('breadcrumbs')
     <section class="content-header">
         <h1>
-            Category module
+            Paypal webProfile module
         </h1>
         <ol class="breadcrumb">
             <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-            <li class="active">Category list</li>
+            <li class="active">Paypal web profile list</li>
         </ol>
     </section>
 @endsection
@@ -16,36 +16,34 @@
 
     <div class="row">
         <div class="form-group col-xs-7 text-center">
-            <h3>List of categories</h3>
+            <h3>List of paypal Profile</h3>
         </div>
         <div class="form-group col-xs-5 text-right">
-            <h3><a href="{{route('admin.categories.create')}}" class="btn btn-primary"><i class="fa fa-fw fa-plus"></i> New category</a></h3>
+            <h3><a href="{{route('admin.web_profile.create')}}" class="btn btn-primary"><i class="fa fa-fw fa-plus"></i> New profile</a></h3>
         </div>
     </div>
     <table class="table table-hover">
         <tr>
             <td>id</td>
             <td>name</td>
-            <td>Slug</td>
-            <td>color</td>
+            <td>logo</td>
+            <td>Create in</td>
             <td>actions</td>
         </tr>
-        @forelse($data as $category)
+        @forelse($data as $profile)
             <tr>
-                <td>{{ $category->id }}</td>
-                <td>{{ $category->name }}</td>
-                <td>{{ $category->url }}</td>
+                <td>{{ $profile->id }}</td>
+                <td>{{ $profile->name }}</td>
+                <td><img src="{{ $profile->logo_url }}" class="img-circle img-responsive"></td>
+                <td>{{ dateHoraMinuteBR($profile->created_at) }}</td>
                 <td>
-                    <span class="label" style="background-color: {{ $category->color }}">{{ $category->color }}</span>
-                </td>
-                <td>
-                    <a href="{{route('admin.categories.edit',$category->id)}}" class="table-link" id="update-{{ $category->id }}">
+                    <a href="{{route('admin.web_profile.edit',$profile->id)}}" class="table-link" id="update-{{ $profile->id }}">
                         <span class="fa-stack">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
                         </span>
                     </a>
-                    <a href="{{route('admin.categories.show',$category->id)}}" class="table-link text-danger" id="delete-{{ $category->id }}">
+                    <a href="{{route('admin.web_profile.show',$profile->id)}}" class="table-link text-danger" id="delete-{{ $profile->id }}">
                         <span class="fa-stack">
                         <i class="fa fa-square fa-stack-2x"></i>
                         <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
