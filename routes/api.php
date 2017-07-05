@@ -58,7 +58,8 @@ ApiRoute::version( 'v1', function() {
 
 
                 /************ PAYMENT ROUTES ***************/
-                ApiRoute::post( '/plans/{plan}/payments', [ 'as' => 'payments.store', 'uses' => 'PaymentsController@store' ] );
+                ApiRoute::post( '/plans/{plan}/payments', [ 'as' => 'payments.makePayment', 'uses' => 'PaymentsController@makePayment' ] );
+                ApiRoute::patch( '/plans/{plan}/payments', [ 'as' => 'payments.store', 'uses' => 'PaymentsController@store' ] );
 
                 /************ PLANS ROUTES ***************/
                 ApiRoute::get( 'plans', [ 'as' => 'plans.list', 'uses' => 'PlansController@index' ] );

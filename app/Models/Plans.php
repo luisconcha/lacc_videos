@@ -16,6 +16,13 @@ class Plans extends Model implements Transformable
     CONST DURATION_YEARLY = '1';
     CONST DURATION_MONTHLY = '2';
 
+
+    public function getSkuAttribute()
+    {
+        return "plan-{$this->id}";
+    }
+
+
     public function rules()
     {
         $idPlans = ( \Request::segment( 3 ) ) ? : null;
