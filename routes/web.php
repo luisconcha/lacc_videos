@@ -58,6 +58,9 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
         Route::resource( 'videos', 'VideosController' );
 
         //Route to Series
+        Route::resource( 'web_profile', 'PaypalWebProfilesController' );
+
+        //Route to paypalWebProfile
         Route::get( 'series/{serie}/thumb_asset', ['as'=> 'series.thumb_asset', 'uses' => 'SeriesController@thumbAssets'] );
         Route::get( 'series/{serie}/thumb_small_asset', ['as'=> 'series.thumb_small_asset', 'uses' => 'SeriesController@thumbSmallAssets'] );
         Route::resource( 'series', 'SeriesController' );
