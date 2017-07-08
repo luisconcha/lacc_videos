@@ -58,6 +58,7 @@ Route::group( [ 'prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin\\' 
         Route::resource( 'videos', 'VideosController' );
 
         //Route to paypalWebProfile
+        Route::delete( '/web_profile/{web_profile}/delete', [ 'as' => 'web_profile.delete', 'uses' => 'PaypalWebProfilesController@delete' ] );
         Route::resource( 'web_profile', 'PaypalWebProfilesController' );
 
         //Route to Series

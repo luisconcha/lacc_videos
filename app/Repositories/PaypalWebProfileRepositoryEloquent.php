@@ -13,6 +13,64 @@ use LACC\Models\Category;
  */
 class PaypalWebProfileRepositoryEloquent extends BaseRepository implements PaypalWebProfileRepository
 {
+
+    public function create(array $attributes)
+    {
+        /**
+         * Salva um valor temporario ao criar, ele será atualizado
+         * no listener CreatedPaypalWebProfileListener
+         */
+        $attributes['code'] = 'processing';
+
+        \DB::beginTransaction();
+        try {
+            $model = parent::create($attributes);
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            throw $exception;
+        }
+
+        \DB::commit();
+
+        return $model;
+    }
+
+    public function update(array $attributes, $id)
+    {
+        /**
+         * Verifica no listener UpdatedPaypalWebProfileListener
+         */
+        \DB::beginTransaction();
+        try {
+            $model = parent::update($attributes, $id);;
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            throw $exception;
+        }
+
+        \DB::commit();
+
+        return $model;
+    }
+
+    public function delete($id)
+    {
+        /**
+         * Verifica no listener UpdatedPaypalWebProfileListener
+         */
+        \DB::beginTransaction();
+        try {
+            $result = parent::delete($id);
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            throw $exception;
+        }
+
+        \DB::commit();
+
+        return $result;
+    }
+
     /**
      * Specify Model class name
      *
@@ -29,6 +87,6 @@ class PaypalWebProfileRepositoryEloquent extends BaseRepository implements Paypa
      */
     public function boot()
     {
-        $this->pushCriteria( app( RequestCriteria::class ) );
+        $this->pushCriteria(app(RequestCriteria::class));
     }
 }

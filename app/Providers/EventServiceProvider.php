@@ -22,7 +22,16 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         \Prettus\Repository\Events\RepositoryEntityCreated::class => [
-            \LACC\Listeners\CreatedSubscriptionListener::class
+            \LACC\Listeners\CreatedSubscriptionListener::class,
+            \LACC\Listeners\CreatedPaypalWebProfileListener::class
+        ],
+
+        \Prettus\Repository\Events\RepositoryEntityUpdated::class => [
+            \LACC\Listeners\UpdatedPaypalWebProfileListener::class
+        ],
+
+        \Prettus\Repository\Events\RepositoryEntityDeleted::class => [
+            \LACC\Listeners\DeletetePaypalWebProfileListener::class
         ]
     ];
 

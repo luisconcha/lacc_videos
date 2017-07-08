@@ -12,10 +12,9 @@
 
 namespace LACC\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use LACC\Http\Controllers\StandarController;
-use LACC\Models\Category;
 use LACC\Models\PaypalWebProfile;
-use LACC\Repositories\CategoryRepository;
 use LACC\Repositories\PaypalWebProfileRepository;
 
 class PaypalWebProfilesController extends StandarController
@@ -36,5 +35,11 @@ class PaypalWebProfilesController extends StandarController
     {
         $this->model = $paypalWebProfile;
         $this->repository = $repository;
+    }
+
+    public function delete($id)
+    {
+        if($this->repository->delete($id))
+            return response()->redirectToRoute($this->route.'.index');
     }
 }

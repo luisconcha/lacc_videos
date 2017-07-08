@@ -41,10 +41,9 @@
 
             </div>
         </div>
-        {!! Form::model($data,['route'=>['admin.web_profile.destroy',$data->id],'method'=>'delete']) !!}
+        {!! Form::model($data,['route'=>['admin.web_profile.delete',$data->id],'method'=>'delete']) !!}
         <div class="form-group text-center">
             {!!  Form::button('<i class="fa fa-fw fa-trash-o"></i> Delete profile ', ['type' => 'submit', 'class' => 'btn btn-danger btn-sm'] ) !!}
-            {!! Form::hidden('redirect_to', URL::previous()) !!}
             <a href="{{route('admin.web_profile.edit',$data->id)}}" class="btn btn-primary btn-sm"> <i class="fa fa-fw fa-pencil"></i> Alter
                 profile: {{$data->name}} </a>
             <a href="{{ route('admin.web_profile.index') }}" class="btn btn-default btn-sm"><i class="fa fa-fw fa-eye"></i> Paypal profile list </a>
