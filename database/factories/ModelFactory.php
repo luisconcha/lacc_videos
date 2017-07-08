@@ -56,16 +56,17 @@ $factory->define( \LACC\Models\Video::class, function( Faker\Generator $faker ) 
 } );
 
 $factory->define( \LACC\Models\Plans::class, function( Faker\Generator $faker ) {
+    
     $arrDuration = [
         1 => \LACC\Models\Plans::DURATION_YEARLY,
         2 => \LACC\Models\Plans::DURATION_MONTHLY
     ];
 
     return [
-        'name'        => $faker->sentence( 3 ),
-        'description' => $faker->paragraph( 5 ),
-        'value'       => $faker->randomFloat( 2, 50, 100 ),
-        'duration'    => $faker->randomKey( $arrDuration )
+        'name'       => $faker->sentence( 3 ),
+        'description'=> $faker->paragraph( 5 ),
+        'value'      => $faker->randomFloat( 2, 50, 100 ),
+        'duration'   => $faker->randomKey( $arrDuration ),
     ];
 } );
 

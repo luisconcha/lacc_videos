@@ -30,6 +30,7 @@
             <td>Description</td>
             <td class="td-width-5">Value($)</td>
             <td class="td-width-5">Duration</td>
+            <td class="td-width-5">Paypal web profile</td>
             <td class="td-width-5">Actions</td>
         </tr>
 
@@ -40,6 +41,7 @@
                 <td>{{ $plans->description}}</td>
                 <td>$ {{ $plans->value }}</td>
                 <td>{{ ($plans->duration == 1)? 'Yearly':'Monthly' }}</td>
+                <td>{{ $plans->webProfile->id  }}</td>
                 <td>
                     <a href="{{route('admin.plans.edit',$plans->id)}}" class="table-link" id="update-{{ $plans->id }}">
                         <span class="fa-stack">

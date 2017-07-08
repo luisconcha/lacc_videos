@@ -95,13 +95,15 @@ class PaymentClient
                      ->setCancelUrl( "$baseUrl/payment/cancel" );
 
         $payment = new Payment();
-        $payment->setIntent( 'sale' )
+        
+        $payment->setExperienceProfileId( $plan->webProfile->code )
+                ->setIntent( 'sale' )
                 ->setPayer( $payer )
                 ->setRedirectUrls( $redirectUrls )
                 ->setTransactions( [ $transaction ] );
 
         $payment->create( $this->apiContext );
-
+        
         return $payment;
     }
 }

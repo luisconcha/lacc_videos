@@ -14,6 +14,7 @@ namespace LACC\Http\Controllers\Admin;
 
 use LACC\Http\Controllers\StandarController;
 use LACC\Models\Plans;
+use LACC\Repositories\PaypalWebProfileRepository;
 use LACC\Repositories\PlanRepository;
 
 class PlanController extends StandarController
@@ -24,31 +25,39 @@ class PlanController extends StandarController
     /** @var  PlanRepository */
     protected $repository;
 
+    /**  @var PaypalWebProfileRepository */
+    private $profileRepository;
+
     protected $route = 'admin.plans';
 
     protected $view = 'admin.plans';
 
     protected $totalPage = 10;
 
-    public function __construct( PlanRepository $repository, Plans $plans )
+
+    public function __construct( PlanRepository $repository, Plans $plans, PaypalWebProfileRepository $profileRepository)
     {
         $this->model = $plans;
         $this->repository = $repository;
+        $this->profileRepository = $profileRepository;
     }
 
     public function create()
     {
         $data = '';
-        $durations = $this->repository->getListDurationInSelect();
+        $webProfiles = $this->profileRepository->getWebProfileInSelect();
+        $durations   = $this->repository->getListDurationInSelect();
 
-        return view( "{$this->view}.add", compact( 'data', 'durations' ) );
+        return view( "{$this->view}.add", compact( 'data', 'durations','webProfiles' ) );
     }
 
     public function edit( $id )
     {
         $data = $this->repository->find( $id );
-        $durations = $this->repository->getListDurationInSelect();
+        $webProfiles = $this->profileRepository->getWebProfileInSelect();
+        $durations   = $this->repository->getListDurationInSelect();
 
-        return view( "{$this->view}.edit", compact( 'data', 'durations' ) );
+        return view( "{$this->view}.edit", compact( 'data', 'durations','webProfiles' ) );
     }
+
 }

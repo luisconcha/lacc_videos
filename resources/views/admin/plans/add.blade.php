@@ -23,7 +23,7 @@
             <h3>New Plan</h3>
 
             @include('admin.errors._check')
-
+             
             {!! Form::open(['route'=>'admin.plans.store','role'=>'form','class'=>'form']) !!}
 
             @include('admin.plans._form')

@@ -51,6 +51,12 @@
                                     'id'=>'email']) !!}
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {!! Form::label('Duration','Duration', ['class' => 'control-label']) !!}
+                                    {!! Form::number('duration', null, ['class'=>'form-control','id'=>'duration']) !!}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,12 +126,6 @@
                                 <div class="form-group">
                                     {!! Form::label('Video','Video', ['class' => 'control-label']) !!}
                                     {!! Form::file('file', null, ['class'=>'form-control','id'=>'file']) !!}
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    {!! Form::label('Duration','Duration', ['class' => 'control-label']) !!}
-                                    {!! Form::number('duration', null, ['class'=>'form-control','id'=>'duration']) !!}
                                 </div>
                             </div>
                         </div>

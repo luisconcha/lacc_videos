@@ -31,6 +31,14 @@
                     {!! Form::text('value', null, ['placeholder'=>'Inform plan value','class'=>'form-control', 'id'=>'value']) !!}
                 </div>
             </div>
+            <div class="col-md-12">
+                <div class="form-group {{ $errors->first('paypal_web_profile_id')? ' has-error':'' }}">
+                    <div class="form-group">
+                        {!! Form::label('paypal_web_profile_id','Paypal web profile', ['class' => 'control-label']) !!}
+                        {!! Form::select('paypal_web_profile_id', $webProfiles,null, ['class'=>'form-control']) !!}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

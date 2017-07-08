@@ -10,4 +10,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface PaypalWebProfileRepository extends RepositoryInterface
 {
+    public function getWebProfileInSelect();
 }

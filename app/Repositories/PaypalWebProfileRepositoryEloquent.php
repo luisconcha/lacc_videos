@@ -2,10 +2,9 @@
 
 namespace LACC\Repositories;
 
-use LACC\Models\PaypalWebProfile;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use LACC\Models\Category;
+use LACC\Models\PaypalWebProfile;
 
 /**
  * Class PaypalWebProfileRepositoryEloquent
@@ -13,6 +12,13 @@ use LACC\Models\Category;
  */
 class PaypalWebProfileRepositoryEloquent extends BaseRepository implements PaypalWebProfileRepository
 {
+    public function getWebProfileInSelect()
+    {
+       $webProfiles = [ '' => '--select an webprofiles--'];
+       $webProfiles += $this->model->pluck( 'name', 'id' )->all();
+       
+       return $webProfiles;
+    }
 
     public function create(array $attributes)
     {
