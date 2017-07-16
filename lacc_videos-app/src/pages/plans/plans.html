@@ -26,7 +26,8 @@
                         <button ion-item>
                             <ion-icon name="clock" item-left> {{ plan.duration == 1 ? 'Yearly' : 'Monthly' }}</ion-icon>
                         </button>
-                        <button ion-button color="dark" block text-center>
+                        <button ion-button color="dark" block text-center navPush="PaymentPage"
+                                [navParams]="{plan:plan.id}">
                             Purchase
                         </button>
                     </ion-card-content>
