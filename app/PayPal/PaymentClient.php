@@ -24,6 +24,7 @@ use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
+use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext;
 
 class PaymentClient
@@ -95,15 +96,22 @@ class PaymentClient
                      ->setCancelUrl( "$baseUrl/payment/cancel" );
 
         $payment = new Payment();
-        
+
         $payment->setExperienceProfileId( $plan->webProfile->code )
                 ->setIntent( 'sale' )
                 ->setPayer( $payer )
                 ->setRedirectUrls( $redirectUrls )
                 ->setTransactions( [ $transaction ] );
 
-        $payment->create( $this->apiContext );
-        
+//        $payment->create( $this->apiContext );
+        try {
+            $payment->create($this->apiContext);
+        }catch (PayPalConnectionException $exception){
+            //return response()->json($exception->getMessage());
+            \Log::error($exception->getMessage(),['data' => $exception->getData()]);
+            throw $exception;
+        }
+
         return $payment;
     }
 }
